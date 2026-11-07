@@ -33,6 +33,110 @@
 
 <body>
 
+  <!-- Anti-flicker script for returning visitors who opted out today -->
+  <script>
+    (function () {
+      try {
+        var today = new Date().toISOString().slice(0, 10);
+        if (localStorage.getItem('sgc_splash_dismissed_date') === today) {
+          document.documentElement.classList.add('splash-already-dismissed');
+        } else {
+          document.body.classList.add('splash-active');
+        }
+      } catch (e) { }
+    })();
+  </script>
+
+  <!-- ==========================================================================
+       DAILY BIBLE VERSE SPLASH PAGE OVERLAY
+       ========================================================================== -->
+  <div class="splash-screen" id="splashScreen" role="dialog" aria-modal="true" aria-labelledby="splashChurchTitle">
+    <!-- Ambient Golden Glow -->
+    <div class="splash-glow" aria-hidden="true"></div>
+
+    <!-- Quick Skip to Main Site -->
+    <button type="button" class="splash-skip-btn" id="splashSkipBtn" aria-label="Skip to church website">
+      <span>Skip to Site</span>
+      <i class="fa-solid fa-arrow-right"></i>
+    </button>
+
+    <!-- Main Devotional Splash Card -->
+    <div class="splash-card">
+      <!-- Church Brand -->
+      <div class="splash-brand">
+        <div class="splash-logo-wrap">
+          <img src="images/sgc logo.png" alt="Saved by Grace Church Logo" class="splash-logo-img">
+        </div>
+        <h2 class="splash-church-title" id="splashChurchTitle">
+          SAVED BY GRACE <span>CHURCH</span>
+        </h2>
+      </div>
+
+      <!-- Devotional Badge with Date -->
+      <div class="splash-badge">
+        <i class="fa-solid fa-sun text-gold"></i>
+        <span>Daily Scripture &bull; <strong id="splashDate">Today</strong></span>
+      </div>
+
+      <!-- Scripture Presentation Box -->
+      <div class="splash-scripture-box" id="splashScriptureBox">
+        <!-- Loading State Spinner -->
+        <div class="splash-loader" id="splashLoader">
+          <div class="splash-spinner"></div>
+          <p>Receiving Today's Scripture...</p>
+        </div>
+
+        <!-- Scripture Content (Revealed after fetch) -->
+        <div class="splash-scripture-content" id="splashScriptureContent" style="display: none;">
+          <div class="splash-quote-icon">
+            <i class="fa-solid fa-quote-left"></i>
+          </div>
+          <blockquote class="splash-verse-text" id="splashVerseText">
+            <!-- Verse text inserted by JS -->
+          </blockquote>
+          <div class="splash-verse-ref" id="splashVerseRef">
+            <i class="fa-solid fa-cross text-gold"></i>
+            <span id="splashRefText"></span>
+          </div>
+
+          <!-- Interactive Verse Tools -->
+          <div class="splash-verse-tools">
+            <button type="button" class="splash-tool-btn" id="splashListenBtn" title="Listen to Verse Audio">
+              <i class="fa-solid fa-volume-high text-gold"></i>
+              <span id="splashListenText">Listen</span>
+            </button>
+            <button type="button" class="splash-tool-btn" id="splashCopyBtn" title="Copy Verse to Clipboard">
+              <i class="fa-regular fa-copy"></i>
+              <span id="splashCopyText">Copy Verse</span>
+            </button>
+            <button type="button" class="splash-tool-btn" id="splashShareBtn" title="Share Verse with Friends & Family">
+              <i class="fa-solid fa-share-nodes text-gold"></i>
+              <span>Share</span>
+            </button>
+            <button type="button" class="splash-tool-btn" id="splashNewVerseBtn" title="Receive Another Scripture">
+              <i class="fa-solid fa-rotate"></i>
+              <span>Inspire Me</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer CTA & Remember Toggle -->
+      <div class="splash-footer">
+        <button type="button" class="btn btn-primary btn-lg splash-enter-btn" id="splashEnterBtn">
+          <i class="fa-solid fa-church"></i>
+          <span>Enter Church Website</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+        <label class="splash-remember-box">
+          <input type="checkbox" id="splashRememberCheck">
+          <span>Don't show this splash page again today</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
   <!-- ==========================================================================
        TOP ANNOUNCEMENT BAR
        ========================================================================== -->
@@ -50,6 +154,11 @@
         <span class="top-bar-item">
           <i class="fa-solid fa-phone"></i>
           <a href="tel:5552345678" style="color: inherit;">(555) 234-5678</a>
+        </span>
+        <span class="top-bar-item open-splash-trigger top-bar-verse-link" style="cursor: pointer;"
+          title="View Today's Daily Bible Verse">
+          <i class="fa-solid fa-book-bible text-gold"></i>
+          <span style="color: var(--gold-300); font-weight: 600;">Daily Verse</span>
         </span>
       </div>
       <div class="top-bar-socials">
@@ -76,7 +185,7 @@
         <img src="images/sgc logo.png" alt="Saved by Grace Church Logo" class="nav-logo-img">
         <div class="nav-brand-text">
           <span class="nav-brand-title">SAVED BY GRACE</span>
-          <span class="nav-brand-sub">CHURCH &bull; EST. 1998</span>
+          <span class="nav-brand-sub">CHURCH <br> EST. 1986</span>
         </div>
       </a>
 
@@ -87,7 +196,6 @@
         <a href="#services" class="nav-link">Services</a>
         <a href="#ministries" class="nav-link">Ministries</a>
         <a href="#events" class="nav-link">Events</a>
-        <a href="#sermons" class="nav-link">Sermons</a>
         <a href="#gallery" class="nav-link">Gallery</a>
         <a href="#contact" class="nav-link">Contact Us</a>
 
@@ -99,6 +207,10 @@
 
       <!-- Desktop Action & Mobile Toggle -->
       <div class="nav-actions">
+        <button class="btn btn-outline-gold btn-sm open-splash-trigger" id="navDailyVerseBtn"
+          aria-label="View Daily Bible Verse">
+          <i class="fa-solid fa-book-bible"></i> <span>Daily Verse</span>
+        </button>
         <button class="btn btn-primary btn-sm open-visit-modal-btn" aria-label="Plan your church visit">
           <i class="fa-solid fa-calendar-check"></i> Plan Your Visit
         </button>
@@ -144,6 +256,13 @@
         <div class="hero-verse-ref">
           <i class="fa-solid fa-cross text-gold"></i>
           <span>Ephesians 2:8&ndash;9 (KJV)</span>
+        </div>
+        <div style="margin-top: 0.85rem; border-top: 1px dashed rgba(212, 175, 55, 0.25); padding-top: 0.65rem;">
+          <a href="javascript:void(0)" class="open-splash-trigger hero-daily-verse-badge"
+            style="display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.85rem; color: var(--gold-300); font-weight: 600; cursor: pointer; transition: color var(--transition-fast);">
+            <i class="fa-solid fa-sun text-gold"></i>
+            <span>Read Today's Daily Bible Verse &rarr;</span>
+          </a>
         </div>
       </div>
 
@@ -238,7 +357,7 @@
           <img src="images/about.jpg" alt="Saved by Grace Church Sanctuary interior illuminated by warm sunlight"
             class="about-img-main">
           <div class="about-img-accent">
-            <div class="accent-number">28+</div>
+            <div class="accent-number">40+</div>
             <div class="accent-label">Years of Faithful Ministry in Our Community</div>
           </div>
         </div>
@@ -430,31 +549,32 @@
 
         <div class="visitor-perks-grid">
           <div class="visitor-perk">
-            <div class="visitor-perk-icon"><i class="fa-solid fa-square-parking"></i></div>
+            <div class="visitor-perk-icon"><i class="fa-solid fa-hand-holding-hand"></i></div>
             <div>
-              <h5>VIP Guest Parking</h5>
-              <p>Reserved parking spaces right near the main sanctuary entrance.</p>
+              <h5>A Warm Welcome</h5>
+              <p>Our church family will greet you with genuine smiles and make you feel at home.</p>
             </div>
           </div>
           <div class="visitor-perk">
-            <div class="visitor-perk-icon"><i class="fa-solid fa-shirt"></i></div>
+            <div class="visitor-perk-icon"><i class="fa-solid fa-eye"></i></div>
             <div>
-              <h5>Come As You Are</h5>
-              <p>From jeans to Sunday suits, wear whatever feels comfortable.</p>
+              <h5>No Pressure to Participate</h5>
+              <p>Feel free to observe, ask questions, and participate at your own comfort level.</p>
             </div>
           </div>
           <div class="visitor-perk">
-            <div class="visitor-perk-icon"><i class="fa-solid fa-shield-heart"></i></div>
+            <div class="visitor-perk-icon"><i class="fa-solid fa-book-bible"></i></div>
             <div>
-              <h5>Safe Kids Check-In</h5>
-              <p>Background-checked staff and secure digital family tags.</p>
+              <h5>Biblical Teaching</h5>
+              <p>Listen to a meaningful, Bible-based message that encourages spiritual growth and strengthens your
+                faith.</p>
             </div>
           </div>
           <div class="visitor-perk">
-            <div class="visitor-perk-icon"><i class="fa-solid fa-mug-hot"></i></div>
+            <div class="visitor-perk-icon"><i class="fa-solid fa-cross"></i></div>
             <div>
-              <h5>Welcome Gift Bag</h5>
-              <p>Stop by the Grace Cafe for complimentary coffee and a welcome pack.</p>
+              <h5>Christ-Centered Worship</h5>
+              <p>Experience uplifting worship songs, praise, and music that glorifies God.</p>
             </div>
           </div>
         </div>
@@ -477,22 +597,22 @@
       </div>
 
       <div class="ministries-grid">
-        <!-- 1. Worship Ministry -->
+        <!-- 1.  Spiritual Upliftment -->
         <article class="ministry-card reveal-on-scroll">
           <div class="ministry-thumb-wrapper">
-            <img src="images/ministry-worship.jpg" alt="Worship choir and band magnifying God" class="ministry-thumb">
+            <img src="images/spiritual.jpg" alt="Worship choir and band magnifying God" class="ministry-thumb">
             <div class="ministry-icon-badge"><i class="fa-solid fa-music"></i></div>
           </div>
           <div class="ministry-card-body">
-            <span class="ministry-tag">Praise &amp; Creative Arts</span>
-            <h3 class="ministry-card-title">Worship Ministry</h3>
+            <span class="ministry-tag">To All Brothers and Sisters </span>
+            <h3 class="ministry-card-title"> Spiritual Upliftment</h3>
             <p class="ministry-card-desc">
-              Encompassing choir singers, instrumentalists, sound engineers, and multimedia technicians, our worship
-              team leads the assembly in passionate adoration of Jesus Christ.
+              A ministry dedicated to spreading the Gospel and share God's Word with people, guiding them toward faith,
+              spiritual growth, and a deeper relationship with Jesus Christ.
             </p>
             <div class="ministry-card-footer">
-              <span style="font-size: 0.8rem; color: var(--slate-500);"><i class="fa-regular fa-clock"></i> Thursdays
-                7:00 PM</span>
+              <span style="font-size: 0.8rem; color: var(--slate-500);"><i class="fa-regular fa-clock"></i> By
+                Schedule</span>
               <a href="#" class="ministry-learn-more open-ministry-btn" data-ministry="worship">
                 Learn More <i class="fa-solid fa-arrow-right"></i>
               </a>
@@ -507,6 +627,7 @@
             <div class="ministry-icon-badge"><i class="fa-solid fa-users"></i></div>
           </div>
           <div class="ministry-card-body">
+            <span class="ministry-tag">Children and Teens</span>
             <h3 class="ministry-card-title">Youth Ministry</h3>
             <p class="ministry-card-desc">
               Grace Generation provides middle and high school students with an authentic, judgment-free space to
@@ -525,19 +646,19 @@
         <!-- 3. Children's Ministry -->
         <article class="ministry-card reveal-on-scroll">
           <div class="ministry-thumb-wrapper">
-            <img src="images/ministry-children.jpg" alt="Kingdom Kids Sunday school class" class="ministry-thumb">
+            <img src="images/menandwomen.jpg" alt="men and women fellowship" class="ministry-thumb">
             <div class="ministry-icon-badge"><i class="fa-solid fa-child-reaching"></i></div>
           </div>
           <div class="ministry-card-body">
-            <span class="ministry-tag">Nursery to 5th Grade</span>
-            <h3 class="ministry-card-title">Children's Ministry</h3>
+            <span class="ministry-tag">All Men and Women</span>
+            <h3 class="ministry-card-title">Men and Women's Fellowship</h3>
             <p class="ministry-card-desc">
-              Kingdom Kids is dedicated to planting seeds of faith through interactive scripture lessons, Bible
-              memorization, lively puppet skits, and loving teachers.
+              A meaningful gathering for men and women to strengthen faith, build lasting friendships, encourage one
+              another, and grow spiritually through prayer, Bible sharing, and Christ-centered fellowship.
             </p>
             <div class="ministry-card-footer">
-              <span style="font-size: 0.8rem; color: var(--slate-500);"><i class="fa-regular fa-clock"></i> Sundays 9
-                &amp; 11 AM</span>
+              <span style="font-size: 0.8rem; color: var(--slate-500);"><i class="fa-regular fa-clock"></i> By Schedule
+              </span>
               <a href="#" class="ministry-learn-more open-ministry-btn" data-ministry="children">
                 Learn More <i class="fa-solid fa-arrow-right"></i>
               </a>
@@ -548,7 +669,7 @@
         <!-- 4. Prayer Ministry -->
         <article class="ministry-card reveal-on-scroll">
           <div class="ministry-thumb-wrapper">
-            <img src="images/ministry-prayer.jpg" alt="Intercessors praying together in faith" class="ministry-thumb">
+            <img src="images/prayer.jpg" alt="Intercessors praying together in faith" class="ministry-thumb">
             <div class="ministry-icon-badge"><i class="fa-solid fa-hands-praying"></i></div>
           </div>
           <div class="ministry-card-body">
@@ -559,8 +680,8 @@
               body, community needs, sick members, and global revival.
             </p>
             <div class="ministry-card-footer">
-              <span style="font-size: 0.8rem; color: var(--slate-500);"><i class="fa-regular fa-clock"></i> 24/7 Prayer
-                Line</span>
+              <span style="font-size: 0.8rem; color: var(--slate-500);"><i class="fa-regular fa-clock"></i> By Schedule
+              </span>
               <a href="#" class="ministry-learn-more open-ministry-btn" data-ministry="prayer">
                 Learn More <i class="fa-solid fa-arrow-right"></i>
               </a>
@@ -568,23 +689,23 @@
           </div>
         </article>
 
-        <!-- 5. Outreach & Missions -->
+        <!-- 5. Sportsfest -->
         <article class="ministry-card reveal-on-scroll">
           <div class="ministry-thumb-wrapper">
-            <img src="images/ministry-outreach.jpg" alt="Volunteers serving at community food pantry"
-              class="ministry-thumb">
+            <img src="images/sportsfest.jpg" alt="Volunteers serving at community food pantry" class="ministry-thumb">
             <div class="ministry-icon-badge"><i class="fa-solid fa-hand-holding-heart"></i></div>
           </div>
           <div class="ministry-card-body">
-            <span class="ministry-tag">Local &amp; Global Missions</span>
-            <h3 class="ministry-card-title">Outreach &amp; Missions</h3>
+            <span class="ministry-tag">Annual Sportsfest</span>
+            <h3 class="ministry-card-title">Sportsfest</h3>
             <p class="ministry-card-desc">
-              Demonstrating God’s love in tangible deeds through monthly food pantries, homeless blessing drives,
-              nursing home visits, and supporting international mission fields.
+              A fun-filled church activity that promotes unity, teamwork, friendship, and healthy competition through
+              sports and recreational games. It brings our church family together, strengthens fellowship, and
+              celebrates our God-given talents.
             </p>
             <div class="ministry-card-footer">
-              <span style="font-size: 0.8rem; color: var(--slate-500);"><i class="fa-regular fa-clock"></i> 2nd &amp;
-                4th Saturdays</span>
+              <span style="font-size: 0.8rem; color: var(--slate-500);"><i class="fa-regular fa-clock"></i> Every 1st of
+                May</span>
               <a href="#" class="ministry-learn-more open-ministry-btn" data-ministry="outreach">
                 Learn More <i class="fa-solid fa-arrow-right"></i>
               </a>
@@ -595,8 +716,7 @@
         <!-- 6. Bible Study & Discipleship -->
         <article class="ministry-card reveal-on-scroll">
           <div class="ministry-thumb-wrapper">
-            <img src="images/ministry-bible.jpg" alt="Small group studying the Holy Bible together"
-              class="ministry-thumb">
+            <img src="images/biblestudy.jpg" alt="Small group studying the Holy Bible together" class="ministry-thumb">
             <div class="ministry-icon-badge"><i class="fa-solid fa-book-open-reader"></i></div>
           </div>
           <div class="ministry-card-body">
@@ -607,8 +727,8 @@
               and Foundations of Faith discipleship courses.
             </p>
             <div class="ministry-card-footer">
-              <span style="font-size: 0.8rem; color: var(--slate-500);"><i class="fa-regular fa-clock"></i> Tuesdays
-                &amp; Thursdays</span>
+              <span style="font-size: 0.8rem; color: var(--slate-500);"><i class="fa-regular fa-clock"></i> By Schedule
+              </span>
               <a href="#" class="ministry-learn-more open-ministry-btn" data-ministry="biblestudy">
                 Learn More <i class="fa-solid fa-arrow-right"></i>
               </a>
@@ -678,228 +798,6 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- Events Grid -->
-      <div class="events-grid">
-        <!-- Event 1 -->
-        <article class="event-card reveal-on-scroll">
-          <div class="event-thumb-wrap">
-            <img src="images/event-2.jpg" alt="Community Thanksgiving Food Drive" class="event-thumb">
-            <div class="event-date-badge">
-              <span class="event-date-month">Nov</span>
-              <span class="event-date-day">26</span>
-            </div>
-          </div>
-          <div class="event-card-body">
-            <div class="event-meta">
-              <span><i class="fa-regular fa-clock"></i> 9:00 AM &ndash; 1:00 PM</span>
-              <span><i class="fa-solid fa-location-dot"></i> Fellowship Hall</span>
-            </div>
-            <h3 class="event-card-title">Thanksgiving Community Blessing Drive</h3>
-            <p class="event-card-desc">
-              Packaging and distributing over 500 complete Thanksgiving food baskets to local families in need across
-              Springfield.
-            </p>
-            <button class="btn btn-secondary btn-sm open-event-btn" data-title="Thanksgiving Community Blessing Drive"
-              data-date="November 26, 2026 • 9:00 AM" data-location="Fellowship Hall &amp; Community Center"
-              data-desc="Join our volunteer teams as we bless hundreds of families with turkeys, produce, and scripture blessing cards. All volunteer ages welcomed.">
-              View Details <i class="fa-solid fa-arrow-right"></i>
-            </button>
-          </div>
-        </article>
-
-        <!-- Event 2 -->
-        <article class="event-card reveal-on-scroll">
-          <div class="event-thumb-wrap">
-            <img src="images/event-3.jpg" alt="Christmas Eve Candlelight Service" class="event-thumb">
-            <div class="event-date-badge">
-              <span class="event-date-month">Dec</span>
-              <span class="event-date-day">24</span>
-            </div>
-          </div>
-          <div class="event-card-body">
-            <div class="event-meta">
-              <span><i class="fa-regular fa-clock"></i> 5:00 PM &amp; 7:00 PM</span>
-              <span><i class="fa-solid fa-location-dot"></i> Main Sanctuary</span>
-            </div>
-            <h3 class="event-card-title">Christmas Eve Candlelight &amp; Carols</h3>
-            <p class="event-card-desc">
-              Celebrate the birth of our Savior Jesus with candlelight singing, children's living nativity drama, and
-              the message of Christ’s peace.
-            </p>
-            <button class="btn btn-secondary btn-sm open-event-btn" data-title="Christmas Eve Candlelight &amp; Carols"
-              data-date="December 24, 2026 • 5:00 PM &amp; 7:00 PM" data-location="Main Worship Sanctuary"
-              data-desc="A heartwarming evening for the entire family. Candlelight for all ages, classic Christmas hymns, and warm cocoa afterwards.">
-              View Details <i class="fa-solid fa-arrow-right"></i>
-            </button>
-          </div>
-        </article>
-
-        <!-- Event 3 -->
-        <article class="event-card reveal-on-scroll">
-          <div class="event-thumb-wrap">
-            <img src="images/event-1.jpg" alt="Men's Breakfast and Bible Study" class="event-thumb">
-            <div class="event-date-badge">
-              <span class="event-date-month">Dec</span>
-              <span class="event-date-day">05</span>
-            </div>
-          </div>
-          <div class="event-card-body">
-            <div class="event-meta">
-              <span><i class="fa-regular fa-clock"></i> 8:00 AM &ndash; 10:00 AM</span>
-              <span><i class="fa-solid fa-location-dot"></i> Grace Cafe Room</span>
-            </div>
-            <h3 class="event-card-title">Men of Grace Breakfast &amp; Word</h3>
-            <p class="event-card-desc">
-              Monthly fellowship of hearty food, honest brotherhood, and biblical study on leading families in spiritual
-              integrity.
-            </p>
-            <button class="btn btn-secondary btn-sm open-event-btn" data-title="Men of Grace Breakfast &amp; Word"
-              data-date="First Saturday of Every Month • 8:00 AM" data-location="Grace Cafe Room"
-              data-desc="Free breakfast hearty fellowship, practical biblical wisdom, and mutual prayer support for men of all ages.">
-              View Details <i class="fa-solid fa-arrow-right"></i>
-            </button>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       SECTION: SERMONS AND MESSAGES
-       ========================================================================== -->
-  <section class="section section-cream" id="sermons">
-    <div class="container">
-      <div class="section-header reveal-on-scroll">
-        <span class="section-subtitle">The Living Word</span>
-        <h2 class="section-title">Recent Sermons &amp; Messages</h2>
-        <p class="section-lead">
-          Feed your spirit with faithful, expository preaching from the Word of God. Listen or watch anytime, anywhere.
-        </p>
-      </div>
-
-      <!-- Sermon Category Filter Tabs -->
-      <div class="sermon-filter-tabs reveal-on-scroll">
-        <button class="sermon-filter-btn active" data-filter="all">All Messages</button>
-        <button class="sermon-filter-btn" data-filter="grace">Grace &amp; Salvation</button>
-        <button class="sermon-filter-btn" data-filter="faith">Faith &amp; Trust</button>
-        <button class="sermon-filter-btn" data-filter="discipleship">Christian Living</button>
-      </div>
-
-      <!-- Sermons Grid -->
-      <div class="sermons-grid">
-        <!-- Sermon 1: Featured -->
-        <article class="sermon-card reveal-on-scroll" data-category="grace">
-          <div class="sermon-thumb-wrap">
-            <img src="images/sermon-1.jpg" alt="The Sufficiency of Grace sermon" class="sermon-thumb">
-            <div class="sermon-series-badge">Ephesians Series</div>
-            <div class="sermon-duration"><i class="fa-solid fa-play"></i> 44:18</div>
-            <div class="sermon-play-overlay">
-              <div class="sermon-play-btn"><i class="fa-solid fa-play"></i></div>
-            </div>
-          </div>
-          <div class="sermon-card-body">
-            <span class="sermon-scripture"><i class="fa-solid fa-cross"></i> Ephesians 2:1&ndash;10</span>
-            <h3 class="sermon-title">The Sufficiency of God's Boundless Grace</h3>
-            <span class="sermon-speaker"><i class="fa-regular fa-user"></i> Pastor David Anderson</span>
-            <span class="sermon-date">Sunday, November 1, 2026</span>
-            <div class="sermon-card-footer">
-              <button class="btn btn-primary btn-sm open-sermon-btn">
-                <i class="fa-solid fa-play"></i> Watch or Listen
-              </button>
-              <a href="#" class="btn btn-outline-white btn-sm"
-                style="color: var(--navy-900); border-color: var(--slate-300);"
-                onclick="alert('Downloading sermon study notes PDF...'); return false;">
-                <i class="fa-solid fa-file-arrow-down"></i> Notes
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Sermon 2 -->
-        <article class="sermon-card reveal-on-scroll" data-category="faith">
-          <div class="sermon-thumb-wrap">
-            <img src="images/sermon-2.jpg" alt="Walking by Faith Not by Sight sermon" class="sermon-thumb">
-            <div class="sermon-series-badge">Faith in Trials</div>
-            <div class="sermon-duration"><i class="fa-solid fa-play"></i> 39:52</div>
-            <div class="sermon-play-overlay">
-              <div class="sermon-play-btn"><i class="fa-solid fa-play"></i></div>
-            </div>
-          </div>
-          <div class="sermon-card-body">
-            <span class="sermon-scripture"><i class="fa-solid fa-cross"></i> Hebrews 11:1&ndash;6</span>
-            <h3 class="sermon-title">Unshakable Faith in Shaky Times</h3>
-            <span class="sermon-speaker"><i class="fa-regular fa-user"></i> Pastor David Anderson</span>
-            <span class="sermon-date">Sunday, October 25, 2026</span>
-            <div class="sermon-card-footer">
-              <button class="btn btn-primary btn-sm open-sermon-btn">
-                <i class="fa-solid fa-play"></i> Watch or Listen
-              </button>
-              <a href="#" class="btn btn-outline-white btn-sm"
-                style="color: var(--navy-900); border-color: var(--slate-300);"
-                onclick="alert('Downloading sermon study notes PDF...'); return false;">
-                <i class="fa-solid fa-file-arrow-down"></i> Notes
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Sermon 3 -->
-        <article class="sermon-card reveal-on-scroll" data-category="discipleship">
-          <div class="sermon-thumb-wrap">
-            <img src="images/sermon-3.jpg" alt="Transformed by the Renewing of Your Mind sermon" class="sermon-thumb">
-            <div class="sermon-series-badge">Romans Exposition</div>
-            <div class="sermon-duration"><i class="fa-solid fa-play"></i> 42:05</div>
-            <div class="sermon-play-overlay">
-              <div class="sermon-play-btn"><i class="fa-solid fa-play"></i></div>
-            </div>
-          </div>
-          <div class="sermon-card-body">
-            <span class="sermon-scripture"><i class="fa-solid fa-cross"></i> Romans 12:1&ndash;2</span>
-            <h3 class="sermon-title">Transformed: Living as a Living Sacrifice</h3>
-            <span class="sermon-speaker"><i class="fa-regular fa-user"></i> Associate Pastor Joshua Rivera</span>
-            <span class="sermon-date">Sunday, October 18, 2026</span>
-            <div class="sermon-card-footer">
-              <button class="btn btn-primary btn-sm open-sermon-btn">
-                <i class="fa-solid fa-play"></i> Watch or Listen
-              </button>
-              <a href="#" class="btn btn-outline-white btn-sm"
-                style="color: var(--navy-900); border-color: var(--slate-300);"
-                onclick="alert('Downloading sermon study notes PDF...'); return false;">
-                <i class="fa-solid fa-file-arrow-down"></i> Notes
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Sermon 4 -->
-        <article class="sermon-card reveal-on-scroll" data-category="grace">
-          <div class="sermon-thumb-wrap">
-            <img src="images/sermon-4.jpg" alt="The Power of the Cross sermon" class="sermon-thumb">
-            <div class="sermon-series-badge">The Gospel Core</div>
-            <div class="sermon-duration"><i class="fa-solid fa-play"></i> 47:30</div>
-            <div class="sermon-play-overlay">
-              <div class="sermon-play-btn"><i class="fa-solid fa-play"></i></div>
-            </div>
-          </div>
-          <div class="sermon-card-body">
-            <span class="sermon-scripture"><i class="fa-solid fa-cross"></i> 1 Corinthians 1:18&ndash;25</span>
-            <h3 class="sermon-title">The Power &amp; Wisdom of the Cross</h3>
-            <span class="sermon-speaker"><i class="fa-regular fa-user"></i> Pastor David Anderson</span>
-            <span class="sermon-date">Sunday, October 11, 2026</span>
-            <div class="sermon-card-footer">
-              <button class="btn btn-primary btn-sm open-sermon-btn">
-                <i class="fa-solid fa-play"></i> Watch or Listen
-              </button>
-              <a href="#" class="btn btn-outline-white btn-sm"
-                style="color: var(--navy-900); border-color: var(--slate-300);"
-                onclick="alert('Downloading sermon study notes PDF...'); return false;">
-                <i class="fa-solid fa-file-arrow-down"></i> Notes
-              </a>
-            </div>
-          </div>
-        </article>
       </div>
     </div>
   </section>
@@ -1213,9 +1111,10 @@
             <li><a href="#services"><i class="fa-solid fa-angle-right"></i> Worship Services</a></li>
             <li><a href="#ministries"><i class="fa-solid fa-angle-right"></i> Church Ministries</a></li>
             <li><a href="#events"><i class="fa-solid fa-angle-right"></i> Upcoming Events</a></li>
-            <li><a href="#sermons"><i class="fa-solid fa-angle-right"></i> Sermons &amp; Media</a></li>
             <li><a href="#gallery"><i class="fa-solid fa-angle-right"></i> Photo Gallery</a></li>
             <li><a href="#contact"><i class="fa-solid fa-angle-right"></i> Contact Us</a></li>
+            <li><a href="javascript:void(0)" class="open-splash-trigger" style="color: var(--gold-400);"><i
+                  class="fa-solid fa-book-bible text-gold"></i> Daily Bible Verse (KJV)</a></li>
           </ul>
         </div>
 
@@ -1356,80 +1255,7 @@
     </div>
   </div>
 
-  <!-- 2. SERMON PLAYER MODAL -->
-  <div class="modal-backdrop" id="sermonModal" role="dialog" aria-modal="true" aria-labelledby="sermonModalTitle">
-    <div class="modal-window" style="max-width: 820px;">
-      <button class="modal-close-btn" id="sermonModalClose" aria-label="Close modal">&times;</button>
-      <div class="modal-header">
-        <div
-          style="font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-600); font-weight: 700;">
-          <span id="sermonModalScripture">Ephesians 2:8-9</span>
-        </div>
-        <h3 id="sermonModalTitle">The Sufficiency of God's Boundless Grace</h3>
-        <p id="sermonModalSpeaker"><i class="fa-regular fa-user"></i> Pastor David Anderson</p>
-      </div>
-      <div class="modal-body">
-        <!-- Interactive Simulated Video/Audio Player UI -->
-        <div
-          style="background: var(--navy-950); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 1.5rem; position: relative; border: 1px solid rgba(212,175,55,0.3);">
-          <div
-            style="height: 320px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: radial-gradient(circle, rgba(15,32,60,0.85) 0%, rgba(7,14,25,0.98) 100%); text-align: center; padding: 2rem;">
-            <div
-              style="width: 72px; height: 72px; border-radius: 50%; background: var(--gold-gradient); color: var(--navy-950); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 1rem; box-shadow: var(--shadow-gold); cursor: pointer;"
-              onclick="alert('Streaming live church sermon broadcast...');">
-              <i class="fa-solid fa-play" style="margin-left: 4px;"></i>
-            </div>
-            <h4 style="color: var(--white); font-size: 1.2rem; margin-bottom: 0.4rem;">Click to Stream Sermon Broadcast
-            </h4>
-            <span style="color: var(--gold-300); font-size: 0.88rem;">1080p HD Video &bull; High Fidelity Audio</span>
-          </div>
-
-          <!-- Video Progress Bar Mockup -->
-          <div
-            style="padding: 0.75rem 1.25rem; background: var(--navy-900); display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.1); color: var(--white); font-size: 0.85rem;">
-            <div style="display: flex; align-items: center; gap: 1rem;">
-              <i class="fa-solid fa-play text-gold" style="cursor: pointer;"></i>
-              <i class="fa-solid fa-volume-high" style="cursor: pointer;"></i>
-              <span>12:45 / 44:18</span>
-            </div>
-            <div
-              style="flex-grow: 1; margin: 0 1.5rem; height: 5px; background: rgba(255,255,255,0.2); border-radius: 3px; position: relative;">
-              <div style="width: 28%; height: 100%; background: var(--gold-500); border-radius: 3px;"></div>
-            </div>
-            <div style="display: flex; align-items: center; gap: 1rem;">
-              <i class="fa-solid fa-closed-captioning" style="cursor: pointer;"></i>
-              <i class="fa-solid fa-expand" style="cursor: pointer;"></i>
-            </div>
-          </div>
-        </div>
-
-        <!-- Scripture Reflection & Notes Download -->
-        <div
-          style="background: var(--cream-100); border-radius: var(--radius-md); padding: 1.25rem; border-left: 3px solid var(--gold-500); margin-bottom: 1.5rem;">
-          <h5 style="color: var(--navy-900); font-size: 1rem; margin-bottom: 0.35rem;"><i
-              class="fa-solid fa-book-bible text-gold"></i> Key Scripture Passage</h5>
-          <p
-            style="font-family: var(--font-subheading); font-style: italic; color: var(--slate-700); font-size: 0.95rem; line-height: 1.6; margin: 0;">
-            &ldquo;For by grace are ye saved through faith; and that not of yourselves: it is the gift of God: Not of
-            works, lest any man should boast.&rdquo; &ndash; Ephesians 2:8&ndash;9
-          </p>
-        </div>
-
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-          <button class="btn btn-secondary btn-sm"
-            onclick="alert('Downloading Sermon Study Guide &amp; Family Discussion Questions PDF...');">
-            <i class="fa-solid fa-file-pdf text-gold"></i> Download Study Guide (PDF)
-          </button>
-          <button class="btn btn-outline-white btn-sm" style="color: var(--navy-900); border-color: var(--slate-300);"
-            onclick="navigator.clipboard.writeText(window.location.href); alert('Sermon link copied to clipboard!');">
-            <i class="fa-solid fa-share-nodes text-gold"></i> Share Sermon Link
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 3. MINISTRY DETAILS MODAL -->
+  <!-- 2. MINISTRY DETAILS MODAL -->
   <div class="modal-backdrop" id="ministryModal" role="dialog" aria-modal="true" aria-labelledby="ministryModalTitle">
     <div class="modal-window">
       <button class="modal-close-btn" id="ministryModalClose" aria-label="Close modal">&times;</button>

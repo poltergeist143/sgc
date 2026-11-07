@@ -352,63 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ==========================================================================
-     11. SERMON FILTER TABS & PLAYER MODAL
-     ========================================================================== */
-  const sermonFilterBtns = document.querySelectorAll('.sermon-filter-btn');
-  const sermonCards = document.querySelectorAll('.sermon-card');
-  const sermonModal = document.getElementById('sermonModal');
-  const sermonModalClose = document.getElementById('sermonModalClose');
-  const sermonModalTitle = document.getElementById('sermonModalTitle');
-  const sermonModalSpeaker = document.getElementById('sermonModalSpeaker');
-  const sermonModalScripture = document.getElementById('sermonModalScripture');
-
-  sermonFilterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      sermonFilterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const filter = btn.getAttribute('data-filter');
-      sermonCards.forEach(card => {
-        const category = card.getAttribute('data-category');
-        if (filter === 'all' || category === filter) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
-
-  document.querySelectorAll('.open-sermon-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const card = btn.closest('.sermon-card');
-      if (!card) return;
-
-      const title = card.querySelector('.sermon-title')?.textContent || 'Church Sermon';
-      const speaker = card.querySelector('.sermon-speaker')?.textContent || 'Pastor David Anderson';
-      const scripture = card.querySelector('.sermon-scripture')?.textContent || 'Ephesians 2:8-9';
-
-      if (sermonModalTitle) sermonModalTitle.textContent = title;
-      if (sermonModalSpeaker) sermonModalSpeaker.textContent = speaker;
-      if (sermonModalScripture) sermonModalScripture.textContent = scripture;
-
-      if (sermonModal) {
-        sermonModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-    });
-  });
-
-  if (sermonModalClose) {
-    sermonModalClose.addEventListener('click', () => {
-      sermonModal.classList.remove('active');
-      document.body.style.overflow = '';
-    });
-  }
-
-  /* ==========================================================================
-     12. MINISTRY DETAILS MODAL
+     11. MINISTRY DETAILS MODAL
      ========================================================================== */
   const ministryModal = document.getElementById('ministryModal');
   const ministryModalClose = document.getElementById('ministryModalClose');
@@ -677,6 +621,512 @@ document.addEventListener('DOMContentLoaded', () => {
         showToast('Please enter a valid email address to subscribe.', 'error');
       }
     });
+  }
+
+  /* ==========================================================================
+     17. DAILY BIBLE VERSE SPLASH PAGE & API INTEGRATION
+     ========================================================================== */
+  const splashScreen = document.getElementById('splashScreen');
+  const splashSkipBtn = document.getElementById('splashSkipBtn');
+  const splashEnterBtn = document.getElementById('splashEnterBtn');
+  const splashRememberCheck = document.getElementById('splashRememberCheck');
+  const splashDate = document.getElementById('splashDate');
+  const splashLoader = document.getElementById('splashLoader');
+  const splashScriptureContent = document.getElementById('splashScriptureContent');
+  const splashVerseText = document.getElementById('splashVerseText');
+  const splashRefText = document.getElementById('splashRefText');
+  const splashListenBtn = document.getElementById('splashListenBtn');
+  const splashListenText = document.getElementById('splashListenText');
+  const splashCopyBtn = document.getElementById('splashCopyBtn');
+  const splashCopyText = document.getElementById('splashCopyText');
+  const splashShareBtn = document.getElementById('splashShareBtn');
+  const splashNewVerseBtn = document.getElementById('splashNewVerseBtn');
+  const openSplashTriggers = document.querySelectorAll('.open-splash-trigger');
+
+  const STORAGE_KEY = 'sgc_splash_dismissed_date';
+  const getTodayDateKey = () => new Date().toISOString().slice(0, 10);
+
+  // Set formatted devotional date
+  if (splashDate) {
+    const now = new Date();
+    splashDate.textContent = now.toLocaleDateString('en-US', {
+      weekday: 'long',
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric'
+    });
+  }
+
+  // Curated 31-Day King James Version (KJV) Devotionals for daily plan and offline fallback
+  const KJV_DEVOTIONALS = [
+    {
+      reference: "Ephesians 2:8–9",
+      text: "For by grace are ye saved through faith; and that not of yourselves: it is the gift of God: Not of works, lest any man should boast.",
+      version: "KJV"
+    },
+    {
+      reference: "John 3:16",
+      text: "For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.",
+      version: "KJV"
+    },
+    {
+      reference: "Proverbs 3:5–6",
+      text: "Trust in the LORD with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.",
+      version: "KJV"
+    },
+    {
+      reference: "Philippians 4:13",
+      text: "I can do all things through Christ which strengtheneth me.",
+      version: "KJV"
+    },
+    {
+      reference: "Jeremiah 29:11",
+      text: "For I know the thoughts that I think toward you, saith the LORD, thoughts of peace, and not of evil, to give you an expected end.",
+      version: "KJV"
+    },
+    {
+      reference: "Romans 8:28",
+      text: "And we know that all things work together for good to them that love God, to them who are the called according to his purpose.",
+      version: "KJV"
+    },
+    {
+      reference: "Psalm 23:1–3",
+      text: "The LORD is my shepherd; I shall not want. He maketh me to lie down in green pastures: he leadeth me beside the still waters. He restoreth my soul: he leadeth me in the paths of righteousness for his name's sake.",
+      version: "KJV"
+    },
+    {
+      reference: "Isaiah 40:31",
+      text: "But they that wait upon the LORD shall renew their strength; they shall mount up with wings as eagles; they shall run, and not be weary; and they shall walk, and not faint.",
+      version: "KJV"
+    },
+    {
+      reference: "Matthew 11:28–29",
+      text: "Come unto me, all ye that labour and are heavy laden, and I will give you rest. Take my yoke upon you, and learn of me; for I am meek and lowly in heart: and ye shall find rest unto your souls.",
+      version: "KJV"
+    },
+    {
+      reference: "Isaiah 1:18",
+      text: "Come now, and let us reason together, saith the LORD: though your sins be as scarlet, they shall be as white as snow; though they be red like crimson, they shall be as wool.",
+      version: "KJV"
+    },
+    {
+      reference: "2 Corinthians 5:17",
+      text: "Therefore if any man be in Christ, he is a new creature: old things are passed away; behold, all things are become new.",
+      version: "KJV"
+    },
+    {
+      reference: "Joshua 1:9",
+      text: "Have not I commanded thee? Be strong and of a good courage; be not afraid, neither be thou dismayed: for the LORD thy God is with thee whithersoever thou goest.",
+      version: "KJV"
+    },
+    {
+      reference: "Psalm 46:1",
+      text: "God is our refuge and strength, a very present help in trouble.",
+      version: "KJV"
+    },
+    {
+      reference: "Romans 12:2",
+      text: "And be not conformed to this world: but be ye transformed by the renewing of your mind, that ye may prove what is that good, and acceptable, and perfect, will of God.",
+      version: "KJV"
+    },
+    {
+      reference: "Hebrews 11:1",
+      text: "Now faith is the substance of things hoped for, the evidence of things not seen.",
+      version: "KJV"
+    },
+    {
+      reference: "Galatians 2:20",
+      text: "I am crucified with Christ: nevertheless I live; yet not I, but Christ liveth in me: and the life which I now live in the flesh I live by the faith of the Son of God, who loved me, and gave himself for me.",
+      version: "KJV"
+    },
+    {
+      reference: "2 Timothy 1:7",
+      text: "For God hath not given us the spirit of fear; but of power, and of love, and of a sound mind.",
+      version: "KJV"
+    },
+    {
+      reference: "Psalm 119:105",
+      text: "Thy word is a lamp unto my feet, and a light unto my path.",
+      version: "KJV"
+    },
+    {
+      reference: "Romans 5:8",
+      text: "But God commendeth his love toward us, in that, while we were yet sinners, Christ died for us.",
+      version: "KJV"
+    },
+    {
+      reference: "1 John 4:19",
+      text: "We love him, because he first loved us.",
+      version: "KJV"
+    },
+    {
+      reference: "Philippians 4:6–7",
+      text: "Be careful for nothing; but in every thing by prayer and supplication with thanksgiving let your requests be made known unto God. And the peace of God, which passeth all understanding, shall keep your hearts and minds through Christ Jesus.",
+      version: "KJV"
+    },
+    {
+      reference: "Psalm 91:1–2",
+      text: "He that dwelleth in the secret place of the most High shall abide under the shadow of the Almighty. I will say of the LORD, He is my refuge and my fortress: my God; in him will I trust.",
+      version: "KJV"
+    },
+    {
+      reference: "1 Thessalonians 5:16–18",
+      text: "Rejoice evermore. Pray without ceasing. In every thing give thanks: for this is the will of God in Christ Jesus concerning you.",
+      version: "KJV"
+    },
+    {
+      reference: "Colossians 3:14–15",
+      text: "And above all these things put on charity, which is the bond of perfectness. And let the peace of God rule in your hearts, to the which also ye are called in one body; and be ye thankful.",
+      version: "KJV"
+    },
+    {
+      reference: "Lamentations 3:22–23",
+      text: "It is of the LORD's mercies that we are not consumed, because his compassions fail not. They are new every morning: great is thy faithfulness.",
+      version: "KJV"
+    },
+    {
+      reference: "James 1:5",
+      text: "If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him.",
+      version: "KJV"
+    },
+    {
+      reference: "Psalm 27:1",
+      text: "The LORD is my light and my salvation; whom shall I fear? the LORD is the strength of my life; of whom shall I be afraid?",
+      version: "KJV"
+    },
+    {
+      reference: "Proverbs 16:3",
+      text: "Commit thy works unto the LORD, and thy thoughts shall be established.",
+      version: "KJV"
+    },
+    {
+      reference: "1 Peter 5:7",
+      text: "Casting all your care upon him; for he careth for you.",
+      version: "KJV"
+    },
+    {
+      reference: "John 14:6",
+      text: "Jesus saith unto him, I am the way, the truth, and the life: no man cometh unto the Father, but by me.",
+      version: "KJV"
+    },
+    {
+      reference: "Revelation 21:4",
+      text: "And God shall wipe away all tears from their eyes; and there shall be no more death, neither sorrow, nor crying, neither shall there be any more pain: for the former things are passed away.",
+      version: "KJV"
+    }
+  ];
+
+  let currentVerse = {
+    text: '',
+    reference: '',
+    version: 'KJV'
+  };
+  let isSpeaking = false;
+
+  // Clean scripture text formatting
+  const cleanVerseText = (str) => {
+    return str
+      .replace(/[\r\n]+/g, ' ')
+      .replace(/\s{2,}/g, ' ')
+      .replace(/^[“"\s]+|[”"\s]+$/g, '')
+      .trim();
+  };
+
+  // Render verse onto splash card with smooth entrance animation
+  const renderVerse = (verse) => {
+    currentVerse = {
+      text: cleanVerseText(verse.text),
+      reference: verse.reference.trim(),
+      version: 'KJV'
+    };
+
+    if (splashVerseText) {
+      splashVerseText.textContent = `“${currentVerse.text}”`;
+    }
+    if (splashRefText) {
+      splashRefText.textContent = `${currentVerse.reference} (KJV)`;
+    }
+    if (splashLoader) splashLoader.style.display = 'none';
+    if (splashScriptureContent) {
+      splashScriptureContent.style.display = 'block';
+      splashScriptureContent.style.opacity = '0';
+      splashScriptureContent.style.transform = 'translateY(8px)';
+      splashScriptureContent.style.transition = 'all 0.35s ease-out';
+      requestAnimationFrame(() => {
+        splashScriptureContent.style.opacity = '1';
+        splashScriptureContent.style.transform = 'translateY(0)';
+      });
+    }
+  };
+
+  // Helper to fetch KJV text for a given scripture reference from Bible API
+  const fetchKjvByReference = async (ref, signal) => {
+    const formattedRef = encodeURIComponent(ref.trim());
+    const apiUrl = `https://bible-api.com/${formattedRef}?translation=kjv`;
+    const res = await fetch(apiUrl, { signal, headers: { 'Accept': 'application/json' } });
+    if (!res.ok) throw new Error(`Bible-API HTTP ${res.status}`);
+    const data = await res.json();
+    if (data && data.text) {
+      return {
+        text: data.text,
+        reference: data.reference || ref,
+        version: 'KJV'
+      };
+    }
+    throw new Error('Invalid KJV data received');
+  };
+
+  // Fetch verse dynamically via King James Version Bible API
+  const fetchBibleVerse = async (order = 'daily') => {
+    if (splashLoader && splashScriptureContent) {
+      splashLoader.style.display = 'flex';
+      splashScriptureContent.style.display = 'none';
+    }
+
+    if (isSpeaking && window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+      isSpeaking = false;
+      updateSpeechButton();
+    }
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 4500);
+
+    // Determine target scripture reference
+    const now = new Date();
+    const dayIndex = (now.getDate() + now.getMonth() * 31) % KJV_DEVOTIONALS.length;
+    const defaultDevotional = order === 'daily'
+      ? KJV_DEVOTIONALS[dayIndex]
+      : KJV_DEVOTIONALS[Math.floor(Math.random() * KJV_DEVOTIONALS.length)];
+
+    let targetRef = defaultDevotional.reference;
+
+    try {
+      if (order === 'daily') {
+        // Attempt to check if today's global Verse of the Day reference is available
+        try {
+          const votdRes = await fetch('https://beta.ourmanna.com/api/v1/get/?format=json&order=daily', {
+            signal: controller.signal,
+            headers: { 'Accept': 'application/json' }
+          });
+          if (votdRes.ok) {
+            const votdData = await votdRes.json();
+            if (votdData?.verse?.details?.reference) {
+              targetRef = votdData.verse.details.reference;
+            }
+          }
+        } catch (e) {
+          // If OurManna fails, targetRef retains today's calendar reference
+        }
+      }
+
+      // Fetch authentic King James Version (KJV) text
+      const kjvVerse = await fetchKjvByReference(targetRef, controller.signal);
+      clearTimeout(timeoutId);
+      renderVerse(kjvVerse);
+    } catch (err) {
+      clearTimeout(timeoutId);
+      // Seamlessly render our authentic King James Version devotional
+      renderVerse(defaultDevotional);
+    }
+  };
+
+  // Speech reader button UI update
+  const updateSpeechButton = () => {
+    if (!splashListenBtn) return;
+    if (isSpeaking) {
+      splashListenBtn.classList.add('active');
+      splashListenBtn.innerHTML = '<i class="fa-solid fa-circle-stop text-gold"></i> <span>Stop Audio</span>';
+    } else {
+      splashListenBtn.classList.remove('active');
+      splashListenBtn.innerHTML = '<i class="fa-solid fa-volume-high text-gold"></i> <span>Listen</span>';
+    }
+  };
+
+  // Listen / Read aloud audio in KJV
+  if (splashListenBtn) {
+    splashListenBtn.addEventListener('click', () => {
+      if (!('speechSynthesis' in window)) {
+        showToast('Speech audio narration is not available in this browser.', 'error');
+        return;
+      }
+
+      if (window.speechSynthesis.speaking) {
+        window.speechSynthesis.cancel();
+        isSpeaking = false;
+        updateSpeechButton();
+        return;
+      }
+
+      if (!currentVerse.text) return;
+
+      const utterance = new SpeechSynthesisUtterance(
+        `Today's scripture from Saved by Grace Church, King James Version. ${currentVerse.text}. From ${currentVerse.reference}.`
+      );
+      utterance.rate = 0.90;
+      utterance.pitch = 1.0;
+
+      utterance.onend = () => {
+        isSpeaking = false;
+        updateSpeechButton();
+      };
+      utterance.onerror = () => {
+        isSpeaking = false;
+        updateSpeechButton();
+      };
+
+      isSpeaking = true;
+      updateSpeechButton();
+      window.speechSynthesis.speak(utterance);
+    });
+  }
+
+  // Copy verse to clipboard in KJV
+  if (splashCopyBtn) {
+    splashCopyBtn.addEventListener('click', async () => {
+      if (!currentVerse.text) return;
+      const shareText = `“${currentVerse.text}” — ${currentVerse.reference} (KJV)\nSaved by Grace Church`;
+
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(shareText);
+        } else {
+          const tempArea = document.createElement('textarea');
+          tempArea.value = shareText;
+          document.body.appendChild(tempArea);
+          tempArea.select();
+          document.execCommand('copy');
+          document.body.removeChild(tempArea);
+        }
+
+        const btnText = splashCopyBtn.querySelector('span');
+        if (btnText) {
+          const orig = btnText.textContent;
+          btnText.textContent = 'Copied!';
+          setTimeout(() => {
+            btnText.textContent = orig;
+          }, 2000);
+        }
+        showToast('King James Bible verse copied to clipboard! Share the Word.', 'success');
+      } catch (e) {
+        showToast('Unable to copy automatically.', 'error');
+      }
+    });
+  }
+
+  // Share verse via Web Share API or WhatsApp
+  if (splashShareBtn) {
+    splashShareBtn.addEventListener('click', async () => {
+      if (!currentVerse.text) return;
+      const shareData = {
+        title: "Daily Bible Verse (KJV) - Saved by Grace Church",
+        text: `“${currentVerse.text}” — ${currentVerse.reference} (KJV)\nSaved by Grace Church`,
+        url: window.location.href
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+        } catch (err) {
+          // Share was cancelled by user
+        }
+      } else {
+        const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareData.text + '\n' + shareData.url)}`;
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      }
+    });
+  }
+
+  // Inspire Me / Random KJV Verse button
+  if (splashNewVerseBtn) {
+    splashNewVerseBtn.addEventListener('click', () => {
+      const icon = splashNewVerseBtn.querySelector('i');
+      if (icon) icon.classList.add('fa-spin');
+      fetchBibleVerse('random').finally(() => {
+        if (icon) icon.classList.remove('fa-spin');
+      });
+    });
+  }
+
+  // Close / Dismiss Splash Page
+  const closeSplash = () => {
+    if (!splashScreen) return;
+
+    if (splashRememberCheck && splashRememberCheck.checked) {
+      try {
+        localStorage.setItem(STORAGE_KEY, getTodayDateKey());
+      } catch (e) {}
+    }
+
+    if (window.speechSynthesis && window.speechSynthesis.speaking) {
+      window.speechSynthesis.cancel();
+      isSpeaking = false;
+      updateSpeechButton();
+    }
+
+    splashScreen.classList.add('hidden');
+    splashScreen.classList.remove('show-forced');
+    document.body.classList.remove('splash-active');
+  };
+
+  // Open Splash Page
+  const openSplash = () => {
+    if (!splashScreen) return;
+    document.documentElement.classList.remove('splash-already-dismissed');
+    splashScreen.classList.remove('hidden');
+    splashScreen.classList.add('show-forced');
+    document.body.classList.add('splash-active');
+
+    if (!currentVerse.text) {
+      fetchBibleVerse('daily');
+    }
+  };
+
+  if (splashSkipBtn) splashSkipBtn.addEventListener('click', closeSplash);
+  if (splashEnterBtn) splashEnterBtn.addEventListener('click', closeSplash);
+
+  // Close when clicking directly on the backdrop outside the card
+  if (splashScreen) {
+    splashScreen.addEventListener('click', (e) => {
+      if (e.target === splashScreen) {
+        closeSplash();
+      }
+    });
+  }
+
+  // Close when pressing Escape key
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && splashScreen && !splashScreen.classList.contains('hidden')) {
+      closeSplash();
+    }
+  });
+
+  // Attach open triggers (Navbar, Top Bar, Mobile Menu)
+  openSplashTriggers.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openSplash();
+    });
+  });
+
+  // Startup initialization
+  const isDismissedToday = (() => {
+    try {
+      return localStorage.getItem(STORAGE_KEY) === getTodayDateKey();
+    } catch (e) {
+      return false;
+    }
+  })();
+
+  if (isDismissedToday) {
+    if (splashScreen) splashScreen.classList.add('hidden');
+    document.body.classList.remove('splash-active');
+  } else {
+    if (splashScreen) {
+      splashScreen.classList.remove('hidden');
+      document.body.classList.add('splash-active');
+      fetchBibleVerse('daily');
+    }
   }
 
 });
