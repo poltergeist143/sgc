@@ -363,40 +363,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const ministryDetailsData = {
     'worship': {
-      title: 'Worship Ministry',
-      desc: 'Our Worship Ministry exists to exalt Jesus Christ, leading the congregation into genuine, transformative encounters with God through passionate praise, biblical hymns, and modern worship anthems.',
-      schedule: 'Rehearsals: Thursdays at 7:00 PM | Sunday Soundcheck at 7:45 AM',
-      leader: 'Marcus & Elena Sterling (Worship Directors)'
+      title: 'Spiritual Upliftment',
+      desc: 'A meaningful gathering where brothers and sisters come together to strengthen their faith, encourage one another, and grow spiritually through God’s word, prayer and fellowship.',
+      schedule: 'By Schedule or Appointment',
+      leader: 'Pastor Joel Tatoy'
     },
     'youth': {
-      title: 'Grace Generation Youth',
-      desc: 'Grace Generation is an authentic, energizing community for 6th to 12th graders to discover God\'s grace, build lifelong friendships, and grow into courageous disciples of Christ.',
-      schedule: 'Youth Night: Every Friday at 6:30 PM | Sunday Small Groups at 10:00 AM',
-      leader: 'Pastor Joshua Rivera (Youth & Young Adults Pastor)'
+      title: 'Youth Fellowship',
+      desc: 'Youth Fellowship is an authentic, energizing community for kids to teens to discover God\'s grace, build lifelong friendships, and grow into courageous disciples of Christ.',
+      schedule: 'Youth Fellowship: Every First Sunday at 2:00 PM ',
+      leader: 'Shiloh Tatoy'
     },
     'children': {
-      title: 'Kingdom Kids Ministry',
-      desc: 'Kingdom Kids provides a safe, joyful, and creative environment where babies, toddlers, and grade schoolers experience God’s love through scripture lessons, worship songs, and engaging crafts.',
-      schedule: 'Sunday Morning Services: 9:00 AM & 11:00 AM (Check-in opens 20 mins prior)',
-      leader: 'Hannah Henderson (Children\'s Ministry Director)'
+      title: 'Men And Women Fellowship',
+      desc: 'A gathering dedicated to empowering men and women to discover their purpose, strengthen their character, and deepen their relationship with God through faith, unity, and fellowship.',
+      schedule: 'By Schedule',
+      leader: 'Pastor\s leader'
     },
     'prayer': {
       title: 'Prayer & Intercession Ministry',
-      desc: 'Prayer is the spiritual heartbeat of Saved by Grace Church. Our intercessory team continually brings our church family, community, and global missions before the throne of grace.',
-      schedule: 'Midweek Prayer Meeting: Wednesdays at 7:00 PM | 24/7 Confidential Prayer Chain',
-      leader: 'Elder Thomas Vance & Prayer Team'
+      desc: 'A gathering where brothers and sisters unite in prayer, seeking God\'s guidance, expressing gratitude, and strengthening their faith through heartfelt worship and fellowship.',
+      schedule: 'By Schedule',
+      leader: 'Pastor\s Leader'
     },
     'outreach': {
-      title: 'Outreach & Missions Ministry',
-      desc: 'Extending Christ’s hands and feet beyond our walls through monthly food pantries, homeless community meals, prison ministries, and annual international mission teams.',
-      schedule: 'Community Blessing Pantry: 2nd & 4th Saturday mornings at 8:30 AM',
-      leader: 'Deacon Caleb & Lydia Wright (Outreach Coordinators)'
+      title: 'Sportsfest Fellowship',
+      desc: 'A church activity that brings brothers and sisters together through friendly sports and games, promoting unity, teamwork, love, and fellowship while glorifying God through sportsmanship and Christian values.',
+      schedule: 'Every 1st of May',
+      leader: 'Pastor\s Leader'
     },
     'biblestudy': {
       title: 'Bible Study & Discipleship',
-      desc: 'Rooted in the infallible Word of God, our discipleship groups foster deep scripture study, vulnerable fellowship, and everyday application in homes and classroom settings.',
-      schedule: 'Men\'s & Women\'s Circles: Tuesdays 6:30 PM | Foundational Class: Sundays 10:00 AM',
-      leader: 'Pastor David Anderson & Discipleship Elders'
+      desc: 'A gathering where believers and unbelievers come together to learn, understand, and reflect on God\'s Word, discover His truth, strengthen their faith, and grow in their relationship with Him.',
+      schedule: 'By Schedule or Appointment',
+      leader: 'Pastor Joel Tatoy'
     }
   };
 
@@ -1055,7 +1055,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (splashRememberCheck && splashRememberCheck.checked) {
       try {
         localStorage.setItem(STORAGE_KEY, getTodayDateKey());
-      } catch (e) {}
+      } catch (e) { }
     }
 
     if (window.speechSynthesis && window.speechSynthesis.speaking) {
