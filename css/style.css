@@ -2847,6 +2847,15 @@ body.splash-active {
   color: var(--gold-400);
 }
 
+.splash-church-subtitle {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--white);
+
+  margin: 0;
+}
+
 .splash-badge {
   display: inline-flex;
   align-items: center;
