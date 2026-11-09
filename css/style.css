@@ -233,6 +233,13 @@ h6 {
   margin: 0 auto;
 }
 
+.section-lead2 {
+  font-size: 1.5rem;
+  color: var(--slate-800);
+  max-width: 650px;
+  margin: 0 auto;
+}
+
 .section-navy .section-lead {
   color: var(--slate-300);
 }
@@ -3046,5 +3053,9 @@ body.splash-active {
   .splash-enter-btn {
     font-size: 0.95rem;
     padding: 0.85rem 1.5rem;
+  }
+
+  .text-gold {
+    color: var(--amber-500);
   }
 }

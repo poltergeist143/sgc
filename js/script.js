@@ -213,8 +213,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const countdownSeconds = document.getElementById('countSecs');
 
   if (countdownDays && countdownHours && countdownMinutes && countdownSeconds) {
-    // Set target date: Annual Grace Revival Conference - April 27, 2027, 2:00 PM
-    const targetDate = new Date(2027, 3, 27, 14, 0, 0);
+    // Set target date: Annual Grace Revival Conference - April 18, 2027, 2:00 PM
+    const targetDate = new Date(2027, 3, 18, 14, 0, 0);
 
     const updateCountdown = () => {
       const now = new Date().getTime();
