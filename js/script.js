@@ -1129,4 +1129,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  /* ==========================================================================
+     18. CHURCH MEMBERS MODAL
+     ========================================================================== */
+  const membersModal = document.getElementById('membersModal');
+  const membersModalClose = document.getElementById('membersModalClose');
+
+  const openMembersModal = () => {
+    if (!membersModal) return;
+    membersModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeMembersModal = () => {
+    if (!membersModal) return;
+    membersModal.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  document.querySelectorAll('.open-members-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openMembersModal();
+    });
+  });
+
+  if (membersModalClose) membersModalClose.addEventListener('click', closeMembersModal);
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && membersModal && membersModal.classList.contains('active')) {
+      closeMembersModal();
+    }
+  });
+
 });
