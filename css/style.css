@@ -455,7 +455,7 @@ h6 {
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 1.75rem;
+  gap: 1.2rem;
 }
 
 .nav-link {
