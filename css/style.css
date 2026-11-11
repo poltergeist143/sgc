@@ -22,6 +22,7 @@
   /* Primary Gold Accent */
   --gold-600: #b89324;
   --gold-700: #937418;
+  --gold-800: #916e05;
   --gold-glow: rgba(212, 175, 55, 0.35);
   --gold-gradient: linear-gradient(135deg, #fae188 0%, #d4af37 50%, #937418 100%);
   --gold-subtle: rgba(212, 175, 55, 0.12);
@@ -3187,3 +3188,86 @@ body.splash-active {
 /* ==========================================================================
    END PART OF CHURCH MEMBERS BUTTON & MODAL
    ========================================================================== */
+
+/* ==========================================================================
+   CHURCH HISTORY MODAL
+   ========================================================================== */
+.history-modal-window {
+  max-width: 720px;
+}
+
+.history-timeline {
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--gold-500);
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.history-item {
+  position: relative;
+}
+
+.history-item::before {
+  content: "";
+  position: absolute;
+  left: calc(-1.5rem - 7px);
+  top: 0.35rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--gold-500);
+  border: 2px solid var(--white);
+  box-shadow: 0 0 0 2px var(--gold-500);
+}
+
+.history-year {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-600);
+  margin-bottom: 0.2rem;
+}
+
+.history-content h4 {
+  font-size: 1.15rem;
+  margin-bottom: 0.4rem;
+  color: var(--navy-900);
+}
+
+.history-content p {
+  font-size: 0.95rem;
+  color: var(--slate-600);
+  line-height: 1.7;
+}
+
+/* ==========================================================================
+   END PART OF CHURCH HISTORY MODAL
+   ========================================================================== */
+
+.history-closing {
+  text-align: center;
+  margin-top: 2.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--gold-500);
+}
+
+.history-closing-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--navy-900);
+  margin-bottom: 0.75rem;
+}
+
+.history-closing-ref {
+  font-family: var(--font-subheading);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--gold-800);
+  margin-bottom: 0.2rem;
+}

@@ -1162,4 +1162,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  /* ==========================================================================
+    19. CHURCH HISTORY MODAL
+    ========================================================================== */
+  const historyModal = document.getElementById('historyModal');
+  const historyModalClose = document.getElementById('historyModalClose');
+
+  const openHistoryModal = () => {
+    if (!historyModal) return;
+    historyModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeHistoryModal = () => {
+    if (!historyModal) return;
+    historyModal.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  document.querySelectorAll('.open-history-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openHistoryModal();
+    });
+  });
+
+  if (historyModalClose) historyModalClose.addEventListener('click', closeHistoryModal);
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && historyModal && historyModal.classList.contains('active')) {
+      closeHistoryModal();
+    }
+  });
+
 });
