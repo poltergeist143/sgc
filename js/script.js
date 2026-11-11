@@ -1239,25 +1239,69 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const openMemberFromCarousel = (item) => {
     const name = (item.querySelector('.marquee-name')?.textContent || '').trim();
+    const img = item.querySelector('.marquee-photo');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    openMembersModal();
+    const highlightMember = () => {
+      const cards = document.querySelectorAll('#membersModal .team-member');
+      cards.forEach(c => c.classList.remove('member-highlight'));
 
-    // Find the matching member card in the modal and highlight it
-    const cards = document.querySelectorAll('#membersModal .team-member');
-    cards.forEach(c => c.classList.remove('member-highlight'));
+      const match = Array.from(cards).find(c =>
+        c.querySelector('.team-name')?.textContent.trim() === name
+      );
 
-    const match = Array.from(cards).find(c =>
-      c.querySelector('.team-name')?.textContent.trim() === name
-    );
-
-    if (match) {
-      // wait for the modal's open transition before scrolling
-      setTimeout(() => {
+      if (match) {
         match.scrollIntoView({ behavior: 'smooth', block: 'center' });
         match.classList.add('member-highlight');
         setTimeout(() => match.classList.remove('member-highlight'), 2500);
-      }, 250);
+      }
+    };
+
+    // No animation if the user prefers reduced motion or there is no image
+    if (!img || reduceMotion) {
+      openMembersModal();
+      setTimeout(highlightMember, 250);
+      return;
     }
+
+    // 1. Create a flying clone at the exact position of the clicked photo
+    const rect = img.getBoundingClientRect();
+    const fly = document.createElement('img');
+    fly.src = img.src;
+    fly.alt = '';
+    fly.className = 'fly-photo';
+    fly.style.top = `${rect.top}px`;
+    fly.style.left = `${rect.left}px`;
+    fly.style.width = `${rect.width}px`;
+    fly.style.height = `${rect.height}px`;
+    document.body.appendChild(fly);
+
+    // 2. Animate it to the center of the screen, larger
+    const size = Math.min(220, window.innerWidth * 0.5);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        fly.style.width = `${size}px`;
+        fly.style.height = `${size}px`;
+        fly.style.top = `${(window.innerHeight - size) / 2}px`;
+        fly.style.left = `${(window.innerWidth - size) / 2}px`;
+      });
+    });
+
+    // 3. Open the modal with a soft fade while the photo is in flight
+    membersModal.classList.add('from-carousel');
+    setTimeout(openMembersModal, 300);
+
+    // 4. Fade the flying photo out, then highlight the member card
+    setTimeout(() => {
+      fly.style.opacity = '0';
+      highlightMember();
+    }, 650);
+
+    // 5. Clean up
+    setTimeout(() => {
+      fly.remove();
+      membersModal.classList.remove('from-carousel');
+    }, 1100);
   };
 
   if (marqueeTrack) {

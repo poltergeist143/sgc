@@ -3400,3 +3400,31 @@ body.splash-active {
     box-shadow: 0 0 0 14px rgba(212, 175, 55, 0), var(--shadow-xl);
   }
 }
+
+/* ==========================================================================
+   CAROUSEL -> MODAL TRANSITION
+   ========================================================================== */
+.fly-photo {
+  position: fixed;
+  z-index: 3500;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--gold-500);
+  box-shadow: 0 0 0 6px rgba(212, 175, 55, 0.3), 0 20px 50px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  transition:
+    top 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    left 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s ease;
+}
+
+/* Slower, softer modal fade when opened from the carousel */
+#membersModal.from-carousel {
+  transition: opacity 0.6s ease;
+}
+
+#membersModal.from-carousel .modal-window {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
