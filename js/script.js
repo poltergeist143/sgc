@@ -1195,4 +1195,86 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  /* ==========================================================================
+     20. MEMBERS INFINITE PHOTO CAROUSEL
+     ========================================================================== */
+  const buildMemberMarquee = () => {
+    const marquee = document.getElementById('memberMarquee');
+    const track = document.getElementById('memberMarqueeTrack');
+    if (!marquee || !track) return;
+
+    const originals = Array.from(track.children);
+    if (!originals.length) return;
+
+    const itemWidth = originals[0].offsetWidth +
+      parseFloat(getComputedStyle(originals[0]).marginRight || 0);
+
+    // Repeat the members until one set is wider than the screen
+    const target = Math.max(window.innerWidth, marquee.offsetWidth) + itemWidth;
+    const repeats = Math.max(1, Math.ceil(target / (itemWidth * originals.length)));
+
+    for (let r = 1; r < repeats; r++) {
+      originals.forEach(el => track.appendChild(el.cloneNode(true)));
+    }
+
+    // Duplicate the whole set once so the -50% loop is seamless
+    const oneSet = Array.from(track.children);
+    oneSet.forEach(el => {
+      const clone = el.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    });
+
+    // Constant speed (about 45px per second)
+    const setWidth = itemWidth * oneSet.length;
+    track.style.setProperty('--marquee-duration', `${Math.round(setWidth / 45)}s`);
+  };
+
+  buildMemberMarquee();
+
+  /* ==========================================================================
+     21. CAROUSEL CLICK -> OPEN MEMBERS MODAL
+     ========================================================================== */
+  const marqueeTrack = document.getElementById('memberMarqueeTrack');
+
+  const openMemberFromCarousel = (item) => {
+    const name = (item.querySelector('.marquee-name')?.textContent || '').trim();
+
+    openMembersModal();
+
+    // Find the matching member card in the modal and highlight it
+    const cards = document.querySelectorAll('#membersModal .team-member');
+    cards.forEach(c => c.classList.remove('member-highlight'));
+
+    const match = Array.from(cards).find(c =>
+      c.querySelector('.team-name')?.textContent.trim() === name
+    );
+
+    if (match) {
+      // wait for the modal's open transition before scrolling
+      setTimeout(() => {
+        match.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        match.classList.add('member-highlight');
+        setTimeout(() => match.classList.remove('member-highlight'), 2500);
+      }, 250);
+    }
+  };
+
+  if (marqueeTrack) {
+    // One listener on the track covers all cloned items too
+    marqueeTrack.addEventListener('click', (e) => {
+      const item = e.target.closest('.marquee-item');
+      if (item) openMemberFromCarousel(item);
+    });
+
+    marqueeTrack.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      const item = e.target.closest('.marquee-item');
+      if (item) {
+        e.preventDefault();
+        openMemberFromCarousel(item);
+      }
+    });
+  }
+
 });
