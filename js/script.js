@@ -1343,4 +1343,74 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ==========================================================================
+     22. STATEMENT OF FAITH - STACKED CARDS
+     ========================================================================== */
+  const faithGrid = document.getElementById('faithGrid');
+  const faithToggleBtn = document.getElementById('faithToggleBtn');
+
+  if (faithGrid && faithToggleBtn) {
+    const faithCards = Array.from(faithGrid.querySelectorAll('.faith-pillar-card'));
+    const faithBtnText = faithToggleBtn.querySelector('span');
+    let faithExpanded = false;
+
+    // Columns match the CSS breakpoints: 3 / 2 / 1
+    const getCols = () => (window.innerWidth <= 700 ? 1 : window.innerWidth <= 1100 ? 2 : 3);
+
+    // Add a "+N more" badge to every card (only shown on top cards)
+    faithCards.forEach(card => {
+      const badge = document.createElement('span');
+      badge.className = 'faith-stack-badge';
+      card.appendChild(badge);
+    });
+
+    const layoutStack = () => {
+      const cols = getCols();
+      faithGrid.style.setProperty('--faith-cols', cols);
+
+      faithCards.forEach((card, i) => {
+        const depth = Math.floor(i / cols);
+        card.style.setProperty('--col', (i % cols) + 1);
+        card.style.setProperty('--depth', Math.min(depth, 3));
+        card.style.setProperty('--i', i);
+        card.classList.toggle('stack-top', depth === 0);
+        card.classList.toggle('stack-hidden', depth > 2);
+
+        if (depth === 0) {
+          const inStack = Math.ceil((faithCards.length - (i % cols)) / cols);
+          card.querySelector('.faith-stack-badge').textContent = `+${inStack - 1} more`;
+        }
+      });
+    };
+
+    const setFaithExpanded = (expand) => {
+      faithExpanded = expand;
+      faithToggleBtn.setAttribute('aria-expanded', String(expand));
+      faithBtnText.textContent = expand ? 'Show Less' : 'Show All Beliefs';
+
+      if (expand) {
+        faithGrid.classList.remove('is-stacked');
+        faithGrid.classList.add('is-fanning');
+        setTimeout(() => faithGrid.classList.remove('is-fanning'), 1200);
+      } else {
+        faithGrid.classList.add('is-stacked');
+        faithGrid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    };
+
+    // Click any card (while stacked) or the button
+    faithCards.forEach(card => {
+      card.addEventListener('click', () => {
+        if (!faithExpanded) setFaithExpanded(true);
+      });
+    });
+
+    faithToggleBtn.addEventListener('click', () => setFaithExpanded(!faithExpanded));
+
+    window.addEventListener('resize', layoutStack);
+
+    layoutStack();
+    faithGrid.classList.add('is-stacked');
+  }
+
 });
