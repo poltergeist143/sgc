@@ -1237,6 +1237,25 @@ document.addEventListener('DOMContentLoaded', () => {
      ========================================================================== */
   const marqueeTrack = document.getElementById('memberMarqueeTrack');
 
+  const slowScrollTo = (container, targetTop, duration = 1500) => {
+    const startTop = container.scrollTop;
+    const distance = targetTop - startTop;
+    let startTime = null;
+
+    // ease-in-out curve: starts slow, speeds up, ends slow
+    const ease = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+
+    const step = (now) => {
+      if (startTime === null) startTime = now;
+      const progress = Math.min((now - startTime) / duration, 1);
+      container.scrollTop = startTop + distance * ease(progress);
+      if (progress < 1) requestAnimationFrame(step);
+    };
+
+    requestAnimationFrame(step);
+  };
+
+
   const openMemberFromCarousel = (item) => {
     const name = (item.querySelector('.marquee-name')?.textContent || '').trim();
     const img = item.querySelector('.marquee-photo');
@@ -1251,7 +1270,10 @@ document.addEventListener('DOMContentLoaded', () => {
       );
 
       if (match) {
-        match.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const scroller = document.querySelector('#membersModal .modal-window');
+        const cardTop = match.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop;
+        const target = cardTop - (scroller.clientHeight - match.offsetHeight) / 2;
+        slowScrollTo(scroller, Math.max(0, target), 1800);
         match.classList.add('member-highlight');
         setTimeout(() => match.classList.remove('member-highlight'), 2500);
       }
