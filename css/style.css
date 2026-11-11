@@ -2369,7 +2369,12 @@ h6 {
 }
 
 .modal-close-btn {
-  position: absolute;
+  /* for sticky exit btn   */
+  position: sticky;
+  /* change it to absolute as the original code */
+  float: right;
+  margin: 20px 20px -56px 0;
+  /* for sticky exit btn   */
   top: 20px;
   right: 20px;
   width: 36px;
