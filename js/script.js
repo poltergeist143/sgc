@@ -1137,6 +1137,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const openMembersModal = () => {
     if (!membersModal) return;
+
+    // Shuffle only when the modal is actually opening
+    if (!membersModal.classList.contains('active')) {
+      shuffleMemberCards();
+      buildMemberMarquee(shuffleArray(marqueeOriginals));
+    }
+
     membersModal.classList.add('active');
     document.body.style.overflow = 'hidden';
   };
@@ -1198,39 +1205,63 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ==========================================================================
      20. MEMBERS INFINITE PHOTO CAROUSEL
      ========================================================================== */
-  const buildMemberMarquee = () => {
-    const marquee = document.getElementById('memberMarquee');
-    const track = document.getElementById('memberMarqueeTrack');
-    if (!marquee || !track) return;
+  const memberMarquee = document.getElementById('memberMarquee');
+  const memberMarqueeTrack = document.getElementById('memberMarqueeTrack');
 
-    const originals = Array.from(track.children);
-    if (!originals.length) return;
+  // Keep the original (un-cloned) items so the carousel can be rebuilt in any order
+  const marqueeOriginals = memberMarqueeTrack ? Array.from(memberMarqueeTrack.children) : [];
 
-    const itemWidth = originals[0].offsetWidth +
-      parseFloat(getComputedStyle(originals[0]).marginRight || 0);
+  // Fisher-Yates shuffle (returns a new array)
+  const shuffleArray = (arr) => {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  };
+
+  // Shuffle the member cards inside the modal
+  const shuffleMemberCards = () => {
+    const grid = document.querySelector('#membersModal .team-grid');
+    if (!grid) return;
+    shuffleArray(Array.from(grid.children)).forEach(card => grid.appendChild(card));
+  };
+
+  // Build (or rebuild) the carousel in the given order
+  const buildMemberMarquee = (order = marqueeOriginals) => {
+    if (!memberMarquee || !memberMarqueeTrack || !order.length) return;
+
+    memberMarqueeTrack.innerHTML = '';
+    order.forEach(el => memberMarqueeTrack.appendChild(el.cloneNode(true)));
+
+    const items = Array.from(memberMarqueeTrack.children);
+    const itemWidth = items[0].offsetWidth +
+      parseFloat(getComputedStyle(items[0]).marginRight || 0);
 
     // Repeat the members until one set is wider than the screen
-    const target = Math.max(window.innerWidth, marquee.offsetWidth) + itemWidth;
-    const repeats = Math.max(1, Math.ceil(target / (itemWidth * originals.length)));
+    const target = Math.max(window.innerWidth, memberMarquee.offsetWidth) + itemWidth;
+    const repeats = Math.max(1, Math.ceil(target / (itemWidth * items.length)));
 
     for (let r = 1; r < repeats; r++) {
-      originals.forEach(el => track.appendChild(el.cloneNode(true)));
+      items.forEach(el => memberMarqueeTrack.appendChild(el.cloneNode(true)));
     }
 
     // Duplicate the whole set once so the -50% loop is seamless
-    const oneSet = Array.from(track.children);
+    const oneSet = Array.from(memberMarqueeTrack.children);
     oneSet.forEach(el => {
       const clone = el.cloneNode(true);
       clone.setAttribute('aria-hidden', 'true');
-      track.appendChild(clone);
+      memberMarqueeTrack.appendChild(clone);
     });
 
     // Constant speed (about 45px per second)
     const setWidth = itemWidth * oneSet.length;
-    track.style.setProperty('--marquee-duration', `${Math.round(setWidth / 45)}s`);
+    memberMarqueeTrack.style.setProperty('--marquee-duration', `${Math.round(setWidth / 45)}s`);
   };
 
-  buildMemberMarquee();
+  buildMemberMarquee(shuffleArray(marqueeOriginals));
+  shuffleMemberCards(); // also shuffles the members list in the modal on page load
 
   /* ==========================================================================
      21. CAROUSEL CLICK -> OPEN MEMBERS MODAL
