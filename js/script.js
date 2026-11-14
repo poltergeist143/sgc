@@ -1411,6 +1411,49 @@ document.addEventListener('DOMContentLoaded', () => {
   buildSchoolersMarquee(shuffleArray(schoolersOriginals));
 
   /* ==========================================================================
+     CAROUSEL CENTER ZOOM (photo at the center grows to 150%)
+     ========================================================================== */
+  const enableCenterZoom = (marquee, maxScale = 1.3) => {
+    if (!marquee) return;
+    const track = marquee.querySelector('.member-marquee-track');
+    if (!track) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    // Only animate while the carousel is on screen
+    let onScreen = true;
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([entry]) => {
+        onScreen = entry.isIntersecting;
+      }).observe(marquee);
+    }
+
+    const tick = () => {
+      if (onScreen) {
+        const box = marquee.getBoundingClientRect();
+        const centerX = box.left + box.width / 2;
+
+        Array.from(track.children).forEach(item => {
+          const r = item.getBoundingClientRect();
+          const radius = r.width * 1.25;                  // how close to the center the zoom starts
+          const dist = Math.abs(r.left + r.width / 2 - centerX);
+          const t = Math.max(0, 1 - dist / radius);
+          const eased = t * t * (3 - 2 * t);              // smooth grow and shrink
+          const scale = 1 + (maxScale - 1) * eased;
+
+          item.style.setProperty('--center-scale', scale.toFixed(3));
+          item.style.zIndex = Math.round(scale * 100);    // enlarged photo sits on top of its neighbors
+        });
+      }
+      requestAnimationFrame(tick);
+    };
+
+    requestAnimationFrame(tick);
+  };
+
+  enableCenterZoom(document.getElementById('memberMarquee'));
+  enableCenterZoom(document.getElementById('schoolersMarquee'));   // remove if you don't have this carousel
+
+  /* ==========================================================================
      21. CAROUSEL CLICK -> OPEN MEMBERS MODAL
      ========================================================================== */
   const marqueeTrack = document.getElementById('memberMarqueeTrack');
@@ -1590,5 +1633,14 @@ document.addEventListener('DOMContentLoaded', () => {
     layoutStack();
     faithGrid.classList.add('is-stacked');
   }
+
+  /* ==========================================================================
+     DISABLE RIGHT-CLICK, IMAGE DRAGGING AND COMMON SAVE SHORTCUTS
+     ========================================================================== */
+  document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+  document.addEventListener('dragstart', (e) => {
+    if (e.target.tagName === 'IMG') e.preventDefault();
+  });
 
 });

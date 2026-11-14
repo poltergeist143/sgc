@@ -3716,3 +3716,32 @@ body.splash-active {
     animation: none;
   }
 }
+
+/* image block */
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  /* iOS long-press "Save Image" menu */
+}
+
+/* Center zoom: the photo nearest the middle grows up to 150% */
+.member-marquee .marquee-photo {
+  transform: scale(var(--center-scale, 1));
+  transition: box-shadow var(--transition-normal), border-color var(--transition-normal), filter var(--transition-normal);
+  will-change: transform;
+}
+
+/* Keep hover working on top of the zoom instead of shrinking it */
+.member-marquee .marquee-item:hover .marquee-photo {
+  transform: scale(calc(var(--center-scale, 1) * 1.1)) translateY(-6px);
+}
+
+/* Extra room so the enlarged photo isn't clipped by the carousel edges */
+.member-marquee {
+  padding-top: 2.75rem;
+}
+
+.schoolers-marquee {
+  padding-top: 2rem;
+}
