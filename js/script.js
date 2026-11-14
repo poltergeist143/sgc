@@ -350,6 +350,85 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.key === 'ArrowLeft') showPrevLightbox();
     }
   });
+  /* ==========================================================================
+     10b. GALLERY - STACKED CARDS (SHOW ALL IMAGES / SHOW LESS)
+     ========================================================================== */
+  const galleryGrid = document.getElementById('galleryGrid');
+  const galleryToggleBtn = document.getElementById('galleryToggleBtn');
+
+  if (galleryGrid && galleryToggleBtn) {
+    const galleryBtnText = galleryToggleBtn.querySelector('span');
+    let galleryExpanded = false;
+
+    // Columns match the CSS breakpoints: 3 / 2 / 1
+    const getGalleryCols = () => (window.innerWidth <= 540 ? 1 : window.innerWidth <= 1024 ? 2 : 3);
+
+    // "+N more" badge on every photo (only shown on the front ones)
+    galleryItems.forEach(item => {
+      const badge = document.createElement('span');
+      badge.className = 'gallery-stack-badge';
+      item.appendChild(badge);
+    });
+
+    // One visible photo per column; the rest hide behind it (respects the filter tabs)
+    const layoutGalleryStack = () => {
+      const cols = getGalleryCols();
+      galleryGrid.style.setProperty('--gallery-cols', cols);
+
+      const visible = galleryItems.filter(item => item.style.display !== 'none');
+
+      visible.forEach((item, i) => {
+        const depth = Math.floor(i / cols);
+        item.style.setProperty('--col', (i % cols) + 1);
+        item.style.setProperty('--depth', 0);
+        item.style.setProperty('--i', i);
+        item.classList.toggle('stack-top', depth === 0);
+        item.classList.toggle('stack-hidden', depth > 0);
+
+        if (depth === 0) {
+          const inStack = Math.ceil((visible.length - (i % cols)) / cols);
+          item.querySelector('.gallery-stack-badge').textContent =
+            inStack > 1 ? `+${inStack - 1} more` : '';
+        }
+      });
+
+      // Nothing to fold? Hide the button.
+      galleryToggleBtn.parentElement.style.display = visible.length <= cols ? 'none' : '';
+    };
+
+    const setGalleryExpanded = (expand) => {
+      galleryExpanded = expand;
+      galleryToggleBtn.setAttribute('aria-expanded', String(expand));
+      galleryBtnText.textContent = expand ? 'Show Less' : 'Show All Images';
+
+      if (expand) {
+        galleryGrid.classList.remove('is-stacked');
+        galleryGrid.classList.add('is-fanning');
+        setTimeout(() => galleryGrid.classList.remove('is-fanning'), 1200);
+      } else {
+        galleryGrid.classList.add('is-stacked');
+        galleryGrid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    };
+
+    // While stacked, clicking a photo unfolds the stack instead of opening the lightbox
+    galleryGrid.addEventListener('click', (e) => {
+      if (!galleryExpanded && e.target.closest('.gallery-item')) {
+        e.stopPropagation();
+        setGalleryExpanded(true);
+      }
+    }, true);
+
+    galleryToggleBtn.addEventListener('click', () => setGalleryExpanded(!galleryExpanded));
+
+    // Re-stack whenever a filter tab is clicked (runs after section 10's filter)
+    galleryFilterBtns.forEach(btn => btn.addEventListener('click', layoutGalleryStack));
+
+    window.addEventListener('resize', layoutGalleryStack);
+
+    layoutGalleryStack();
+    galleryGrid.classList.add('is-stacked');
+  }
 
   /* ==========================================================================
      11. MINISTRY DETAILS MODAL
@@ -1203,6 +1282,40 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ==========================================================================
+     19b. MOTTO & FIVE E'S MODALS
+     ========================================================================== */
+  const setupSimpleModal = (modalId, closeId, openSelector) => {
+    const modal = document.getElementById(modalId);
+    const closeBtn = document.getElementById(closeId);
+    if (!modal) return;
+
+    const open = () => {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+    const close = () => {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    };
+
+    document.querySelectorAll(openSelector).forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        open();
+      });
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', close);
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) close();
+    });
+  };
+
+  setupSimpleModal('mottoModal', 'mottoModalClose', '.open-motto-btn');
+  setupSimpleModal('fiveEsModal', 'fiveEsModalClose', '.open-fivees-btn');
+
+  /* ==========================================================================
      20. MEMBERS INFINITE PHOTO CAROUSEL
      ========================================================================== */
   const memberMarquee = document.getElementById('memberMarquee');
@@ -1262,6 +1375,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
   buildMemberMarquee(shuffleArray(marqueeOriginals));
   shuffleMemberCards(); // also shuffles the members list in the modal on page load
+
+  /* SUNDAY SCHOOLERS REVERSE CAROUSEL */
+  const schoolersMarquee = document.getElementById('schoolersMarquee');
+  const schoolersTrack = document.getElementById('schoolersMarqueeTrack');
+  const schoolersOriginals = schoolersTrack ? Array.from(schoolersTrack.children) : [];
+
+  const buildSchoolersMarquee = (order = schoolersOriginals) => {
+    if (!schoolersMarquee || !schoolersTrack || !order.length) return;
+
+    schoolersTrack.innerHTML = '';
+    order.forEach(el => schoolersTrack.appendChild(el.cloneNode(true)));
+
+    const items = Array.from(schoolersTrack.children);
+    const itemWidth = items[0].offsetWidth +
+      parseFloat(getComputedStyle(items[0]).marginRight || 0);
+
+    const target = Math.max(window.innerWidth, schoolersMarquee.offsetWidth) + itemWidth;
+    const repeats = Math.max(1, Math.ceil(target / (itemWidth * items.length)));
+    for (let r = 1; r < repeats; r++) {
+      items.forEach(el => schoolersTrack.appendChild(el.cloneNode(true)));
+    }
+
+    const oneSet = Array.from(schoolersTrack.children);
+    oneSet.forEach(el => {
+      const clone = el.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      schoolersTrack.appendChild(clone);
+    });
+
+    const setWidth = itemWidth * oneSet.length;
+    schoolersTrack.style.setProperty('--marquee-duration', `${Math.round(setWidth / 35)}s`);
+  };
+
+  buildSchoolersMarquee(shuffleArray(schoolersOriginals));
 
   /* ==========================================================================
      21. CAROUSEL CLICK -> OPEN MEMBERS MODAL

@@ -352,9 +352,17 @@
             </div>
           </div>
 
-          <button class="btn btn-secondary open-history-btn">
-            <i class="fa-solid fa-book-open"></i> Read the History of the Church
-          </button>
+          <div class="history-btn-group">
+            <button class="btn btn-secondary open-history-btn">
+              <i class="fa-solid fa-book-open"></i> Read the History of the Church
+            </button>
+            <button class="btn btn-secondary open-motto-btn">
+              <i class="fa-solid fa-quote-left"></i> Three Expressions of Our Motto
+            </button>
+            <button class="btn btn-secondary open-fivees-btn">
+              <i class="fa-solid fa-hand-holding-heart"></i> Five E's
+            </button>
+          </div>
         </div>
 
         <div class="about-image-wrapper reveal-on-scroll">
@@ -629,7 +637,7 @@
         <div class="service-card reveal-on-scroll">
           <div class="service-card-header">
             <span class="service-badge">Midweek Renewal</span>
-            <h3 class="service-card-title">Prayer &amp; Bible Study</h3>
+            <h3 class="service-card-title">Prayer &amp; Service</h3>
           </div>
           <div class="service-card-body">
             <div class="service-time-box">
@@ -899,7 +907,7 @@
 
         <!-- Real-Time Countdown Box -->
         <div class="countdown-box">
-          <div class="countdown-title">Conference Countdown</div>
+          <div class="countdown-title">Anniversary Countdown</div>
           <div class="countdown-grid">
             <div class="countdown-segment">
               <span class="countdown-val" id="countDays">14</span>
@@ -947,7 +955,7 @@
       </div>
 
       <!-- Gallery Masonry / Grid -->
-      <div class="gallery-grid">
+      <div class="gallery-grid" id="galleryGrid">
         <!-- 1 -->
         <div class="gallery-item reveal-on-scroll" data-category="worship">
           <img src="images/gallery/worship1.jpg" alt="Bible Study in Carbon">
@@ -1058,7 +1066,97 @@
             <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
           </div>
         </div>
+
+        <!-- 12 -->
+        <div class="gallery-item reveal-on-scroll" data-category="celebrations">
+          <img src="images/gallery/thanksgiving5.jpg" alt="Thanksgiving">
+          <div class="gallery-overlay">
+            <span class="gallery-overlay-cat">Thanksgiving Anniversary 2023</span>
+            <h4 class="gallery-overlay-title">37th Thanksgiving Anniversary</h4>
+            <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+
+        <!-- 2022 36th -->
+        <div class="gallery-item reveal-on-scroll" data-category="celebrations">
+          <img src="images/gallery/thanksgiving6.jpg" alt="Thanksgiving">
+          <div class="gallery-overlay">
+            <span class="gallery-overlay-cat">Thanksgiving Anniversary 2022</span>
+            <h4 class="gallery-overlay-title">36th Thanksgiving Anniversary</h4>
+            <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+
+        <!-- 2019 33rd -->
+        <div class="gallery-item reveal-on-scroll" data-category="celebrations">
+          <img src="images/gallery/thanksgiving7.jpg" alt="Thanksgiving">
+          <div class="gallery-overlay">
+            <span class="gallery-overlay-cat">Thanksgiving Anniversary 2019</span>
+            <h4 class="gallery-overlay-title">33rd Thanksgiving Anniversary</h4>
+            <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+
+        <!-- 2018 32nd -->
+        <div class="gallery-item reveal-on-scroll" data-category="celebrations">
+          <img src="images/gallery/thanksgiving8.jpg" alt="Thanksgiving">
+          <div class="gallery-overlay">
+            <span class="gallery-overlay-cat">Thanksgiving Anniversary 2018</span>
+            <h4 class="gallery-overlay-title">32nd Thanksgiving Anniversary</h4>
+            <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+
+
+
+        <!-- 2017 31st -->
+        <div class="gallery-item reveal-on-scroll" data-category="celebrations">
+          <img src="images/gallery/thanksgiving9.jpg" alt="Thanksgiving">
+          <div class="gallery-overlay">
+            <span class="gallery-overlay-cat">Thanksgiving Anniversary 2017</span>
+            <h4 class="gallery-overlay-title">31st Thanksgiving Anniversary</h4>
+            <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+
+        <!-- 2016 30th -->
+        <div class="gallery-item reveal-on-scroll" data-category="celebrations">
+          <img src="images/gallery/thanksgiving10.jpg" alt="Thanksgiving">
+          <div class="gallery-overlay">
+            <span class="gallery-overlay-cat">Thanksgiving Anniversary 2016</span>
+            <h4 class="gallery-overlay-title">30th Thanksgiving Anniversary</h4>
+            <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+
+        <!-- 2015 29th -->
+        <div class="gallery-item reveal-on-scroll" data-category="celebrations">
+          <img src="images/gallery/thanksgiving11.jpg" alt="Thanksgiving">
+          <div class="gallery-overlay">
+            <span class="gallery-overlay-cat">Thanksgiving Anniversary 2015</span>
+            <h4 class="gallery-overlay-title">29th Thanksgiving Anniversary</h4>
+            <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+
+        <!-- 2013 27th -->
+        <div class="gallery-item reveal-on-scroll" data-category="celebrations">
+          <img src="images/gallery/thanksgiving12.jpg" alt="Thanksgiving">
+          <div class="gallery-overlay">
+            <span class="gallery-overlay-cat">Thanksgiving Anniversary 2013</span>
+            <h4 class="gallery-overlay-title">27th Thanksgiving Anniversary</h4>
+            <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+          </div>
+        </div>
+
       </div>
+
+      <div class="gallery-toggle-wrap">
+        <button type="button" class="btn btn-secondary" id="galleryToggleBtn" aria-expanded="false">
+          <i class="fa-solid fa-layer-group"></i> <span>Show All Images</span>
+        </button>
+      </div>
+
     </div>
   </section>
 
@@ -1080,7 +1178,7 @@
             <i class="fa-solid fa-users"></i> View Church Members
           </button>
         </div>
-        <!-- View Church Members Button -->
+        <!--End of  View Church Members Button -->
         <div class="member-marquee reveal-on-scroll" id="memberMarquee" role="button" tabindex="0"
           aria-label="Church members photo carousel">
           <div class="member-marquee-track" id="memberMarqueeTrack">
@@ -1119,7 +1217,28 @@
 
           </div>
         </div>
-        <!-- View Church Members Button -->
+        <!-- end of Church Members Carousel -->
+        <!-- Sunday Schoolers Carousel -->
+        <h4 class="section-title-schoolers">Our Sunday Schoolers</h4>
+        <div class="member-marquee schoolers-marquee reveal-on-scroll" id="schoolersMarquee"
+          aria-label="Sunday schoolers photo carousel">
+          <div class="member-marquee-track" id="schoolersMarqueeTrack">
+            <div class="marquee-item">
+              <img src="images/schoolers/schooler1.jpg" alt="Schooler One" class="marquee-photo">
+              <span class="marquee-name">Schooler One</span>
+            </div>
+            <div class="marquee-item">
+              <img src="images/schoolers/schooler2.jpg" alt="Schooler Two" class="marquee-photo">
+              <span class="marquee-name">Schooler Two</span>
+            </div>
+            <div class="marquee-item">
+              <img src="images/schoolers/schooler3.jpg" alt="Schooler Three" class="marquee-photo">
+              <span class="marquee-name">Schooler Three</span>
+            </div>
+            <!-- add more .marquee-item blocks here -->
+          </div>
+        </div>
+        <!-- End of Sundays Schoolers Carousel  -->
       </div>
   </section>
 
@@ -1369,7 +1488,7 @@
             </button>
           </form>
           <div style="font-size: 0.78rem; color: var(--slate-400);">No spam. Unsubscribe at any time.</div>
-          <div class="text-golden version-number">Version 1.13.1</div>
+          <div class="text-golden version-number">Version 1.14.1</div>
         </div>
       </div>
 
@@ -1704,6 +1823,103 @@
     </div>
   </div>
 
+  <!-- 6c. THREE EXPRESSIONS OF OUR MOTTO MODAL -->
+  <div class="modal-backdrop" id="mottoModal" role="dialog" aria-modal="true" aria-labelledby="mottoModalTitle">
+    <div class="modal-window history-modal-window">
+      <button class="modal-close-btn" id="mottoModalClose" aria-label="Close modal">&times;</button>
+
+      <div class="modal-header">
+        <div class="modal-eyebrow">Our Motto</div>
+        <h3 id="mottoModalTitle">Three Expressions of Our Motto</h3>
+        <p>&ldquo;Where People are Saved, Live and Grow by God's Grace&rdquo;</p>
+      </div>
+
+      <div class="modal-body">
+        <div class="history-timeline">
+          <div class="history-item">
+            <div class="history-year">1</div>
+            <div class="history-content">
+              <h4>Saved by God's Grace</h4>
+              <p>We proclaim salvation as God's free gift through faith in Jesus Christ, not by human works. </p>
+              <p class="text-golden"><b>Ephesians 2:8&ndash;9</b></p>
+            </div>
+          </div>
+          <div class="history-item">
+            <div class="history-year">2</div>
+            <div class="history-content">
+              <h4>Live by God's Grace</h4>
+              <p>We encourage believers to live a transformed life, walking in obedience and good works prepared by God.
+              </p>
+              <p class="text-golden"><b>Ephesians 2:10; &bull; Titus 2:11&ndash;12</b></p>
+            </div>
+          </div>
+          <div class="history-item">
+            <div class="history-year">3</div>
+            <div class="history-content">
+              <h4>Grow by God's Grace</h4>
+              <p>We develop believers through the teaching of God's Word, discipleship, fellowship, and Christian
+                service.</p>
+              <p class="text-golden"><b>2 Peter 3:18; &bull; Acts 20:32</b></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6d. FIVE E'S MODAL -->
+  <div class="modal-backdrop" id="fiveEsModal" role="dialog" aria-modal="true" aria-labelledby="fiveEsModalTitle">
+    <div class="modal-window history-modal-window">
+      <button class="modal-close-btn" id="fiveEsModalClose" aria-label="Close modal">&times;</button>
+
+      <div class="modal-header">
+        <div class="modal-eyebrow">Our Mission</div>
+        <h3 id="fiveEsModalTitle">The Five E's</h3>
+        <p>How we help believers grow in God's grace</p>
+      </div>
+
+      <div class="modal-body">
+        <div class="history-timeline">
+          <div class="history-item">
+            <div class="history-year">E #1</div>
+            <div class="history-content">
+              <h4>Evangelism</h4>
+              <p>People are saved.</p>
+            </div>
+          </div>
+          <div class="history-item">
+            <div class="history-year">E #2</div>
+            <div class="history-content">
+              <h4>Establishment</h4>
+              <p>Believers are grounded.</p>
+            </div>
+          </div>
+          <div class="history-item">
+            <div class="history-year">E #3</div>
+            <div class="history-content">
+              <h4>Edification</h4>
+              <p>Believers are strengthened.</p>
+            </div>
+          </div>
+          <div class="history-item">
+            <div class="history-year">E #4</div>
+            <div class="history-content">
+              <h4>Equipping</h4>
+              <p>Believers are prepared to serve.</p>
+            </div>
+          </div>
+          <div class="history-item">
+            <div class="history-year">E #5</div>
+            <div class="history-content">
+              <h4>Expansion</h4>
+              <p>The Gospel reaches more people.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- 7. CHURCH HISTORY MODAL -->
   <div class="modal-backdrop" id="historyModal" role="dialog" aria-modal="true" aria-labelledby="historyModalTitle">
     <div class="modal-window history-modal-window">
@@ -1829,7 +2045,7 @@
   <!-- Main JavaScript File -->
   <script src="js/script.js"></script>
 
-  <!-- Version 1.13.1 series November 2026 -->
+  <!-- Version 1.14.1 series November 2026 -->
 </body>
 
 </html>

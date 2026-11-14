@@ -152,7 +152,7 @@ h6 {
 }
 
 .text-golden {
-  color: var(--gold-500);
+  color: var(--gold-500) !important;
 }
 
 .paragraph-label {
@@ -3524,6 +3524,195 @@ body.splash-active {
 
 @media (prefers-reduced-motion: reduce) {
   .faith-pillars-grid.is-fanning .faith-pillar-card {
+    animation: none;
+  }
+}
+
+/* Sunday schoolers carousel: 75% size, reverse flow (left -> right) */
+.schoolers-marquee {
+  margin-top: 1rem;
+  padding: 1.3rem 0 2.5rem;
+}
+
+.schoolers-marquee .member-marquee-track {
+  animation-name: marqueeScrollReverse;
+}
+
+@keyframes marqueeScrollReverse {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.schoolers-marquee .marquee-item {
+  width: 97.5px;
+  /* 75% of 130px */
+  margin-right: 1.5rem;
+  cursor: default;
+}
+
+.schoolers-marquee .marquee-photo {
+  width: 97.5px;
+  height: 97.5px;
+  border-width: 2.5px;
+}
+
+.schoolers-marquee .marquee-name {
+  font-size: 0.64rem;
+  bottom: -1.5rem;
+}
+
+@media (max-width: 540px) {
+  .schoolers-marquee .marquee-item {
+    width: 75px;
+    /* 75% of 100px */
+    margin-right: 1rem;
+  }
+
+  .schoolers-marquee .marquee-photo {
+    width: 75px;
+    height: 75px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .schoolers-marquee .member-marquee-track {
+    animation: none;
+  }
+}
+
+.section-title-schoolers {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.history-btn-group {
+  display: flex;
+  flex-wrap: nowrap;
+  /* keep all three buttons in one row */
+  align-items: stretch;
+  gap: 0.5rem;
+}
+
+.history-btn-group .btn {
+  white-space: normal;
+  /* let the label wrap inside the button instead of pushing it down */
+  flex: 0 1 auto;
+  padding: 0.65rem 0.95rem;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  gap: 0.45rem;
+}
+
+/* On phones there isn't room for one row, so stack them */
+@media (max-width: 700px) {
+  .history-btn-group {
+    flex-wrap: wrap;
+  }
+
+  .history-btn-group .btn {
+    flex: 1 1 100%;
+  }
+}
+
+.modal-eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-600);
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+/* ==========================================================================
+   PHOTO GALLERY - STACKED CARDS
+   ========================================================================== */
+.gallery-grid {
+  --gallery-card-h: 280px;
+}
+
+.gallery-grid.is-stacked {
+  grid-template-columns: repeat(var(--gallery-cols, 3), 1fr);
+  grid-template-rows: var(--gallery-card-h);
+  padding-bottom: 80px;
+  /* room for the layers peeking below */
+}
+
+.gallery-grid.is-stacked .gallery-item {
+  grid-column: var(--col);
+  grid-row: 1;
+  transform-origin: top center;
+  transform: translateY(calc(var(--depth) * 26px)) scale(calc(1 - var(--depth) * 0.05));
+  z-index: calc(10 - var(--depth));
+  filter: brightness(calc(1 - var(--depth) * 0.06));
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease, box-shadow 0.3s ease;
+}
+
+.gallery-grid.is-stacked .gallery-item.stack-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gallery-grid.is-stacked .gallery-item.stack-top:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* "+N more" badge on the top card of each stack */
+.gallery-stack-badge {
+  display: none;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 3;
+  background: var(--navy-900);
+  color: var(--gold-300);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--gold-500);
+}
+
+.gallery-grid.is-stacked {
+  grid-template-columns: repeat(var(--gallery-cols, 3), 1fr);
+  grid-template-rows: var(--gallery-card-h);
+  padding-bottom: 0;
+  /* no peeking layers, so no extra room needed */
+}
+
+/* Fan-out animation when expanding */
+.gallery-grid.is-fanning .gallery-item {
+  animation: galleryFanOut 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--i) * 40ms);
+}
+
+@keyframes galleryFanOut {
+  from {
+    opacity: 0;
+    transform: translateY(-40px) scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.gallery-toggle-wrap {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-grid.is-fanning .gallery-item {
     animation: none;
   }
 }
