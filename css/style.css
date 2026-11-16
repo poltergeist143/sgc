@@ -3878,6 +3878,86 @@ img {
   border-radius: var(--radius-full);
 }
 
+/* Songs list theme: navy-600 background, white song titles */
+.songs-modal-window {
+  background: var(--navy-600);
+  border-color: rgba(212, 175, 55, 0.35);
+}
+
+.songs-modal-window .songs-modal-head {
+  border-bottom-color: rgba(255, 255, 255, 0.15);
+}
+
+.songs-modal-window .songs-modal-head h3 {
+  color: var(--white);
+}
+
+.songs-modal-window .modal-eyebrow {
+  color: var(--gold-300);
+}
+
+.songs-modal-window .modal-close-btn {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--white);
+}
+
+.songs-modal-window .modal-close-btn:hover {
+  background: var(--gold-500);
+  color: var(--navy-950);
+}
+
+.songs-modal-window .songs-search i {
+  color: var(--gold-400);
+}
+
+.songs-modal-window .songs-search input {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: var(--white);
+}
+
+.songs-modal-window .songs-search input::placeholder {
+  color: var(--slate-300);
+}
+
+.songs-modal-window .songs-search input:focus {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: var(--gold-500);
+}
+
+.songs-modal-window .songs-count {
+  color: var(--slate-300);
+}
+
+.songs-modal-window .song-row {
+  background: var(--navy-800);
+  border-color: rgba(255, 255, 255, 0.12);
+  border-left-color: var(--gold-500);
+}
+
+.songs-modal-window .song-row:hover,
+.songs-modal-window .song-row:focus-visible {
+  background: var(--navy-900);
+}
+
+.songs-modal-window .song-row-title {
+  color: var(--white);
+}
+
+.songs-modal-window .song-row-writer {
+  color: var(--slate-300);
+}
+
+.songs-modal-window .song-lang-badge {
+  color: var(--gold-300);
+  background: rgba(212, 175, 55, 0.15);
+}
+
+.songs-modal-window .songs-empty {
+  color: var(--slate-300);
+}
+
+
 .songs-empty {
   text-align: center;
   color: var(--slate-500);

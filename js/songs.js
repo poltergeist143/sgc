@@ -116,5 +116,32 @@ const SONGS = [
             { text: "Do your friends despise, forsake you?\nTake it to the Lord in prayer!\nIn his arms he'll take and shield you;\nyou will find a solace there." },
             { text: "Amen." }
         ]
+    },
+    {
+        id: 10, language: 'english', title: 'Victory in Jesus', writer: 'Eugene Monroe Bartlett Sr., 1939', link: '',
+        lyrics: [
+            { text: "I heard an old, old story how a Savior came from glory,\nHow He gave His life on Calvary to save a wretch like me;\nI heard about His groaning, of His precious blood's atoning,\nThen I repented of my sins and won the victory" },
+            { text: "O victory in Jesus, my Savior, forever!\nHe sought me and bought me with His redeeming blood;\nHe loved me ere I knew Him, and all my love is due Him.\nHe plunged me to victory beneath the cleansing flood", chorus: true },
+            { text: "I heard about His healing, of His cleansing pow'r revealing\nHow He made the lame to walk again and caused the blind to see;\nAnd then I cried, \"Dear Jesus, come and heal my broken spirit, \"\nAnd some sweet day I'll sing up there the song of victory." },
+            { text: "O victory in Jesus, my Savior, forever!\nHe sought me and bought me with His redeeming blood;\nHe loved me ere I knew Him, and all my love is due Him.\nHe plunged me to victory beneath the cleansing flood", chorus: true },
+            { text: "I heard about a mansion He has built for me in glory,\nAnd I heard about the streets of gold beyond the crystal sea;\nAbout the angels singing and the old redemption story,\nAnd some sweet day I'll sing up there the song of victory." },
+            { text: "O victory in Jesus, my Savior, forever!\nHe sought me and bought me with His redeeming blood;\nHe loved me ere I knew Him, and all my love is due Him.\nHe plunged me to victory beneath the cleansing flood", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 11, language: 'english', title: 'Send the Light', writer: 'Chas H. Gabriel, 1890', link: '',
+        lyrics: [
+            { text: "There’s a call comes ringing o’er the restless wave:\n\“Send the light! Send the light!\”\nThere are souls to rescue, there are souls to save.\nSend the light! Send the light!" },
+            { text: "Send the light, the blessed gospel light.\nLet it shine from shore to shore.\nSend the light, the blessed Gospel light.\nLet it shine forevermore.", chorus: true },
+            { text: "We have heard the Macedonian call today:\n\“Send the light! Send the light!\”\nAnd a golden off'ring at the cross we lay,\nSend the light! Send the light!" },
+            { text: "Send the light, the blessed gospel light.\nLet it shine from shore to shore.\nSend the light, the blessed Gospel light.\nLet it shine forevermore.", chorus: true },
+            { text: "Let us pray that grace may ev'rywhere abound;\nSend the light! Send the light!\nAnd a Christ-like spirit ev'rywhere be found.\nSend the light! Send the light! " },
+            { text: "Send the light, the blessed gospel light.\nLet it shine from shore to shore.\nSend the light, the blessed Gospel light.\nLet it shine forevermore.", chorus: true },
+            { text: "Let us not grow weary in the work of love.\nSend the light! Send the light!\nLet us gather jewels for a crown above.\nSend the light! Send the light!" },
+            { text: "Send the light, the blessed gospel light.\nLet it shine from shore to shore.\nSend the light, the blessed Gospel light.\nLet it shine forevermore.", chorus: true },
+            { text: "Amen." }
+        ]
     }
 ];
