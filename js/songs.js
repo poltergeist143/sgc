@@ -88,5 +88,33 @@ const SONGS = [
             { text: "Turn your eyes upon Jesus,\nLook full in His wonderful face,\nAnd the things of earth will grow strangely dim,\nIn the light of His glory and grace.", chorus: true },
             { text: "Amen." }
         ]
+    },
+
+    {
+        id: 8, language: 'english', title: 'We\'ve a Story to Tell to the Nations', writer: 'H. Ernest Nichol, 1896', link: '',
+        lyrics: [
+            { text: "We've a story to tell to the nations\nthat shall turn their hearts to the right,\na story of truth and mercy,\na story of peace and light,\na story of peace and ight." },
+            { text: "For the darkness shall turn to dawning,\nand the dawning to noonday bright,\nand Christ's great kingdom shall come on earth \nthe kingdom of love and light.", chorus: true },
+            { text: "We've a song to be sung to the nations,\nthat shall lift their hearts to the Lord,\na song that shall conquer evil\nand shatter the spear and sword,\nand shatter the spear and sword." },
+            { text: "For the darkness shall turn to dawning,\nand the dawning to noonday bright,\nand Christ's great kingdom shall come on earth \nthe kingdom of love and light.", chorus: true },
+            { text: "We've a message to give to the nations\nthat the Lord who reigneth above\nhath sent us His Son to save us\nand show us that God is love,\nand show us that God is love." },
+            { text: "For the darkness shall turn to dawning,\nand the dawning to noonday bright,\nand Christ's great kingdom shall come on earth \nthe kingdom of love and light.", chorus: true },
+            { text: "We've a Savior to show to the nations\nwho the path of sorrow hath trod,\nthat all of the world's great peoples\nmight come to the truth of God,\nmight come to the truth of God." },
+            { text: "For the darkness shall turn to dawning,\nand the dawning to noonday bright,\nand Christ's great kingdom shall come on earth \nthe kingdom of love and light.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 9, language: 'english', title: 'What a Friend We Have in Jesus', writer: 'Joseph Medlicott Scriven, 1855', link: '',
+        lyrics: [
+            { text: "What a friend we have in Jesus,\nall our sins and griefs to bear!\nWhat a privilege to carry\neverything to God in prayer!" },
+            { text: "O what peace we often forfeit,\nO what needless pain we bear,\nall because we do not carry\neverything to God in prayer!" },
+            { text: "Have we trials and temptations?\nIs there trouble anywhere?\nWe should never be discouraged;\ntake it to the Lord in prayer!" },
+            { text: "Can we find a friend so faithful\nwho will all our sorrows share?\nJesus knows our every weakness;\ntake it to the Lord in prayer!" },
+            { text: "Are we weak and heavy laden,\ncumbered with a load of care?\nPrecious Savior, still our refuge\ntake it to the Lord in prayer!" },
+            { text: "Do your friends despise, forsake you?\nTake it to the Lord in prayer!\nIn his arms he'll take and shield you;\nyou will find a solace there." },
+            { text: "Amen." }
+        ]
     }
 ];
