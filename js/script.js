@@ -1643,4 +1643,274 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target.tagName === 'IMG') e.preventDefault();
   });
 
+  /* ==========================================================================
+   CHURCH SONGS (list modal + lyrics modal + image/text download)
+   ========================================================================== */
+  const songsModal = document.getElementById('songsModal');
+  const lyricsModal = document.getElementById('lyricsModal');
+
+
+  if (songsModal && lyricsModal && typeof SONGS !== 'undefined') {
+    const listEl = document.getElementById('songsList');
+    const searchEl = document.getElementById('songSearch');
+    const emptyEl = document.getElementById('songsEmpty');
+    const countEl = document.getElementById('songsCount');
+    const filterBtns = document.querySelectorAll('#songFilters .gallery-filter-btn');
+    let songLang = 'all';
+    let currentSong = null;
+
+    const esc = (s) => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const langLabel = (l) => (l === 'bisaya' ? 'Bisaya' : 'English');
+    const lyricsText = (s) => s.lyrics.map(l => l.text).join('\n\n');
+    const fileName = (s) => s.title.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').toLowerCase() || 'song';
+
+    /* ---------- list ---------- */
+    const renderList = () => {
+      const q = searchEl.value.trim().toLowerCase();
+      const list = SONGS
+        .filter(s => (songLang === 'all' || s.language === songLang) &&
+          (!q || [s.title, s.writer, lyricsText(s)].join(' ').toLowerCase().includes(q)))
+        .sort((a, b) => a.title.localeCompare(b.title));
+
+      listEl.innerHTML = list.map(s => `
+      <button type="button" class="song-row" data-id="${s.id}">
+          <span class="song-row-main">
+          <span class="song-row-title">${esc(s.title)}</span>
+          <span class="song-row-writer">${esc(s.writer)}</span>
+        </span>
+        <span class="song-lang-badge">${langLabel(s.language)}</span>
+      </button>`).join('');
+
+      emptyEl.style.display = list.length ? 'none' : 'block';
+      countEl.textContent = `${list.length} song${list.length === 1 ? '' : 's'}`;
+    };
+
+    /* ---------- open / close ---------- */
+    const showList = () => {
+      lyricsModal.classList.remove('active');
+      songsModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeAllSongs = () => {
+      songsModal.classList.remove('active');
+      lyricsModal.classList.remove('active');
+      document.body.style.overflow = '';
+    };
+
+    const openLyrics = (id) => {
+      const s = SONGS.find(x => String(x.id) === String(id));
+      if (!s) return;
+      currentSong = s;
+
+      document.getElementById('lyricsMeta').textContent = langLabel(s.language);
+      document.getElementById('lyricsTitle').textContent = s.title;
+      document.getElementById('lyricsWriter').textContent = s.writer;
+
+      const hasLyrics = s.lyrics.length > 0;
+      document.getElementById('lyricsBody').innerHTML = hasLyrics
+        ? s.lyrics.map(l => `<div class="stanza${l.chorus ? ' chorus' : ''}">${esc(l.text)}</div>`).join('')
+        : '<p>Lyrics are not displayed for this song. Please use the link below.</p>';
+      document.getElementById('lyricsActions').style.display = hasLyrics ? 'flex' : 'none';
+
+      const linkEl = document.getElementById('lyricsLink');
+      linkEl.style.display = s.link ? 'inline-flex' : 'none';
+      if (s.link) linkEl.href = s.link;
+
+      songsModal.classList.remove('active');   // swap modals, keep page scroll locked
+      lyricsModal.classList.add('active');
+      lyricsModal.querySelector('.modal-window').scrollTop = 0;
+      document.body.style.overflow = 'hidden';
+    };
+
+    document.querySelectorAll('.open-songs-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeMobileNav();
+        showList();
+        if (window.innerWidth > 820) setTimeout(() => searchEl.focus(), 250);
+      });
+    });
+
+    listEl.addEventListener('click', (e) => {
+      const row = e.target.closest('.song-row');
+      if (row) openLyrics(row.dataset.id);
+    });
+
+    document.getElementById('songsModalClose').addEventListener('click', closeAllSongs);
+    document.getElementById('lyricsModalClose').addEventListener('click', showList);
+    document.getElementById('lyricsBackBtn').addEventListener('click', showList);
+    lyricsModal.addEventListener('click', (e) => {
+      if (e.target === lyricsModal) showList();
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      if (lyricsModal.classList.contains('active')) showList();
+      else if (songsModal.classList.contains('active')) closeAllSongs();
+    });
+
+    searchEl.addEventListener('input', renderList);
+    filterBtns.forEach(btn => btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      songLang = btn.dataset.lang;
+      renderList();
+    }));
+
+    /* ---------- downloads ---------- */
+    const saveBlob = (blob, name) => {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = name;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 1500);
+    };
+
+    document.getElementById('songTxtBtn').addEventListener('click', () => {
+      if (!currentSong) return;
+      const s = currentSong;
+      const txt = `${s.title}\n${s.writer} (${langLabel(s.language)})\n\n${lyricsText(s)}\n\n— Saved by Grace Church`;
+      saveBlob(new Blob([txt], { type: 'text/plain;charset=utf-8' }), `${fileName(s)}.txt`);
+      showToast('Lyrics downloaded as a text file.', 'success');
+    });
+
+    document.getElementById('songCopyBtn').addEventListener('click', async () => {
+      if (!currentSong) return;
+      try {
+        await navigator.clipboard.writeText(`${currentSong.title}\n\n${lyricsText(currentSong)}`);
+        showToast('Lyrics copied to clipboard!', 'success');
+      } catch (err) {
+        showToast('Unable to copy automatically.', 'error');
+      }
+    });
+
+    // Draws the lyrics onto a branded PNG (no extra library needed)
+    const makeLyricsImage = async (s) => {
+      try {
+        await Promise.all([
+          document.fonts.load('700 52px Cinzel'),
+          document.fonts.load('400 32px Merriweather'),
+          document.fonts.load('italic 400 32px Merriweather'),
+          document.fonts.load('600 24px "Plus Jakarta Sans"')
+        ]);
+      } catch (e) { }
+
+      const logo = await new Promise(res => {
+        const i = new Image();
+        i.onload = () => res(i);
+        i.onerror = () => res(null);
+        i.src = (typeof LOGO_DATA !== 'undefined') ? LOGO_DATA : 'images/sgc logo.png';
+      });
+
+      const render = (useLogo) => {
+        const W = 1080, P = 90, LH = 54, maxW = W - P * 2;
+        const NAVY = '#0a192f', GOLD = '#b89324', SLATE = '#475569';
+        const bodyFont = '400 32px Merriweather, Georgia, serif';
+        const chorusFont = 'italic 400 32px Merriweather, Georgia, serif';
+        const titleFont = '700 52px Cinzel, Georgia, serif';
+        const c = document.createElement('canvas');
+        const x = c.getContext('2d');
+
+        const wrap = (text, font, w) => {
+          x.font = font;
+          const out = [];
+          text.split('\n').forEach(p => {
+            let line = '';
+            p.split(' ').forEach(word => {
+              const t = line ? line + ' ' + word : word;
+              if (x.measureText(t).width > w && line) { out.push(line); line = word; } else line = t;
+            });
+            out.push(line);
+          });
+          return out;
+        };
+
+        const titleLines = wrap(s.title, titleFont, maxW);
+        const blocks = s.lyrics.map(l => ({
+          chorus: !!l.chorus,
+          lines: wrap(l.text, l.chorus ? chorusFont : bodyFont, maxW - (l.chorus ? 30 : 0))
+        }));
+
+        const layout = (draw) => {
+          let y = 60;
+          x.textAlign = 'left';
+          const brand = 'SAVED BY GRACE CHURCH';
+          const brandFont = '700 28px Cinzel, Georgia, serif';
+          const logoSize = 72, gap = 18;
+          x.font = brandFont;
+          const textW = x.measureText(brand).width;
+          const showLogo = useLogo && logo;
+          const groupW = (showLogo ? logoSize + gap : 0) + textW;
+          const startX = (W - groupW) / 2;
+
+          if (showLogo && draw) x.drawImage(logo, startX, y, logoSize, logoSize);
+          if (draw) {
+            x.font = brandFont;
+            x.fillStyle = GOLD;
+            x.fillText(brand, startX + (showLogo ? logoSize + gap : 0), y + logoSize / 2 + 10);
+          }
+          y += logoSize + 40;
+          x.textAlign = 'center';
+          titleLines.forEach(t => {
+            y += 52;
+            if (draw) { x.font = titleFont; x.fillStyle = NAVY; x.fillText(t, W / 2, y); }
+            y += 12;
+          });
+          y += 24;
+          if (draw) { x.font = '600 24px "Plus Jakarta Sans", sans-serif'; x.fillStyle = SLATE; x.fillText(`${s.writer}  •  ${langLabel(s.language)}`, W / 2, y); }
+          y += 36;
+          if (draw) { x.fillStyle = GOLD; x.fillRect(W / 2 - 60, y, 120, 3); }
+          y += 70;
+          x.textAlign = 'left';
+          blocks.forEach(b => {
+            if (draw && b.chorus) { x.fillStyle = GOLD; x.fillRect(P, y - 32, 4, b.lines.length * LH - 4); }
+            b.lines.forEach(t => {
+              if (draw) { x.font = b.chorus ? chorusFont : bodyFont; x.fillStyle = NAVY; x.fillText(t, P + (b.chorus ? 30 : 0), y); }
+              y += LH;
+            });
+            y += 34;
+          });
+          y += 10;
+          if (draw) {
+            x.textAlign = 'center'; x.font = '600 22px "Plus Jakarta Sans", sans-serif'; x.fillStyle = SLATE;
+            x.fillText('Saved by Grace Church  •  L. Abellar St., Pasil, Cebu City', W / 2, y);
+          }
+          return y + 70;
+        };
+
+        const H = layout(false);
+        c.width = W; c.height = H;
+        x.fillStyle = '#fffdfa'; x.fillRect(0, 0, W, H);
+        x.fillStyle = GOLD; x.fillRect(0, 0, W, 12); x.fillRect(0, H - 12, W, 12);
+        layout(true);
+        return new Promise(res => c.toBlob(res, 'image/png'));   // throws if canvas is tainted
+      };
+
+      try { return await render(true); }
+      catch (e) { return await render(false); }   // e.g. opened from file:// -> retry without logo
+    };
+
+    document.getElementById('songImageBtn').addEventListener('click', async () => {
+      if (!currentSong) return;
+      const btn = document.getElementById('songImageBtn');
+      const original = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Preparing...';
+      try {
+        const blob = await makeLyricsImage(currentSong);
+        saveBlob(blob, `${fileName(currentSong)}.png`);
+        showToast('Lyrics image saved to your device.', 'success');
+      } catch (err) {
+        showToast('Could not create the image. Please try again.', 'error');
+      }
+      btn.disabled = false;
+      btn.innerHTML = original;
+    });
+
+    renderList();
+  }
+
 });
