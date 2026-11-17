@@ -23,6 +23,7 @@
   --gold-600: #b89324;
   --gold-700: #937418;
   --gold-800: #916e05;
+  --gold-900: #e7b00c;
   --gold-glow: rgba(212, 175, 55, 0.35);
   --gold-gradient: linear-gradient(135deg, #fae188 0%, #d4af37 50%, #937418 100%);
   --gold-subtle: rgba(212, 175, 55, 0.12);
@@ -3941,7 +3942,7 @@ img {
 }
 
 .songs-modal-window .song-row-title {
-  color: var(--white);
+  color: var(--gold-900);
 }
 
 .songs-modal-window .song-row-writer {

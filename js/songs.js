@@ -143,5 +143,449 @@ const SONGS = [
             { text: "Send the light, the blessed gospel light.\nLet it shine from shore to shore.\nSend the light, the blessed Gospel light.\nLet it shine forevermore.", chorus: true },
             { text: "Amen." }
         ]
-    }
+    },
+
+    {
+        id: 12, language: 'english', title: 'A Shelter in the Time of Storm', writer: 'Vernon J. Charlesworth, 1880', link: '',
+        lyrics: [
+            { text: "The Lord's our rock, in Him we hide,\nA shelter in the time of storm;\nSecure whatever ill betide,\nA shelter in the time of storm.    " },
+            { text: "Oh, Jesus is a rock, in a weary land,\nA weary land, a weary land;\nOh Jesus is a rock in a weary land,\nA shelter in the time of storm,", chorus: true },
+            { text: "A shade by day, defense by night,\nA shelter in the time of storm;\nNo fears alarm, no fears affright,\nA shelter in the time of storm." },
+            { text: "Oh, Jesus is a rock, in a weary land,\nA weary land, a weary land;\nOh Jesus is a rock in a weary land,\nA shelter in the time of storm,", chorus: true },
+            { text: "The raging storms may round us beat,\nA shelter in the time of storm;\nWe'll never leave our safe retreat,\nA shelter in the time of storm." },
+            { text: "Oh, Jesus is a rock, in a weary land,\nA weary land, a weary land;\nOh Jesus is a rock in a weary land,\nA shelter in the time of storm,", chorus: true },
+            { text: "O Rock divine, O Refuge dear,\nA shelter in the time of storm;\nBe Thou our helper ever near,\nA shelter in the time of storm." },
+            { text: "Oh, Jesus is a rock, in a weary land,\nA weary land, a weary land;\nOh Jesus is a rock in a weary land,\nA shelter in the time of storm,", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 13, language: 'english', title: 'At Calvary', writer: 'William R. Newell, 1895', link: '',
+        lyrics: [
+            { text: "Years I spent in vanity and pride,\ncaring not my Lord was crucified,\nknowing not it was for me He died\non Calvary." },
+            { text: "Mercy there was great and grace was free;\npardon there was multiplied to me;\nthere my burdened soul found liberty,\nat Calvary.", chorus: true },
+            { text: "By God's Word at last my sin I learned;\nthen I trembled at the law I'd spurned,\ntill my guilty soul imploring turned\nto Calvary." },
+            { text: "Mercy there was great and grace was free;\npardon there was multiplied to me;\nthere my burdened soul found liberty,\nat Calvary.", chorus: true },
+            { text: "Now I've giv'n to Jesus ev'rything;\nnow I gladly own Him as my King;\nnow my raptured soul can only sing\nof Calvary.." },
+            { text: "Mercy there was great and grace was free;\npardon there was multiplied to me;\nthere my burdened soul found liberty,\nat Calvary.", chorus: true },
+            { text: "O the love that drew salvation's plan!\nO the grace that brought it down to man!\nO the mighty gulf that God did span\nat Calvary!" },
+            { text: "Mercy there was great and grace was free;\npardon there was multiplied to me;\nthere my burdened soul found liberty,\nat Calvary.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 14, language: 'english', title: 'At the Cross', writer: 'Isaac Watts, 1707', link: '',
+        lyrics: [
+            { text: "Alas! and did my Savior bleed,\nand did my Sovereign die!\nWould he devote that sacred head\nfor sinners such as I?" },
+            { text: "At The Cross, At The Cross\n Where I First Saw The Light,\nAnd The Burden Of My Heart Rolled Away,\nIt Was There By Faith I Received My Sight,\nAnd Now I Am Happy All The Day!", chorus: true },
+            { text: "Was it for crimes that I have done,\nhe groaned upon the tree?\nAmazing pity! Grace unknown!\nAnd love beyond degree!" },
+            { text: "At The Cross, At The Cross\n Where I First Saw The Light,\nAnd The Burden Of My Heart Rolled Away,\nIt Was There By Faith I Received My Sight,\nAnd Now I Am Happy All The Day!", chorus: true },
+            { text: "Well might the sun in darkness hide,\nand shut its glories in,\nwhen God, the mighty maker, died\nfor his own creature's sin." },
+            { text: "At The Cross, At The Cross\n Where I First Saw The Light,\nAnd The Burden Of My Heart Rolled Away,\nIt Was There By Faith I Received My Sight,\nAnd Now I Am Happy All The Day!", chorus: true },
+            { text: "But drops of tears can ne'er repay\nthe debt of love I owe.\nHere, Lord, I give myself away;\n'tis all that I can do." },
+            { text: "At The Cross, At The Cross\n Where I First Saw The Light,\nAnd The Burden Of My Heart Rolled Away,\nIt Was There By Faith I Received My Sight,\nAnd Now I Am Happy All The Day!", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 15, language: 'english', title: 'Leaning On the Everlasting Arms', writer: 'Elisha Hoffman, 1887', link: '',
+        lyrics: [
+            { text: "What a fellowship, what a joy divine,\nleaning on the everlasting arms;\nwhat a blessedness, what a peace is mine,\nleaning on the everlasting arms." },
+            { text: "Leaning, leaning,\nsafe and secure from all alarms;\nleaning, leaning,\nleaning on the everlasting arms.", chorus: true },
+            { text: "O how sweet to walk in this pilgrim way,\nleaning on the everlasting arms;\nO how bright the path grows from day to day,\nleaning on the everlasting arms." },
+            { text: "Leaning, leaning,\nsafe and secure from all alarms;\nleaning, leaning,\nleaning on the everlasting arms.", chorus: true },
+            { text: "What have I to dread, what have I to fear,\nleaning on the everlasting arms?\nI have blessed peace with my Lord so near,\nleaning on the everlasting arms." },
+            { text: "Leaning, leaning,\nsafe and secure from all alarms;\nleaning, leaning,\nleaning on the everlasting arms.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 16, language: 'english', title: 'Lead Me to Calvary', writer: 'Jennie Evelyn Hussey, 1921', link: '',
+        lyrics: [
+            { text: "King of my life I crown Thee now,\nThine shall the glory be;\nlest I forget Thy thorn-crowned brow,\nlead me to Calvary." },
+            { text: "Lest I forget Gethsemane,\nlest I forget Thine agony,\nlest I forget Thy love for me,\nlead me to Calvary.", chorus: true },
+            { text: "Show me the tomb where Thou wast laid,\ntenderly mourned and wept;\nangels in robes of light arrayed\nguarded Thee whilst Thou slept." },
+            { text: "Lest I forget Gethsemane,\nlest I forget Thine agony,\nlest I forget Thy love for me,\nlead me to Calvary.", chorus: true },
+            { text: "Let me like Mary, through the gloom,\ncome with a gift to Thee;\nshow to me now the empty tomb,\nlead me to Calvary. " },
+            { text: "Lest I forget Gethsemane,\nlest I forget Thine agony,\nlest I forget Thy love for me,\nlead me to Calvary.", chorus: true },
+            { text: "May I be willing, Lord, to bear\ndaily my cross for Thee;\neven Thy cup of grief to share,\nThou hast borne all for me. " },
+            { text: "Lest I forget Gethsemane,\nlest I forget Thine agony,\nlest I forget Thy love for me,\nlead me to Calvary.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 17, language: 'english', title: 'Just as I Am, Without One Plea', writer: 'Charlotte Elliott, 1836', link: '',
+        lyrics: [
+            { text: "Just as I am, without one plea,\nbut that thy blood was shed for me,\nand that thou bidd'st me come to thee,\nO Lamb of God, I come, I come. " },
+            { text: "Just as I am, and waiting not\nto rid my soul of one dark blot,\nto thee, whose blood can cleanse each spot,\nO Lamb of God, I come, I come." },
+            { text: "Just as I am, though tossed about\nwith many a conflict, many a doubt,\nfightings and fears within, without,\nO Lamb of God, I come, I come." },
+            { text: "Just as I am, thou wilt receive,\nwilt welcome, pardon, cleanse, relieve;\nbecause thy promise I believe,\nO Lamb of God, I come, I come." },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 18, language: 'english', title: 'Jesus Saves', writer: 'Priscilla J. Owens, 1882', link: '',
+        lyrics: [
+            { text: "We have heard the joyful sound\nJesus saves! Jesus saves!\nSpread the tidings all around\nJesus saves! Jesus saves!" },
+            { text: "Bear the news to ev'ry land,\nclimb the steeps and cross the waves;\nonward! 'tis our Lord's command\nJesus saves! Jesus saves!" },
+            { text: "Waft it on the rolling tide\nJesus saves! Jesus saves!\nTell to sinners far and wide\nJesus saves! Jesus saves!" },
+            { text: "Sing ye islands of the sea!\nEcho back, ye ocean caves!\nEarth shall keep her jubilee\nJesus saves! Jesus saves!" },
+            { text: "Sing above the battle strife\nJesus saves! Jesus saves!\nBy His death and endless life\nJesus saves! Jesus saves!" },
+            { text: "Sing it softly through the gloom,\nwhen the heart for mercy craves;\nsing in triumph o'er the tomb\nJesus saves! Jesus saves!" },
+            { text: "Give the winds a mighty voice\nJesus saves! Jesus saves!\nLet the nations now rejoice\nJesus saves! Jesus saves!" },
+            { text: "Shout salvation full and free,\nhighest hills and deepest caves;\nthis our song of victory\nJesus saves! Jesus saves!" },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 19, language: 'english', title: 'Jesus Paid It All', writer: 'Elvina M. Hall, 1865', link: '',
+        lyrics: [
+            { text: "I hear the Savior say,\n\"Thy strength indeed is small,\nChild of weakness, watch and pray,\nFind in Me thine all in all.\"" },
+            { text: "Jesus paid it all,\nAll to Him I owe;\nSin had left a crimson stain,\nHe washed it white as snow.", chorus: true },
+            { text: "Lord, now indeed I find\nThy pow'r and Thine alone,\nCan change the leper's spots\nAnd melt the heart of stone." },
+            { text: "Jesus paid it all,\nAll to Him I owe;\nSin had left a crimson stain,\nHe washed it white as snow.", chorus: true },
+            { text: "For nothing good have I\nWhere-by Thy grace to claim;\nI'll wash my garments white\nIn the blood of Calv'ry's Lamb." },
+            { text: "Jesus paid it all,\nAll to Him I owe;\nSin had left a crimson stain,\nHe washed it white as snow.", chorus: true },
+            { text: "And when, before the throne,\nI stand in Him complete,\n\"Jesus died my soul to save,\"\nMy lips shall still repeat. " },
+            { text: "Jesus paid it all,\nAll to Him I owe;\nSin had left a crimson stain,\nHe washed it white as snow.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 20, language: 'english', title: 'Jesus Loves Me, This I Know', writer: 'Anna Bartlett Warner, 1859', link: '',
+        lyrics: [
+            { text: "Jesus loves me, this I know,\nfor the Bible tells me so.\nLittle ones to him belong;\nthey are weak, but he is strong." },
+            { text: "Yes, Jesus loves me! Yes, Jesus loves me!\nYes, Jesus loves me! The Bible tells me so.", chorus: true },
+            { text: "Jesus loves me he who died\nheaven's gate to open wide.\nHe will wash away my sin,\nlet his little child come in." },
+            { text: "Yes, Jesus loves me! Yes, Jesus loves me!\nYes, Jesus loves me! The Bible tells me so.", chorus: true },
+            { text: "Jesus loves me, this I know,\nas he loved so long ago,\ntaking children on his knee,\nsaying, \"Let them come to me.\"" },
+            { text: "Yes, Jesus loves me! Yes, Jesus loves me!\nYes, Jesus loves me! The Bible tells me so.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 21, language: 'english', title: 'I Will Sing Of My Redeemer', writer: 'Phillip P. Bliss, 1876', link: '',
+        lyrics: [
+            { text: "I will sing of my Redeemer\nand his wondrous love to me;\non the cruel cross he suffered,\nfrom the curse to set me free." },
+            { text: "Sing, O sing of my Redeemer!\nWith his blood he purchased me;\non the cross he sealed my pardon,\npaid the debt, and made me free." },
+            { text: "I will tell the wondrous story,\nhow my lost estate to save,\nin his boundless love and mercy,\nhe the ransom freely gave." },
+            { text: "I will praise my dear Redeemer,\nhis triumphant power I'll tell:\nhow the victory he gives me\nover sin and death and hell." },
+            { text: "I will sing of my Redeemer\nand his heavenly love for me;\nhe from death to life has brought me,\nSon of God, with him to be." },
+            { text: "Sing, O sing of my Redeemer!\nWith his blood he purchased me;\non the cross he sealed my pardon,\npaid the debt, and made me free." },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 22, language: 'english', title: 'I Need Thee Every Hour', writer: 'Robert Lowry, Annie S. Hawls, , 1872', link: '',
+        lyrics: [
+            { text: "I need Thee ev'ry hour,\nmost gracious Lord;\nno tender voice like Thine\ncan peace afford." },
+            { text: "I need Thee, O I need Thee;\nev'ry hour I need Thee;\nO bless me now, my Savior,\nI come to Thee.", chorus: true },
+            { text: "I need Thee ev'ry hour,\nstay Thou nearby;\ntemptations lose their pow'r\nwhen Thou art nigh. " },
+            { text: "I need Thee, O I need Thee;\nev'ry hour I need Thee;\nO bless me now, my Savior,\nI come to Thee.", chorus: true },
+            { text: "I need Thee ev'ry hour,\nin joy or pain;\ncome quickly and abide,\nor life is vain." },
+            { text: "I need Thee, O I need Thee;\nev'ry hour I need Thee;\nO bless me now, my Savior,\nI come to Thee.", chorus: true },
+            { text: "I need Thee ev'ry hour,\nteach me Thy will;\nand Thy rich promises\nin me fulfill. " },
+            { text: "I need Thee, O I need Thee;\nev'ry hour I need Thee;\nO bless me now, my Savior,\nI come to Thee.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 23, language: 'english', title: 'We sing the mighty power of God', writer: 'Isaac Watts , 1715', link: '',
+        lyrics: [
+            { text: "We sing the mighty power of God\nthat made the mountains rise,\nthat spread the flowing seas abroad\nand built the lofty skies." },
+            { text: "We sing the wisdom that ordained\nthe sun to rule the day;\nthe moon shines full at his command,\nand all the stars obey." },
+            { text: "We sing the goodness of the Lord\nthat filled the earth with food;\nhe formed the creatures with his word\nand then pronounced them good." },
+            { text: "Lord, how your wonders are displayed,\nwhere'er we turn our eyes,\nif we survey the ground we tread\nor gaze upon the skies." },
+            { text: "There's not a plant or flower below\nbut makes your glories known,\nand clouds arise and tempests blow\nby order from your throne;" },
+            { text: "while all that borrows life from you\nis ever in your care,\nand everywhere that we can be,\nyou, God, are present there." },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 24, language: 'english', title: 'I Surrender All', writer: 'Judson W. Van DeVenter , 1896', link: '',
+        lyrics: [
+            { text: "All to Jesus I surrender,\nAll to Him I freely give;\nI will ever love and trust Him,\nIn His presence daily live." },
+            { text: "I surrender all, I surrender all;\nAll to Thee, my blessed Savior,\nI surrender all.", chorus: true },
+            { text: "All to Jesus I surrender,\nMake me, Savior, wholly Thine;\nLet me feel Thy Holy Spirit,\nTruly know that Thou art mine." },
+            { text: "I surrender all, I surrender all;\nAll to Thee, my blessed Savior,\nI surrender all.", chorus: true },
+            { text: "All to Jesus I surrender,\nLord, I give myself to Thee;\nFill me with Thy love and power,\nLet Thy blessing fall on me." },
+            { text: "I surrender all, I surrender all;\nAll to Thee, my blessed Savior,\nI surrender all.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 25, language: 'english', title: 'Holy, Holy, Holy! Lord God Almighty!', writer: 'Reginald Heber , 1823', link: '',
+        lyrics: [
+            { text: "Holy, holy, holy! Lord God Almighty!\nEarly in the morning our song shall rise to thee;\nholy, holy, holy, merciful and mighty!\nGod in three Persons, blessed Trinity!" },
+            { text: "Holy, holy, holy! all the saints adore thee,\ncasting down their golden crowns around the glassy sea;\ncherubim and seraphim, falling down before thee,\nwho wert, and art, and evermore shalt be." },
+            { text: "Holy, holy, holy! though the darkness hide thee,\nthough the eye of sinful man thy glory may not see;\nonly thou art holy, there is none beside thee,\nperfect in pow'r, in love and purity." },
+            { text: "Holy, holy, holy! Lord God Almighty!\nAll thy works shall praise thy name, in earth and sky and sea;\nholy, holy, holy, merciful and mighty!\nGod in three Persons, blessed Trinity!" },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 26, language: 'english', title: 'He Leadeth Me', writer: 'Joseph H. Gilmore , 1862', link: '',
+        lyrics: [
+            { text: "He leadeth me: O blessed thought!\nO words with heavenly comfort fraught!\nWhate'er I do, where'er I be,\nstill 'tis God's hand that leadeth me." },
+            { text: "He leadeth me, he leadeth me;\nby his own hand he leadeth me:\nhis faithful follower I would be,\nfor by his hand he leadeth me.", chorus: true },
+            { text: "Sometimes mid scenes of deepest gloom,\nsometimes where Eden's flowers bloom,\nby waters calm, o'er troubled sea,\nstill 'tis God's hand that leadeth me." },
+            { text: "He leadeth me, he leadeth me;\nby his own hand he leadeth me:\nhis faithful follower I would be,\nfor by his hand he leadeth me.", chorus: true },
+            { text: "Lord, I would clasp thy hand in mine,\nnor ever murmur nor repine;\ncontent, whatever lot I see,\nsince 'tis my God that leadeth me." },
+            { text: "He leadeth me, he leadeth me;\nby his own hand he leadeth me:\nhis faithful follower I would be,\nfor by his hand he leadeth me.", chorus: true },
+            { text: "And when my task on earth is done,\nwhen, by thy grace, the victory's won,\ne'en death's cold wave I will not flee,\nsince God through Jordan leadeth me." },
+            { text: "He leadeth me, he leadeth me;\nby his own hand he leadeth me:\nhis faithful follower I would be,\nfor by his hand he leadeth me.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 27, language: 'english', title: 'He Hideth My Soul', writer: 'Fanny Crosby , 1890', link: '',
+        lyrics: [
+            { text: "A wonderful Savior is Jesus my Lord,\nA wonderful Savior to me;\nHe's hiding my soul in the cleft of the rock,\nWhere rivers of pleasure I see." },
+            { text: "He's hiding my soul in the cleft of the rock\nThat shadows a dry, thirsty land;\nHe's hiding my life in the depths of his love\nAnd cov'ring me there with his hand,\nAnd cov'ring me there with his hand.", chorus: true },
+            { text: "A wonderful Savior is Jesus my Lord;\nHe carries my burdens away,\nHe's holding me up, and I shall not be moved;\nHe's giving me strength day by day." },
+            { text: "He's hiding my soul in the cleft of the rock\nThat shadows a dry, thirsty land;\nHe's hiding my life in the depths of his love\nAnd cov'ring me there with his hand,\nAnd cov'ring me there with his hand.", chorus: true },
+            { text: "With numberless blessings each moment he crowns\nAnd fills with his fullness divine;\nI sing in my rapture, oh, glory to God\nFor such a Redeemer is mine." },
+            { text: "He's hiding my soul in the cleft of the rock\nThat shadows a dry, thirsty land;\nHe's hiding my life in the depths of his love\nAnd cov'ring me there with his hand,\nAnd cov'ring me there with his hand.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 28, language: 'english', title: 'God Will Take Care of You', writer: 'Civilla D. Martin , 1905', link: '',
+        lyrics: [
+            { text: "Be not dismayed whate’er betide;\nGod will take care of you.\nBeneath His wings of love abide;\nGod will take care of you." },
+            { text: "God will take care of you,\nthrough ev'ry day, o’er all the way.\nHe will take care of you;\nGod will take care of you.", chorus: true },
+            { text: "Through days of toil when heart doth fail,\nGod will take care of you.\nWhen dangers fierce your path assail,\nGod will take care of you." },
+            { text: "God will take care of you,\nthrough ev'ry day, o’er all the way.\nHe will take care of you;\nGod will take care of you.", chorus: true },
+            { text: "All you may need He will provide;\nGod will take care of you.\nAll strength you need will be supplied;\nGod will take care of you." },
+            { text: "God will take care of you,\nthrough ev'ry day, o’er all the way.\nHe will take care of you;\nGod will take care of you.", chorus: true },
+            { text: "No matter what may be the test,\nGod will take care of you.\nLean, weary one, upon His breast;\nGod will take care of you." },
+            { text: "God will take care of you,\nthrough ev'ry day, o’er all the way.\nHe will take care of you;\nGod will take care of you.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 29, language: 'english', title: 'Draw Me Nearer', writer: 'Fanny Crosby , 1875', link: '',
+        lyrics: [
+            { text: "I am Thine, O Lord, I have heard Thy voice,\nand it told Thy love to me;\nbut I long to rise in the arms of faith,\nand be closer drawn to Thee." },
+            { text: "Draw me nearer, nearer, blessed Lord,\nto the cross where Thou hast died;\ndraw me nearer, nearer, blessed Lord,\nto Thy precious, bleeding side.", chorus: true },
+            { text: "Consecrate me now to Thy service, Lord,\nby the pow'r of grace divine;\nlet my soul look up with a steadfast hope,\nand my will be lost in Thine. " },
+            { text: "Draw me nearer, nearer, blessed Lord,\nto the cross where Thou hast died;\ndraw me nearer, nearer, blessed Lord,\nto Thy precious, bleeding side.", chorus: true },
+            { text: "O, the pure delight of a single hour\nthat before Thy throne I spend,\nwhen I kneel in prayer, and with Thee, my God,\nI commune as friend with friend!" },
+            { text: "Draw me nearer, nearer, blessed Lord,\nto the cross where Thou hast died;\ndraw me nearer, nearer, blessed Lord,\nto Thy precious, bleeding side.", chorus: true },
+            { text: "There are depths of love that I cannot know\ntill I cross the narrow sea;\nthere are heights of joy that I may not reach\ntill I rest in peace with Thee." },
+            { text: "Draw me nearer, nearer, blessed Lord,\nto the cross where Thou hast died;\ndraw me nearer, nearer, blessed Lord,\nto Thy precious, bleeding side.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 30, language: 'english', title: 'Great Is Thy Faithfulness', writer: 'Thomas O. Crisholm , 1923', link: '',
+        lyrics: [
+            { text: "Great is thy faithfulness, O God, my Father;\nThere is no shadow of turning with thee.\nThou changest not, thy compassions, they fail not;\nAs thou hast been, thou forever wilt be." },
+            { text: "Great is thy faithfulness,\nGreat is thy faithfulness,\nMorning by morning new mercies I see.\nAll I have needed thy hand hast provided;\nGreat is thy faithfulness,\nLord unto me.", chorus: true },
+            { text: "Summer and winter and springtime and harvest,\nSun, moon, and stars in their courses above\nJoin with all nature in manifold witness\nTo thy great faithfulness, mercy, and love." },
+            { text: "Great is thy faithfulness,\nGreat is thy faithfulness,\nMorning by morning new mercies I see.\nAll I have needed thy hand hast provided;\nGreat is thy faithfulness,\nLord unto me.", chorus: true },
+            { text: "Pardon for sin and a peace that endureth,\nThine own dear presence to cheer and to guide;\nStrength for today and bright hope for tomorrow,\nBlessings all mine and ten thousand beside. " },
+            { text: "Great is thy faithfulness,\nGreat is thy faithfulness,\nMorning by morning new mercies I see.\nAll I have needed thy hand hast provided;\nGreat is thy faithfulness,\nLord unto me.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 31, language: 'english', title: 'Savior, Like a Shepherd Lead Us', writer: 'Dorothy A. Thrupp , 1936', link: '',
+        lyrics: [
+            { text: "Savior, like a shepherd lead us,\nMuch we need Thy tender care;\nIn Thy pleasant pastures feed us,\nFor our use Thy folds prepare: " },
+            { text: "Blessèd Jesus, blessèd Jesus,\nThou hast bought us, Thine we are;\nBlessèd Jesus, blessèd Jesus,\nThou hast bought us, Thine we are." },
+            { text: "We are Thine, do Thou befriend us,\nBe the guardian of our way;\nKeep Thy flock, from sin defend us,\nSeek us when we go astray:" },
+            { text: "Blessèd Jesus, blessèd Jesus,\nHear, O hear us when we pray;\nBlessèd Jesus, blessèd Jesus,\nHear, O hear us when we pray." },
+            { text: "Thou hast promised to receive us,\nPoor and sinful though we be;\nThou hast mercy to relieve us,\nGrace to cleanse, and pow'r to free:" },
+            { text: "Blessèd Jesus, blessèd Jesus,\nEarly let us turn to Thee;\nBlessèd Jesus, blessèd Jesus,\nEarly let us turn to Thee." },
+            { text: "Early let us seek Thy favor,\nEarly let us do Thy will;\nBlessed Lord and only Savior,\nWith Thy love our bosoms fill:" },
+            { text: "Blessèd Jesus, blessèd Jesus,\nThou hast loved us, love us still;\nBlessèd Jesus, blessèd Jesus,\nThou hast loved us, love us still." },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 32, language: 'english', title: 'Joyful, Joyful, We Adore You', writer: 'Henry Van Dyke , 1907', link: '',
+        lyrics: [
+            { text: "Joyful, joyful, we adore You,\nGod of glory, Lord of love;\nHearts unfold like flow'rs before You,\nOp'ning to the sun above." },
+            { text: "Melt the clouds of sin and sadness;\nDrive the dark of doubt away;\nGiver of immortal gladness,\nFill us with the light of day!" },
+            { text: "All Your works with joy surround You,\nEarth and heav'n reflect Your rays,\nStars and angels sing around You,\nCenter of unbroken praise;" },
+            { text: "Field and forest, vale and mountain,\nFlow'ry meadow, flashing sea,\nChanting bird and flowing fountain\nPraising You eternally!" },
+            { text: "Always giving and forgiving,\nEver blessing, ever blest,\nWell-spring of the joy of living,\nOcean-depth of happy rest!" },
+            { text: "Loving Father, Christ our Brother,\nLet Your light upon us shine;\nTeach us how to love each other,\nLift us to the joy divine." },
+            { text: "Mortals, join the mighty chorus,\nWhich the morning stars began;\nGod's own love is reigning o’er us,\nJoining people hand in hand." },
+            { text: "Ever singing, march we onward,\nVictors in the midst of strife;\nJoyful music leads us sunward\nIn the triumph song of life." },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 33, language: 'english', title: 'Crown Him with Many Crowns', writer: 'Matthew Bridges , 1851', link: '',
+        lyrics: [
+            { text: "Crown him with many crowns,\nthe Lamb upon the throne.\nHark! how the heavenly anthem drowns\nall music but its own." },
+            { text: "Awake, my soul, and sing\nof him who died to be,\nyour Saviour and your matchless king\nthrough all eternity." },
+            { text: "Crown Him the Son of God. before the worlds began\n Let all who tread where He has trod, \n Crown Him the Son of Man " },
+            { text: "Who every grief has known,\nthat wrings the human breast,\n and takes and bears them for His own,\nthat all in Him may rest." },
+            { text: "Crown him the Lord of life,\nwho triumphed o'er the grave,\nand rose victorious in the strife\nfor those he came to save;" },
+            { text: "His glories now we sing\nwho died and rose on high,\nwho died eternal life to bring,\nand lives that death may die." },
+            { text: "Crown Him the Lord of Peace\nwhose kingdom is at hand\nfrom pole to pole let warfare cease\nand Christ rule every land!" },
+            { text: "A city stands on high;\nChrist's glory it displays.\nand there the nations\nHoly cry in joyfull hymns of praise." },
+            { text: "Crown Him the Lord of years, \n the Source, the End of time,\n Creator of the rolling spheres\nin majesty sublime." },
+            { text: "All hail, Redeemer, hail, \n for you have died for me;\nyour praise shall never never fail\n through all eternity!" },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 34, language: 'english', title: 'Come, Thou Fount of Every Blessing', writer: 'Robert Robinson , 1758', link: '',
+        lyrics: [
+            { text: "Come, thou Fount of every blessing;\ntune my heart to sing thy grace;\nstreams of mercy, never ceasing,\ncall for songs of loudest praise." },
+            { text: "Teach me some melodious sonnet,\nsung by flaming tongues above;\npraise the mount! I’m fixed upon it,\nmount of God’s unchanging love!" },
+            { text: "Here I raise my Ebenezer;\nhither by thy help I’m come;\nand I hope, by thy good pleasure,\nsafely to arrive at home." },
+            { text: "Jesus sought me when a stranger,\nwandering from the fold of God;\nhe, to rescue me from danger,\ninterposed his precious blood." },
+            { text: "O to grace how great a debtor\ndaily I’m constrained to be!\nLet that grace now, like a fetter,\nbind my wandering heart to thee." },
+            { text: "Prone to wander, Lord, I feel it,\nprone to leave the God I love;\nhere’s my heart; O take and seal it;\nseal it for thy courts above." },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 35, language: 'english', title: 'All Hail the Power of Jesus\' Name', writer: 'Edward Perronet, 1779', link: '',
+        lyrics: [
+            { text: "All hail the power of Jesus' Name!\nLet angels prostrate fall;\nBring forth the royal diadem,\nAnd crown Him Lord of all,\nBring forth the royal diadem,\nAnd crown Him Lord of all." },
+            { text: "Crown Him, ye martyrs of your God,\nWho from His altar call;\nExtol the Stem of Jesse's Rod,\nAnd crown Him Lord of all,\nExtol the Stem of Jesse's Rod,\nAnd crown Him Lord of all!" },
+            { text: "Ye seed of Israel's chosen race,\nYe ransomed from the fall,\nHail Him Who saves you by His grace,\nAnd crown Him Lord of \nall,Hail Him Who saves you by His grace,\nAnd crown Him Lord of all!" },
+            { text: "Let ev'ry kindred, ev'ry tribe,\nOn this terrestrial ball,\nTo Him all majesty ascribe,\nAnd crown Him Lord of all,\nTo Him all majesty ascribe,\nAnd crown Him Lord of all!" },
+            { text: "O that with yonder sacred throng,\nWe at His feet may fall,\nWe'll join the everlasting song,\nAnd crown Him Lord of all.\nWe'll join the everlasting song,\nAnd crown Him Lord of all!" },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 36, language: 'english', title: 'My Faith Looks Up to Thee', writer: 'Ray Palmer, 1830', link: '',
+        lyrics: [
+            { text: " My faith looks up to Thee,\nThou Lamb of Calvary,\nSavior divine!\nNow hear me while I pray,\ntake all my guilt away;\nO let me from this day\nbe wholly Thine." },
+            { text: " May Thy rich grace impart\nstrength to my fainting heart,\nmy zeal inspire;\nas Thou hast died for me,\nO may my love to Thee\npure, warm, and changeless be,\na living fire." },
+            { text: "While life’s dark maze I tread,\nand griefs around me spread,\nbe Thou my Guide;\nbid darkness turn to day,\nwipe sorrow’s tears away,\nnor let me ever stray\nfrom Thee aside." },
+            { text: "When ends life's transient dream,\nwhen death’s cold, sullen stream\nshall o'er me roll,\nblest Savior, then in love,\nfear and distrust remove;\nO bear me safe above,\na ransomed soul." },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 37, language: 'english', title: 'My Hope is Built on Nothing Less', writer: 'Edward Mote, 1834', link: '',
+        lyrics: [
+            { text: "My hope is built on nothing less\nthan Jesus' blood and righteousness;\nI dare not trust the sweetest frame,\nbut wholly lean on Jesus' name." },
+            { text: "On Christ, the solid Rock, I stand:\nall other ground is sinking sand;\nall other ground is sinking sand.", chorus: true },
+            { text: "When darkness veils his lovely face,\nI rest on his unchanging grace;\nin every high and stormy gale,\nmy anchor holds within the veil." },
+            { text: "On Christ, the solid Rock, I stand:\nall other ground is sinking sand;\nall other ground is sinking sand.", chorus: true },
+            { text: "His oath, his covenant, his blood,\nsupport me in the whelming flood;\nwhen all around my soul gives way,\nhe then is all my hope and stay." },
+            { text: "On Christ, the solid Rock, I stand:\nall other ground is sinking sand;\nall other ground is sinking sand.", chorus: true },
+            { text: "When he shall come with trumpet sound,\nO may I then in him be found:\ndressed in his righteousness alone,\nfaultless to stand before the throne." },
+            { text: "On Christ, the solid Rock, I stand:\nall other ground is sinking sand;\nall other ground is sinking sand.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 38, language: 'english', title: 'Near the Cross', writer: 'Fanny Crosby, 1869', link: '',
+        lyrics: [
+            { text: "Jesus, keep me near the cross,\nThere a precious fountain;\nFree to all, a healing stream,\nFlows from Calv'ry's mountain." },
+            { text: "In the cross, in the cross\nBe my glory ever,\nTill my ransomed soul shall find\nRest beyond the river.", chorus: true },
+            { text: "Near the cross, a trembling soul,\nLove and mercy found me;\nThere the Bright and Morning Star\nShed His beams around me." },
+            { text: "In the cross, in the cross\nBe my glory ever,\nTill my ransomed soul shall find\nRest beyond the river.", chorus: true },
+            { text: "Near the cross! O lamb of God,\nBring its scenes before me;\nHelp me walk from day to day\nWith its shadow o'er me. " },
+            { text: "In the cross, in the cross\nBe my glory ever,\nTill my ransomed soul shall find\nRest beyond the river.", chorus: true },
+            { text: "Near the cross! I'll watch and wait,\nHoping, trusting ever;\nTill I reach the golden strand,\nJust beyond the river. " },
+            { text: "In the cross, in the cross\nBe my glory ever,\nTill my ransomed soul shall find\nRest beyond the river.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 39, language: 'english', title: 'Bow the Knee', writer: 'Chris Machen, 1997', link: '',
+        lyrics: [
+            { text: "There are moments on our journey following the Lord\nWhere God illumines every step we take\nThere are times when circumstances make perfect sense to us\nAs we try to understand each move, He makes\nWhen the path grows dim and our questions have no answers,\n turn to Him" },
+            { text: "Bow the knee\nTrust the heart of your Father\n when the answer goes beyond\n what you can see\nBow the knee\nLift your eyes toward heaven\n and believe the One who holds eternity\nAnd when you don't understand\n the purpose of His plan\nIn the presence of the King, \nbow the knee", chorus: true },
+            { text: "There are days when clouds surround us,\n and the rain begins to fall\nThe cold and lonely winds\n won't cease to blow\nAnd there seems to be no reason\n for the suffering we feel\nWe are tempted to believe \nGod does not know\nWhen the storms arise, don't forget, \nwe live by faith and not by sight" },
+            { text: "Bow the knee\nTrust the heart of your Father\n when the answer goes beyond\n what you can see\nBow the knee\nLift your eyes toward heaven\n and believe the One who holds eternity\nAnd when you don't understand\n the purpose of His plan\nIn the presence of the King, \nbow the knee", chorus: true },
+            { text: "Trust the heart of your Father \nwhen the answer goes beyond \nwhat you can see\nBow the knee\nLift your eyes toward heaven \nand believe the One who holds eternity\nAnd when you don't understand\n the purpose of His plan\nIn the presence of the King" },
+            { text: "In the presence of the King\nIn the presence of the King,\nBow the knee\nBow the knee\nBow the knee" },
+            { text: "Amen." }
+        ]
+    },
+
+
+    {
+        id: 40, language: 'english', title: 'Because He Lives', writer: 'Bill & Gloria Gaither, 1971', link: '',
+        lyrics: [
+            { text: "God sent His son,\nThey called Him, Jesus;\nHe came to love,\nHeal and forgive;\nHe lived and died\nTo buy my pardon,\nAn empty grave is there\nTo prove my Savior lives!" },
+            { text: "Because He lives,\nI can face tomorrow!\nBecause He lives,\nAll fear is gone.\nBecause I know\nHe holds the future,\nAnd life is worth the living,\nJust because He lives!", chorus: true },
+            { text: "How sweet to hold\nA newborn baby,\nAnd feel the pride\nAnd joy he brings;\nBut greater still\nThe calm assurance:\nThis child can face\nUncertain days because He Lives!" },
+            { text: "Because He lives,\nI can face tomorrow!\nBecause He lives,\nAll fear is gone.\nBecause I know\nHe holds the future,\nAnd life is worth the living,\nJust because He lives!", chorus: true },
+            { text: "And then one day,\nI'll cross the river,\nI'll fight life's final\nWar with pain;\nAnd then, as death\nGives way to victory,\nI'll see the lights of glory\nAnd I'll know He lives!" },
+            { text: "Because He lives,\nI can face tomorrow!\nBecause He lives,\nAll fear is gone.\nBecause I know\nHe holds the future,\nAnd life is worth the living,\nJust because He lives!", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 41, language: 'english', title: 'Constantly Abiding', writer: 'Anne S. Murphy, 1908', link: '',
+        lyrics: [
+            { text: "There’s a peace in my heart that the world never gave,\nA peace it cannot take away;\nTho' the trials of life may surround like a cloud,\nI’ve a peace that has come there to stay!" },
+            { text: "Constantly abiding, Jesus is mine;\nConstantly abiding, rapture divine;\nHe never leaves me lonely, whispers, O so kind:\n\“I will never leave thee,\” Jesus is mine.", chorus: true },
+            { text: "All the world seemed to sing of a Savior and King,\nWhen peace sweetly came to my heart;\nTroubles all fled away and my night turned to day,\nBlessed Jesus, how glorious Thou art! " },
+            { text: "Constantly abiding, Jesus is mine;\nConstantly abiding, rapture divine;\nHe never leaves me lonely, whispers, O so kind:\n\“I will never leave thee,\” Jesus is mine.", chorus: true },
+            { text: "This treasure I have in a temple of clay,\nWhile here on His footstool I roam:\nBut He’s coming to take me some glorious day,\nOver there to my heavenly home! " },
+            { text: "Constantly abiding, Jesus is mine;\nConstantly abiding, rapture divine;\nHe never leaves me lonely, whispers, O so kind:\n\“I will never leave thee,\” Jesus is mine.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 42, language: 'english', title: 'Blessed Assurance', writer: 'Fanny Crosby, 1873', link: '',
+        lyrics: [
+            { text: "Blessed assurance, Jesus is mine!\nO, what a foretaste of glory divine!\nHeir of salvation, purchase of God,\nborn of His Spirit, washed in His blood. " },
+            { text: "This is my story, this is my song,\npraising my Savior all the day long;\nthis is my story, this is my song,\npraising my Savior all the day long.", chorus: true },
+            { text: "Perfect submission, perfect delight,\nvisions of rapture now burst on my sight;\nangels descending, bring from above\nechoes of mercy, whispers of love." },
+            { text: "This is my story, this is my song,\npraising my Savior all the day long;\nthis is my story, this is my song,\npraising my Savior all the day long.", chorus: true },
+            { text: "Perfect submission, all is at rest,\nI in my Savior am happy and blest;\nwatching and waiting, looking above,\nfilled with His goodness, lost in His love." },
+            { text: "This is my story, this is my song,\npraising my Savior all the day long;\nthis is my story, this is my song,\npraising my Savior all the day long.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 43, language: 'english', title: 'Count Your Blessings', writer: 'Fanny Crosby, 1873', link: '',
+        lyrics: [
+            { text: "When upon life's billows you are tempest tossed,\nWhen you are discouraged, thinking all is lost,\nCount your many blessings, name them one by one,\nAnd it will surprise you what the Lord hath done." },
+            { text: "Count your blessings, name them one by one;\nCount your blessings, see what God hath done;\nCount your blessings, name them one by one;\nCount your many blessings, see what God hath done.", chorus: true },
+            { text: "Are you ever burdened with a load of care?\nDoes the cross seem heavy you are called to bear?\nCount your many blessings, ev'ry doubt will fly,\nAnd you will be singing as the days go by." },
+            { text: "Count your blessings, name them one by one;\nCount your blessings, see what God hath done;\nCount your blessings, name them one by one;\nCount your many blessings, see what God hath done.", chorus: true },
+            { text: "When you look at others with their lands and gold,\nThink that Christ has promised you His wealth untold;\nCount your many blessings, money cannot buy\nYour reward in heaven, nor your home on high." },
+            { text: "Count your blessings, name them one by one;\nCount your blessings, see what God hath done;\nCount your blessings, name them one by one;\nCount your many blessings, see what God hath done.", chorus: true },
+            { text: "So, amid the conflict, whether great or small,\nDo not be discouraged, God is over all;\nCount your many blessings, angels will attend,\nHelp and comfort give you to your journey's end." },
+            { text: "Count your blessings, name them one by one;\nCount your blessings, see what God hath done;\nCount your blessings, name them one by one;\nCount your many blessings, see what God hath done.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
 ];
