@@ -3885,6 +3885,7 @@ img {
 .songs-modal-window {
   background: var(--navy-600);
   border-color: rgba(212, 175, 55, 0.35);
+  border-radius: var(--radius-lg);
 }
 
 .songs-modal-window .songs-modal-head {
