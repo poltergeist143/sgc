@@ -788,12 +788,12 @@ const SONGS = [
     {
         id: 58, language: 'bisaya', title: 'Naila Kong Gituohan Ko', writer: '(I Know Whom I have Believed)', link: '',
         lyrics: [
-            { text: "Wala ako masayod sa hingpit,\nNgano nga gilukat ako;\nNi jesus sa dako nga gugma n’ya,\nNga sautan man unta ko." },
-            { text: "Naila kong gituohan ko,\nAko nasayod nga s’ya gamhanan;\nMagabantay siya kanako,\nHangtud nga mobalik s’ya.", chorus: true },
-            { text: "Wala ako masayod sa hingpit,\nSa buhat sa espiritu;\nNga nagabadlong sa sala sa tawo,\nUg Kang hesus nagpaila." },
-            { text: "Naila kong gituohan ko,\nAko nasayod nga s’ya gamhanan;\nMagabantay siya kanako,\nHangtud nga mobalik s’ya.", chorus: true },
+            { text: "Wala ako masayod sa hingpit,\nNgano nga gilukat ako;\nNi Jesus sa dako nga gugma N’ya,\nNga dautan man unta ko." },
+            { text: "Naila kong gituohan ko,\nAko nasayod nga S’ya gamhanan;\nMagabantay Siya kanako,\nHangtud nga mobalik S’ya.", chorus: true },
+            { text: "Wala ako masayod sa hingpit,\nSa buhat sa espiritu;\nNga nagabadlong sa sala sa tawo,\nUg Kang Hesus nagpaila." },
+            { text: "Naila kong gituohan ko,\nAko nasayod nga S’ya gamhanan;\nMagabantay Siya kanako,\nHangtud nga mobalik S’ya.", chorus: true },
             { text: "Wala ako masayod sa hingpit,\nUnsa ang kaugmaon ko;\nKon mga adlaw gidag-uman ba,\nKong masanag bang dalan ko." },
-            { text: "Naila kong gituohan ko,\nAko nasayod nga s’ya gamhanan;\nMagabantay siya kanako,\nHangtud nga mobalik s’ya.", chorus: true },
+            { text: "Naila kong gituohan ko,\nAko nasayod nga S’ya gamhanan;\nMagabantay Siya kanako,\nHangtud nga mobalik S’ya.", chorus: true },
             { text: "Amen." }
         ]
     },
