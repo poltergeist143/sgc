@@ -588,4 +588,213 @@ const SONGS = [
             { text: "Amen." }
         ]
     },
+
+    {
+        id: 44, language: 'english', title: 'Each Step I Take', writer: 'W. Elmo Mercer, 1953', link: '',
+        lyrics: [
+            { text: "Each step I take my Savior goes before me,\nAnd with His loving hand He leads the way.\nAnd with each breath I whisper \"I adore Thee;\"\nO, what joy to walk with Him each day." },
+            { text: "Each step I take I know that He will guide me;\nTo higher ground He ever leads me on.\nUntil someday the last step will be taken,\nEach step I take just leads me closer home.", chorus: true },
+            { text: "At times I feel my faith begin to waver,\nWhen up ahead I see a chasm wide,\nIt's then I turn and look up to my Savior,\nI am strong when He is by my side." },
+            { text: "Each step I take I know that He will guide me;\nTo higher ground He ever leads me on.\nUntil someday the last step will be taken,\nEach step I take just leads me closer home.", chorus: true },
+            { text: "I trust in God, no matter come what may,\nFor life eternal is in His hand,\nHe holds the key that opens up the way,\nThat will lead me to the promised land." },
+            { text: "Each step I take I know that He will guide me;\nTo higher ground He ever leads me on.\nUntil someday the last step will be taken,\nEach step I take just leads me closer home.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 45, language: 'english', title: 'Fill My Cup, Lord', writer: 'Richard E. Blanchard, Sr., 1959', link: '',
+        lyrics: [
+            { text: "Like the woman at the well, I was seeking\nFor things that could not satisfy.\nAnd then I heard my Savior speaking\n\“Draw from My well that never shall run dry.\”" },
+            { text: "Fill my cup, Lord;\nI lift it up Lord;\nCome and quench this thirsting of my soul.\nBread of Heaven, feed me till I want no more.\nFill my cup, fill it up and make me whole.", chorus: true },
+            { text: "There are millions in this world who are seeking\nFor pleasures earthly goods afford.\nBut none can match the wondrous treasure\nThat I find in Jesus Christ my Lord." },
+            { text: "Fill my cup, Lord;\nI lift it up Lord;\nCome and quench this thirsting of my soul.\nBread of Heaven, feed me till I want no more.\nFill my cup, fill it up and make me whole.", chorus: true },
+            { text: "So my brother if the things that this world gives you\nLeave hungers that won’t pass away,\nMy blessed Lord will come and save you\nIf you kneel to Him and humbly pray" },
+            { text: "Fill my cup, Lord;\nI lift it up Lord;\nCome and quench this thirsting of my soul.\nBread of Heaven, feed me till I want no more.\nFill my cup, fill it up and make me whole.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 46, language: 'english', title: 'Day by Day', writer: 'Carolina Sandell-Berg, Sr., 1865', link: '',
+        lyrics: [
+            { text: "Day by day, and with each passing moment,\nStrength I find to meet my trials here;\nTrusting in my Father’s wise bestowment,\nI’ve no cause for worry or for fear.\nHe, whose heart is kind beyond all measure,\nGives unto each day what He deems best,\nLovingly its part of pain and pleasure,\nMingling toil with peace and rest." },
+            { text: "Every day the Lord Himself is near me,\nWith a special mercy for each hour;\nAll my cares He fain would bear and cheer me,\nHe whose name is Counsellor and Pow’r.\nThe protection of His child and treasure\nIs a charge that on Himself He laid;\n\“As thy days, thy strength shall be in measure,\”\nThis the pledge to me He made." },
+            { text: "Help me then, in every tribulation,\nSo to trust Thy promises, O Lord,\nThat I lose not faith’s sweet consolation,\nOffered me within Thy holy Word.\nHelp me, Lord, when toil and trouble meeting,\nE’er to take, as from a father’s hand,\nOne by one, the days, the moments fleeting,\nTill I reach the promised land." },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 47, language: 'english', title: 'For the Glory of the Lord', writer: 'Mark Patterson, 2001', link: '',
+        lyrics: [
+            { text: "The Lord, is my Shepherd, my guardian and my guide.\nI shall never hunger, all my needs He will provide.\nEven though I walk in darkness,\n His love will be my light.\n And I will go where He leads me. I will serve Him each day of my life" },
+            { text: "I will praise Him, with every breath I take.\n I will honor Him, in every choice I make.\n I will live for the glory of the Lord.\n Yes, I will live for the glory of the Lord. ", chorus: true },
+            { text: " Though I often wander, He gently takes my hand.\n And leads me to living waters that I may rest in Him.\n Still, He calls me onward to share the gift of life.\n And I will go where He leads me, I will serve Him each day of my life." },
+            { text: "I will praise Him, with every breath I take.\n I will honor Him, in every choice I make.\n I will live for the glory of the Lord.\n Yes, I will live for the glory of the Lord. ", chorus: true },
+            { text: " BRIDGE:" },
+            { text: "I will arise to answer Gods call.\n I will go forth and give Him my all.\n I will be faithful and be strong as I live,\n For the glory of the Lord. " },
+            { text: "I will praise Him, with every breath I take.\n I will honor Him, in every choice I make.\n I will live for the glory of the Lord.\n Yes, I will live for the glory of the Lord. ", chorus: true },
+            { text: "Yes, I will live for the glory of the Lord." },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 48, language: 'english', title: 'Glory to His Name', writer: 'Elisha A. Hoffman, 1878', link: '',
+        lyrics: [
+            { text: "Down at the cross where my Savior died,\ndown where for cleansing from sin I cried,\nthere to my heart was the blood applied.\nGlory to His name!" },
+            { text: "Glory to His name!\nGlory to His name!\nThere to my heart was the blood applied.\nGlory to His name!", chorus: true },
+            { text: "I am so wondrously saved from sin;\nJesus so sweetly abides within.\nThere at the cross where He took me in\nGlory to His name!" },
+            { text: "Glory to His name!\nGlory to His name!\nThere to my heart was the blood applied.\nGlory to His name!", chorus: true },
+            { text: "O precious fountain that saves from sin!\nI am so glad that I entered in!\nThere Jesus saves me and keeps me clean.\nGlory to His name!" },
+            { text: "Glory to His name!\nGlory to His name!\nThere to my heart was the blood applied.\nGlory to His name!", chorus: true },
+            { text: "Come to this fountain so rich and sweet;\ncast thy poor soul at the Savior's feet;\nplunge in today and be made complete.\nGlory to His name!" },
+            { text: "Glory to His name!\nGlory to His name!\nThere to my heart was the blood applied.\nGlory to His name!", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 49, language: 'english', title: 'His Robes for Mine', writer: 'Chris Anderson, 2008', link: '',
+        lyrics: [
+            { text: "His robes for mine: O wonderful exchange!\nClothed in my sin, Christ suffered ‘neath God’s rage.\nDraped in His righteousness, I’m justified.\nIn Christ I live, for in my place He died." },
+            { text: "I cling to Christ, and marvel at the cost:\nJesus forsaken, God estranged from God.\nBought by such love, my life is not my own.\n My praise my all, shall be for Christ alone.", chorus: true },
+            { text: "His robes for mine: what cause have I for dread?\nGod’s daunting Law Christ mastered in my stead.\nFaultless I stand with righteous works not mine,\nSaved by my Lord’s vicarious death and life." },
+            { text: "His robes for mine: God’s justice is appeased.\nJesus is crushed, and thus the Father’s pleased.\nChrist drank God’s wrath on sin, then cried, \“’Tis done!\”\nSin’s wage is paid; propitiation won." },
+            { text: "I cling to Christ, and marvel at the cost:\nJesus forsaken, God estranged from God.\nBought by such love, my life is not my own.\n My praise my all, shall be for Christ alone.", chorus: true },
+            { text: "His robes for mine: such anguish none can know.\nChrist, God’s beloved, condemned as though His foe.\nHe, as though I, accursed and left alone;\nI, as though He, embraced and welcomed home!" },
+            { text: "I cling to Christ, and marvel at the cost:\nJesus forsaken, God estranged from God.\nBought by such love, my life is not my own.\n My praise my all, shall be for Christ alone.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 50, language: 'english', title: 'His Eye Is on the Sparrow', writer: 'Civilla D. Martin, 1905', link: '',
+        lyrics: [
+            { text: "Why should I feel discouraged?\nWhy should the shadows come?\nWhy should my heart be lonely\nAnd long for heav’n and home,\nWhen Jesus is my portion?\nMy constant Friend is He:\nHis eye is on the sparrow,\nAnd I know He watches me;\nHis eye is on the sparrow,\nAnd I know He watches me." },
+            { text: "I sing because I’m happy\nI sing because I’m free\nFor His eye is on the sparrow,\nAnd I know He watches me.", chorus: true },
+            { text: "\“Let not your heart be troubled.\”\nHis tender word I hear,\nAnd resting on His goodness,\nI lose my doubt and fear.\nThough by the path He leadeth,\nBut one step I may see:\nHis eye is on the sparrow,\nAnd I know He watches me;\nHis eye is on the sparrow,\nAnd I know He watches me." },
+            { text: "I sing because I’m happy\nI sing because I’m free\nFor His eye is on the sparrow,\nAnd I know He watches me.", chorus: true },
+            { text: "\“Whenever I am tempted,\nWhenever clouds arise,\nWhen songs give place to sighing,\nWhen hope within me dies," },
+            { text: "I draw the closer to Him;\nFrom care He sets me free:\nHis eye is on the sparrow,\nAnd I know He watches me;\nHis eye is on the sparrow,\nAnd I know He watches me." },
+            { text: "I sing because I’m happy\nI sing because I’m free\nFor His eye is on the sparrow,\nAnd I know He watches me.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+
+    {
+        id: 51, language: 'english', title: 'Higher Ground', writer: 'Johnson Oatman Jr., 1898', link: '',
+        lyrics: [
+            { text: "I'm pressing on the upward way,nNew heights I'm gaining every day;\nStill praying as I onward bound,\nLord, plant my feet on higher ground." },
+            { text: "Lord, lift me up and let me stand,\nBy faith, on Heaven's table land;\nA higher plane than I have found;\nLord, plant my feet on higher ground.", chorus: true },
+            { text: "My heart has no desire to stay\nWhere doubts arise and fears dismay;\nTho' some may dwell where these abound,\nMy pray'r, my aim is higher ground." },
+            { text: "Lord, lift me up and let me stand,\nBy faith, on Heaven's table land;\nA higher plane than I have found;\nLord, plant my feet on higher ground.", chorus: true },
+            { text: "I want to live above the world,\nThough Satan's darts at me are hurled;\nFor faith has caught the joyful sound,\nThe song of saints on higher ground." },
+            { text: "Lord, lift me up and let me stand,\nBy faith, on Heaven's table land;\nA higher plane than I have found;\nLord, plant my feet on higher ground.", chorus: true },
+            { text: " I want to scale the utmost height,\nAnd catch a gleam of glory bright;\nBut still I'll pray till Heav'n I've found,\nLord, lead me on to higher ground." },
+            { text: "Lord, lift me up and let me stand,\nBy faith, on Heaven's table land;\nA higher plane than I have found;\nLord, plant my feet on higher ground.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 52, language: 'english', title: 'Have I Done My Best for Jesus?', writer: 'Ensign Edwin Young , 1898', link: '',
+        lyrics: [
+            { text: "I wonder, have I done my best for Jesus,\nWho died upon the cruel tree?\nTo think of His great sacrifice at Calv'ry!\nI know my Lord expects the best from me." },
+            { text: "How many are the lost that I have lifted?\nHow many are the chained I've helped to free?\nI wonder, have I done my best for Jesus,\nWhen He has done so much for me?", chorus: true },
+            { text: "The hours that I have wasted are so many,\nThe hours I've spent for Christ so few;\nBecause of all my lack of love for Jesus,\nI wonder if His heart is breaking too." },
+            { text: "How many are the lost that I have lifted?\nHow many are the chained I've helped to free?\nI wonder, have I done my best for Jesus,\nWhen He has done so much for me?", chorus: true },
+            { text: "I wonder, have I cared enough for others,\nOr have I let them die alone?\nI might have helped a wand'rer to the Saviour,\nThe seed of precious Life I might have sown." },
+            { text: "How many are the lost that I have lifted?\nHow many are the chained I've helped to free?\nI wonder, have I done my best for Jesus,\nWhen He has done so much for me?", chorus: true },
+            { text: "No longer will I stay within the valley\nI'll climb to mountain heights above;\nThe world is dying now for want of someone\nTo tell them of the Saviour's matchless love." },
+            { text: "How many are the lost that I have lifted?\nHow many are the chained I've helped to free?\nI wonder, have I done my best for Jesus,\nWhen He has done so much for me?", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 53, language: 'english', title: 'I Am Resolved', writer: 'Palmer Hartsough , 1896', link: '',
+        lyrics: [
+            { text: "I am resolved no longer to linger,\ncharmed by the world's delight;\nthings that are higher, things that are nobler,\nthese have allured my sight." },
+            { text: "I will hasten to Him,\nhasten so glad and free;\nJesus, greatest, highest,\nI will come to Thee.", chorus: true },
+            { text: "I am resolved to go to the Savior,\nleaving my sin and strife;\nHe is the true one, He is the just one,\nHe has the words of life." },
+            { text: "I will hasten to Him,\nhasten so glad and free;\nJesus, greatest, highest,\nI will come to Thee.", chorus: true },
+            { text: "I am resolved, and who will go with me?\nCome, friends, without delay;\ntaught by the Bible, led by the Spirit,\nwe'll walk the heavenly way." },
+            { text: "I will hasten to Him,\nhasten so glad and free;\nJesus, greatest, highest,\nI will come to Thee.", chorus: true },
+            { text: "I am resolved to enter the kingdom, \n	Leaving the paths of sin; \nFriends may oppose me, foes may beset me, \nStill will I enter in. " },
+            { text: "I will hasten to Him,\nhasten so glad and free;\nJesus, greatest, highest,\nI will come to Thee.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 54, language: 'english', title: 'I Love to Tell the Story', writer: 'Katherine Hankey, 1866', link: '',
+        lyrics: [
+            { text: "I love to tell the story\nof unseen things above,\nof Jesus and His glory,\nof Jesus and His love.\nI love to tell the story\nbecause I know it's true.\nit satisfies my longings\nas nothing else can do." },
+            { text: "I love to tell the story!\n'Twill be my theme in glory\nto tell the old, old story\nof Jesus and His love.", chorus: true },
+            { text: "I love to tell the story;\nmore wonderful it seems\nthan all the golden fancies\nof all our golden dreams.\nI love to tell the story;\nit did so much for me,\nand that is just the reason\nI tell it now to thee." },
+            { text: "I love to tell the story!\n'Twill be my theme in glory\nto tell the old, old story\nof Jesus and His love.", chorus: true },
+            { text: " I love to tell the story;\n\'tis pleasant to repeat\nwhat seems, each time I tell it\nmore wonderfully sweet.\nI love to tell the story;\nfor some have never heard\nthe message of salvation\nfrom God's own holy Word. " },
+            { text: "I love to tell the story!\n'Twill be my theme in glory\nto tell the old, old story\nof Jesus and His love.", chorus: true },
+            { text: "I love to tell the story,\nfor those who know it best\nseem hungering and thirsting\nto hear it like the rest.\nAnd when in scenes of glory\nI sing the new, new song,\n\'twill be the old, old story\nthat I have loved so long." },
+            { text: "I love to tell the story!\n'Twill be my theme in glory\nto tell the old, old story\nof Jesus and His love.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 55, language: 'english', title: 'In the Garden', writer: 'Charles Austin Miles, 1912', link: '',
+        lyrics: [
+            { text: "I come to the garden alone,\nWhile the dew is still on the roses;\nAnd the voice I hear, falling on my ear,\nThe Son of God discloses." },
+            { text: "And He walks with me, and He talks with me,\nAnd He tells me I am His own,\nAnd the joy we share as we tarry there,\nNone other has ever known.", chorus: true },
+            { text: "He speaks, and the sound of His voice\nIs so sweet the birds hush their singing;\nAnd the melody that He gave to me\nWithin my heart is ringing." },
+            { text: "And He walks with me, and He talks with me,\nAnd He tells me I am His own,\nAnd the joy we share as we tarry there,\nNone other has ever known.", chorus: true },
+            { text: "I'd stay in the garden with Him\nTho' the night around me be falling;\nBut He bids me go; thro' the voice of woe,\nHis voice to me is calling." },
+            { text: "And He walks with me, and He talks with me,\nAnd He tells me I am His own,\nAnd the joy we share as we tarry there,\nNone other has ever known.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 56, language: 'english', title: 'In the Service of the King', writer: 'Alfred H. Ackley, 1912', link: '',
+        lyrics: [
+            { text: "I am happy in the service of the King,\nI am happy, O so happy;\nI have peace and joy that nothing else can bring,\nIn the service of the King." },
+            { text: "In the service of the King\nEv'ry talent I will bring;\nI have peace and joy and blessing\nIn the service of the King.", chorus: true },
+            { text: "I am happy in the service of the King,\nI am happy, O so happy;\nTo His guiding hand forever I will cling,\nIn the service of the King." },
+            { text: "In the service of the King\nEv'ry talent I will bring;\nI have peace and joy and blessing\nIn the service of the King.", chorus: true },
+            { text: "I am happy in the service of the King,\nI am happy, O so happy;\nAll that I possess to Him I gladly bring,\nIn the service of the King." },
+            { text: "In the service of the King\nEv'ry talent I will bring;\nI have peace and joy and blessing\nIn the service of the King.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 57, language: 'english', title: 'Joy in Serving Jesus', writer: 'Oswald J. Smith, 1931', link: '',
+        lyrics: [
+            { text: "There is joy in serving Jesus,\nAs I journey on my way,\nJoy that fills the heart with praises,\nEv'ry hour and ev'ry day." },
+            { text: "There is joy, joy,\nJoy in serving Jesus,\nJoy that throbs within my heart;\nEv'ry moment, ev'ry hour,\nAs I draw upon His power,\nThere is joy, joy,\nJoy that never shall depart.", chorus: true },
+            { text: "There is joy in serving Jesus,\nJoy that triumphs over pain,\nFills my soul with heaven's music,\nTill I join the glad refrain." },
+            { text: "There is joy, joy,\nJoy in serving Jesus,\nJoy that throbs within my heart;\nEv'ry moment, ev'ry hour,\nAs I draw upon His power,\nThere is joy, joy,\nJoy that never shall depart.", chorus: true },
+            { text: "There is joy in serving Jesus,\nAs I walk alone with God.\n'Tis the joy of Christ, my Savior,\nWho the path of suffering trod." },
+            { text: "There is joy, joy,\nJoy in serving Jesus,\nJoy that throbs within my heart;\nEv'ry moment, ev'ry hour,\nAs I draw upon His power,\nThere is joy, joy,\nJoy that never shall depart.", chorus: true },
+            { text: "There is joy in serving Jesus,\nJoy amid the darkest night.\nFor I've learned the wondrous secret,\nAnd I'm walking in the light." },
+            { text: "There is joy, joy,\nJoy in serving Jesus,\nJoy that throbs within my heart;\nEv'ry moment, ev'ry hour,\nAs I draw upon His power,\nThere is joy, joy,\nJoy that never shall depart.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 58, language: 'bisaya', title: 'Naila Kong Gituohan Ko', writer: '(I Know Whom I have Believed)', link: '',
+        lyrics: [
+            { text: "Wala ako masayod sa hingpit,\nNgano nga gilukat ako;\nNi jesus sa dako nga gugma n’ya,\nNga sautan man unta ko." },
+            { text: "Naila kong gituohan ko,\nAko nasayod nga s’ya gamhanan;\nMagabantay siya kanako,\nHangtud nga mobalik s’ya.", chorus: true },
+            { text: "Wala ako masayod sa hingpit,\nSa buhat sa espiritu;\nNga nagabadlong sa sala sa tawo,\nUg Kang hesus nagpaila." },
+            { text: "Naila kong gituohan ko,\nAko nasayod nga s’ya gamhanan;\nMagabantay siya kanako,\nHangtud nga mobalik s’ya.", chorus: true },
+            { text: "Wala ako masayod sa hingpit,\nUnsa ang kaugmaon ko;\nKon mga adlaw gidag-uman ba,\nKong masanag bang dalan ko." },
+            { text: "Naila kong gituohan ko,\nAko nasayod nga s’ya gamhanan;\nMagabantay siya kanako,\nHangtud nga mobalik s’ya.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
 ];

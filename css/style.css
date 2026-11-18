@@ -4018,3 +4018,80 @@ img {
     display: none;
   }
 }
+
+/* ==========================================================================
+   HERO TITLE - DIAGONAL SHINE LOOP
+   ========================================================================== */
+
+/* Line 1: off-white base, strong gold band */
+.hero-title span:first-child {
+  background: linear-gradient(115deg,
+      #e9e4d6 0%,
+      #e9e4d6 36%,
+      #d4af37 44%,
+      #ffe27a 50%,
+      #d4af37 56%,
+      #e9e4d6 64%,
+      #e9e4d6 100%);
+  background-size: 250% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: titleShine 5s ease-in-out infinite, titleGlow 5s ease-in-out infinite;
+}
+
+/* Line 2: deeper gold base, bright white band */
+.hero-title .text-gradient-gold {
+  background: linear-gradient(115deg,
+      #a8841c 0%,
+      #a8841c 36%,
+      #e7c04a 43%,
+      #ffffff 50%,
+      #e7c04a 57%,
+      #a8841c 64%,
+      #937418 100%);
+  background-size: 250% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: titleShine 5s ease-in-out infinite, titleGlow 5s ease-in-out infinite;
+
+}
+
+@keyframes titleShine {
+  0% {
+    background-position: 100% 0;
+  }
+
+  60% {
+    background-position: 0% 0;
+  }
+
+  100% {
+    background-position: 0% 0;
+  }
+}
+
+@keyframes titleGlow {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.6));
+  }
+
+  30% {
+    filter: drop-shadow(0 0 18px rgba(250, 225, 136, 0.75)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+  }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+  .hero-title span:first-child,
+  .hero-title .text-gradient-gold {
+    animation: titleGlow 6s ease-in-out infinite;
+  }
+}
