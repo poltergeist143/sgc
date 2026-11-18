@@ -3749,6 +3749,8 @@ img {
 
 /* CHURCH SONGS */
 .songs-modal-window {
+  width: 100%;
+  /* <--  keeps the width fixed at all times */
   max-width: 760px;
   height: min(88vh, 780px);
   display: flex;
