@@ -797,4 +797,88 @@ const SONGS = [
             { text: "Amen." }
         ]
     },
+
+    {
+        id: 59, language: 'bisaya', title: 'Kong Tawgon Ang Akong Ngalan', writer: '(When The Roll Is Called Up Yonder)', link: '',
+        lyrics: [
+            { text: "Kon Patunggon Unya Ang Trumpeta Nga Iya Sa Dios,\nUg Ang Diosnong Kaadlawon Moabot;\nMga Linuwas Sa Kalangitan Pagtigumon N’ya,\nPagtawag Niya, Atua Man Ako." },
+            { text: "Kong Ang Ngalan Ko Pagtawgon,\nKong Ang Ngalan Ko Pagtawgon,\nKong Ang Ngalan Ko Pagtawgon,\nKong S’ya Magtawag Atua Man Ako.", chorus: true },
+            { text: "May Adlaw’ng Banhawon Man Ang Nangamatay Kang Jesus,\nPinaagi Sa Iyang Diosnong Gahum;\nDidto Sa Kapanganuran Pagtigumon Man Sila;\n Pagtawag Niya, Atua Man Ako." },
+            { text: "Kong Ang Ngalan Ko Pagtawgon,\nKong Ang Ngalan Ko Pagtawgon,\nKong Ang Ngalan Ko Pagtawgon,\nKong S’ya Magtawag Atua Man Ako.", chorus: true },
+            { text: "Sa Kanunay Ang Ginoo Pagaalagaron Ta,\nUg Ang Iyang Pulong Imantala Ta;\nKong Matapus Ang Mga Kahago NATO Nga Tanan,\nPagtawag Niya, Atua Man Ako." },
+            { text: "Kong Ang Ngalan Ko Pagtawgon,\nKong Ang Ngalan Ko Pagtawgon,\nKong Ang Ngalan Ko Pagtawgon,\nKong S’ya Magtawag Atua Man Ako.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 60, language: 'bisaya', title: 'Pagkabulahang Pagsalig Ko', writer: '(Blessed Assurance)', link: '',
+        lyrics: [
+            { text: "Pagkabulahang pagsalig ko,\nAng mananabang ko si Jesus;\nMahimayaon akong kalag,\nIyang dugo ang nagatubos." },
+            { text: "  Kini ang asoy ug awit ko,\nAng manluluwas dayegon ta,\nKini ang asoy ug awit ko,\nAng manluluwas dayegon ta.", chorus: true },
+            { text: "Kining pagsalig, kalipay ko,\nMakita kong himayang dayon;\nGikan sa langit nasangyaw na,\nAng dakong gugma sa akong Dios." },
+            { text: "  Kini ang asoy ug awit ko,\nAng manluluwas dayegon ta,\nKini ang asoy ug awit ko,\nAng manluluwas dayegon ta.", chorus: true },
+            { text: "Makapahulay ang nagsugot,\nUban kang Jesus mabulahan;\nSa paghulat ko ug pagtukaw,\nSa Iyang gugma pun-on ako." },
+            { text: "  Kini ang asoy ug awit ko,\nAng manluluwas dayegon ta,\nKini ang asoy ug awit ko,\nAng manluluwas dayegon ta.", chorus: true },
+            { text: "Amen." }
+        ]
+
+
+    },
+
+    {
+        id: 61, language: 'english', title: 'Nothing But the Blood of Jesus', writer: 'Robert Lowry, 1876', link: '',
+        lyrics: [
+            { text: "What can wash away my sin?\nNothing but the blood of Jesus.\nWhat can make me whole again?\nNothing but the blood of Jesus." },
+            { text: "O precious is the flow\nthat makes me white as snow;\nno other fount I know;\nnothing but the blood of Jesus.", chorus: true },
+            { text: "For my pardon this I see:\nnothing but the blood of Jesus.\nFor my cleansing this my plea:\nnothing but the blood of Jesus." },
+            { text: "O precious is the flow\nthat makes me white as snow;\nno other fount I know;\nnothing but the blood of Jesus.", chorus: true },
+            { text: "Nothing can for sin atone:\nnothing but the blood of Jesus.\nNaught of good that I have done:\nnothing but the blood of Jesus." },
+            { text: "O precious is the flow\nthat makes me white as snow;\nno other fount I know;\nnothing but the blood of Jesus.", chorus: true },
+            { text: "This is all my hope and peace:\nnothing but the blood of Jesus.\nThis is all my righteousness:\nnothing but the blood of Jesus." },
+            { text: "O precious is the flow\nthat makes me white as snow;\nno other fount I know;\nnothing but the blood of Jesus.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 62, language: 'english', title: 'Love Lifted Me', writer: 'James Rowe, 1912', link: '',
+        lyrics: [
+            { text: "I was sinking deep in sin,\nFar from the peaceful shore,\nVery deeply stained within,\nSinking to rise no more;\nBut the Master of the sea\nHeard my despairing cry,\nFrom the waters lifted me\nNow safe am I." },
+            { text: "Love lifted me,\nLove lifted me,\nWhen nothing else could help,\nLove lifted me;\nLove lifted me,\nLove lifted me,\nWhen nothing else could help,\nLove lifted me.", chorus: true },
+            { text: "All my heart to Him I give,\nEver to Him I'll cling,\nIn His blessed presence live,\nEver His praises sing.\nLove so mighty and so true\nMerits my soul's best songs;\nFaithful, loving service, too,\nTo Him belongs." },
+            { text: "Love lifted me,\nLove lifted me,\nWhen nothing else could help,\nLove lifted me;\nLove lifted me,\nLove lifted me,\nWhen nothing else could help,\nLove lifted me.", chorus: true },
+            { text: "Souls in danger, look above,\nJesus completely saves;\nHe will lift you by His love\nOut of the angry waves.\nHe's the Master of the sea,\nBillows His will obey;\nHe your Savior wants to be\nBe saved today." },
+            { text: "Love lifted me,\nLove lifted me,\nWhen nothing else could help,\nLove lifted me;\nLove lifted me,\nLove lifted me,\nWhen nothing else could help,\nLove lifted me.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 63, language: 'english', title: 'Oh, It Is Wonderful to be a Christian', writer: 'John W. Peterson, 1970', link: '',
+        lyrics: [
+            { text: "Life has purpose now it never had before\nThere is meaning to each day and even more\nFor a joy and peace I can't explain is mine\nSince I found new life in Christ my Lord divine" },
+            { text: "Oh it is wonderful to be a Christian\nOh it is wonderful to be God's child\nOh it is wonderful to have your sins forgiven\nOh it is wonderful to be redeemed\nJustified forever reconciled", chorus: true },
+            { text: "I can go directly to the Lord in prayer\nHe has told me I may boldly enter there\nAnd He listens as His promises I plead\nI find mercy there and grace for ev'ry need" },
+            { text: "Oh it is wonderful to be a Christian\nOh it is wonderful to be God's child\nOh it is wonderful to have your sins forgiven\nOh it is wonderful to be redeemed\nJustified forever reconciled", chorus: true },
+            { text: "And the hope of heaven's glories thrills me so\nWhere I'll live with Christ forevermore I know\nThat is why the things of earth I loosely hold\nI've eternal riches better far than gold" },
+            { text: "Oh it is wonderful to be a Christian\nOh it is wonderful to be God's child\nOh it is wonderful to have your sins forgiven\nOh it is wonderful to be redeemed\nJustified forever reconciled", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 64, language: 'english', title: 'Onward, Christian Soldiers', writer: 'Sabine Baring-Gould, 1865', link: '',
+        lyrics: [
+            { text: "Onward, Christian soldiers,\nmarching as to war,\nWith the cross of Jesus\ngoing on before!\nChrist, the royal Master,\nleads against the foe;\nForward into battle,\nsee his banner go!" },
+            { text: "Onward, Christian soldiers,\nmarching as to war,\nWith the cross of Jesus\ngoing on before!", chorus: true },
+            { text: "At the sign of triumph\nSatan's host doth flee;\nOn, then, Christian soldiers,\non to victory!\nHell's foundations quiver\nat the shout of praise;\nBrothers, lift your voices,\nloud your anthems raise! " },
+            { text: "Onward, Christian soldiers,\nmarching as to war,\nWith the cross of Jesus\ngoing on before!", chorus: true },
+            { text: "Like a mighty army\nmoves the church of God;\nBrothers, we are treading\nwhere the saints have trod;\nWe are not divided;\nall one body we,\nOne in hope and doctrine,\none in charity. " },
+            { text: "Onward, Christian soldiers,\nmarching as to war,\nWith the cross of Jesus\ngoing on before!", chorus: true },
+            { text: "Onward, then, ye people,\njoin our happy throng,\nBlend with ours your voices\nin the triumph song;\nGlory, laud, and honor,\nunto Christ the King;\nThis thro' countless ages\nmen and angels sing." },
+            { text: "Onward, Christian soldiers,\nmarching as to war,\nWith the cross of Jesus\ngoing on before!", chorus: true },
+            { text: "Amen." }
+        ]
+    },
 ];

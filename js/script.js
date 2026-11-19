@@ -258,6 +258,27 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     document.querySelectorAll('.section-header').forEach(h => h.classList.add('header-in'));
   }
+
+  /* ----- Hero content: replay entrance every time the hero is scrolled to ----- */
+  const heroSection = document.getElementById('home');
+  const heroContent = document.querySelector('.hero-content');
+  if (heroSection && heroContent) {
+    if ('IntersectionObserver' in window) {
+      const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.intersectionRatio >= 0.15) {
+            heroContent.classList.add('hero-play');
+          } else if (!entry.isIntersecting) {
+            // fully off screen: reset so it can play again
+            heroContent.classList.remove('hero-play');
+          }
+        });
+      }, { threshold: [0, 0.15] });
+      heroObserver.observe(heroSection);
+    } else {
+      heroContent.classList.add('hero-play');
+    }
+  }
   /* ==========================================================================
      7. BACK TO TOP BUTTON
      ========================================================================== */
