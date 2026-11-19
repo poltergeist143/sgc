@@ -120,28 +120,144 @@ document.addEventListener('DOMContentLoaded', () => {
   highlightActiveNav();
 
   /* ==========================================================================
-     6. SCROLL REVEAL ANIMATIONS (INTERSECTION OBSERVER)
-     ========================================================================== */
-  const revealElements = document.querySelectorAll('.reveal-on-scroll');
+   6. SCROLL REVEAL ANIMATIONS (per-section styles + stagger)
+   ========================================================================== */
+  // [selector, variant class] - adds the effect without editing the HTML
+  const revealMap = [
+    ['.about-text-content', 'reveal-left'],
+    ['.about-image-wrapper', 'reveal-right'],
+    ['.about-highlight-card', 'reveal-pop'],
+    ['.pastor-welcome-card', 'reveal-zoom'],
+    ['.visitor-welcome-banner', 'reveal-zoom'],
+    ['.visitor-perk', 'reveal-pop'],
+    ['.featured-event-banner', 'reveal-zoom'],
+    ['.countdown-segment', 'reveal-pop'],
+    ['.gallery-item', 'reveal-blur'],
+    ['.contact-info-col', 'reveal-left'],
+    ['.contact-form-card', 'reveal-right'],
+    ['.footer-top > div', 'reveal-on-scroll']   // plain fade-up
+  ];
+
+  revealMap.forEach(([selector, variant]) => {
+    document.querySelectorAll(selector).forEach(el => {
+      el.classList.add('reveal-on-scroll');
+      if (variant !== 'reveal-on-scroll') el.classList.add(variant);
+    });
+  });
+
+  // Stagger siblings: 0 / 120 / 240 ms, repeating every 3 so later rows don't wait long
+  const revealElements = Array.from(document.querySelectorAll('.reveal-on-scroll'));
+  const siblingCount = new Map();
+  revealElements.forEach(el => {
+    const parent = el.parentElement;
+    const i = siblingCount.get(parent) || 0;
+    siblingCount.set(parent, i + 1);
+    el.style.setProperty('--reveal-delay', `${(i % 3) * 120}ms`);
+  });
+
   if ('IntersectionObserver' in window) {
     const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          observer.unobserve(entry.target);
-        }
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        el.classList.add('revealed');
+        observer.unobserve(el);
+
+        // Clean up after the animation so hover effects and other transitions work normally
+        setTimeout(() => {
+          el.style.removeProperty('--reveal-delay');
+          el.style.transitionDelay = '0ms';
+        }, 1500);
       });
-    }, {
-      root: null,
-      threshold: 0.12,
-      rootMargin: '0px 0px -40px 0px'
-    });
+    }, { root: null, threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
     revealElements.forEach(el => revealObserver.observe(el));
   } else {
     revealElements.forEach(el => el.classList.add('revealed'));
   }
 
+  /* ----- "40+" years counter (replays every time it's on screen) ----- */
+  const accentNumber = document.querySelector('.accent-number');
+  if (accentNumber && 'IntersectionObserver' in window) {
+    const target = parseInt(accentNumber.textContent, 10) || 40;
+    let rafId = null;
+
+    const runCounter = () => {
+      cancelAnimationFrame(rafId);
+      const start = performance.now();
+      const duration = 1800;
+      const tick = (now) => {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        accentNumber.textContent = Math.round(target * eased) + '+';
+        if (p < 1) rafId = requestAnimationFrame(tick);
+      };
+      rafId = requestAnimationFrame(tick);
+    };
+
+    const counterObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        runCounter();
+      } else {
+        // reset when it leaves the screen so it can count again
+        cancelAnimationFrame(rafId);
+        accentNumber.textContent = '0+';
+      }
+    }, { threshold: 0.6 });
+
+    counterObserver.observe(accentNumber);
+  }
+
+  /* ----- Scroll progress bar + hero parallax ----- */
+  const progressBar = document.createElement('div');
+  progressBar.className = 'scroll-progress';
+  document.body.appendChild(progressBar);
+
+  const heroBg = document.querySelector('.hero-bg-wrapper');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  window.addEventListener('scroll', () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+
+    if (heroBg && !reduceMotion && window.scrollY < window.innerHeight) {
+      heroBg.style.transform = `translateY(${window.scrollY * 0.25}px)`;
+    }
+  }, { passive: true });
+
+  /* ==========================================================================
+   SECTION ENTRANCE EFFECTS (replays every time the section is scrolled to)
+   ========================================================================== */
+  // Split section titles into words
+  document.querySelectorAll('.section-title').forEach(title => {
+    const text = title.textContent.trim();
+    title.setAttribute('aria-label', text);
+    title.innerHTML = text.split(/\s+/).map((word, i) =>
+      `<span class="word" aria-hidden="true"><span style="--i:${i}">${word}</span></span>`
+    ).join(' ');
+  });
+
+  // Mark a section "in-view" while it crosses the middle band of the screen
+  if ('IntersectionObserver' in window) {
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        entry.target.classList.toggle('in-view', entry.isIntersecting);
+      });
+    }, { rootMargin: '-30% 0px -30% 0px', threshold: 0 });
+
+    document.querySelectorAll('.section').forEach(sec => sectionObserver.observe(sec));
+  } else {
+    document.querySelectorAll('.section').forEach(sec => sec.classList.add('in-view'));
+  }
+  // Title words replay whenever the header itself is on screen (works both directions)
+  if ('IntersectionObserver' in window) {
+    const headerObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => entry.target.classList.toggle('header-in', entry.isIntersecting));
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.section-header').forEach(h => headerObserver.observe(h));
+  } else {
+    document.querySelectorAll('.section-header').forEach(h => h.classList.add('header-in'));
+  }
   /* ==========================================================================
      7. BACK TO TOP BUTTON
      ========================================================================== */
@@ -1421,10 +1537,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Only animate while the carousel is on screen
     let onScreen = true;
+    // remember each element's stagger delay so it can replay
+    revealElements.forEach(el => {
+      el.dataset.delay = el.style.getPropertyValue('--reveal-delay') || '0ms';
+    });
+
     if ('IntersectionObserver' in window) {
-      new IntersectionObserver(([entry]) => {
-        onScreen = entry.isIntersecting;
-      }).observe(marquee);
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const el = entry.target;
+          if (entry.isIntersecting) {
+            el.style.setProperty('--reveal-delay', el.dataset.delay);
+            el.classList.add('revealed');
+            // clear the delay afterwards so hover effects aren't delayed
+            setTimeout(() => el.style.setProperty('--reveal-delay', '0ms'), 1500);
+          } else {
+            // reset when it leaves the screen, so it can animate again
+            el.style.setProperty('--reveal-delay', '0ms');
+            el.classList.remove('revealed');
+          }
+        });
+      }, { root: null, threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      revealElements.forEach(el => revealObserver.observe(el));
+    } else {
+      revealElements.forEach(el => el.classList.add('revealed'));
     }
 
     const tick = () => {

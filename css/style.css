@@ -4098,3 +4098,275 @@ img {
     animation: titleGlow 6s ease-in-out infinite;
   }
 }
+
+/* ==========================================================================
+   SCROLL ANIMATIONS
+   ========================================================================== */
+
+/* Stagger support (delay is set by JS) */
+.reveal-on-scroll {
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+/* Variants: starting positions */
+.reveal-on-scroll.reveal-left {
+  transform: translateX(-70px);
+}
+
+.reveal-on-scroll.reveal-right {
+  transform: translateX(70px);
+}
+
+.reveal-on-scroll.reveal-zoom {
+  transform: scale(0.88);
+}
+
+.reveal-on-scroll.reveal-pop {
+  transform: scale(0.6);
+}
+
+.reveal-on-scroll.reveal-blur {
+  filter: blur(12px);
+  transform: translateY(24px) scale(0.95);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.8s ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+/* End state (must come after the variants) */
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* Section header: gold lines grow outward */
+.section-header .section-subtitle::before,
+.section-header .section-subtitle::after {
+  transform: scaleX(0);
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+.section-header .section-subtitle::before {
+  transform-origin: right;
+}
+
+.section-header .section-subtitle::after {
+  transform-origin: left;
+}
+
+.section-header.revealed .section-subtitle::before,
+.section-header.revealed .section-subtitle::after {
+  transform: scaleX(1);
+}
+
+/* Ministry photo: slow zoom-out as the card appears */
+.ministry-card .ministry-thumb {
+  transform: scale(1.25);
+}
+
+.ministry-card.revealed .ministry-thumb {
+  transform: scale(1);
+}
+
+.ministry-card.revealed:hover .ministry-thumb {
+  transform: scale(1.08);
+}
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: var(--gold-gradient);
+  transform: scaleX(0);
+  transform-origin: left;
+  z-index: 3001;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .reveal-on-scroll,
+  .reveal-on-scroll.reveal-blur {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
+  .ministry-card .ministry-thumb {
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   SECTION ENTRANCE EFFECTS
+   ========================================================================== */
+
+/* Keep content above the glow */
+.section>.container {
+  position: relative;
+  z-index: 1;
+}
+
+/* 1. Gold line sweeping across the top of the section */
+.section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold-500), var(--gold-300), var(--gold-500), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.section.in-view::before {
+  animation: sectionLine 1.4s ease-out forwards;
+}
+
+@keyframes sectionLine {
+  0% {
+    transform: scaleX(0);
+    opacity: 1;
+  }
+
+  60% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scaleX(1);
+    opacity: 0;
+  }
+}
+
+/* 2. Soft gold glow at the top of the section */
+.section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 320px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.22) 0%, transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.section.in-view::after {
+  animation: sectionGlow 1.8s ease-out forwards;
+}
+
+@keyframes sectionGlow {
+  0% {
+    opacity: 0;
+  }
+
+  35% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* 3. Section title: words rise up one by one */
+.section-title .word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.12em;
+}
+
+.section-title .word>span {
+  display: inline-block;
+  transform: translateY(115%);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--i) * 80ms + 200ms);
+}
+
+.section-header.header-in .section-title .word>span {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .section::before,
+  .section::after {
+    animation: none !important;
+  }
+
+  .section-title .word>span {
+    transform: none;
+    transition: none;
+  }
+}
+
+
+/* ==========================================================================
+   SIGNATURE EFFECT - DIAGONAL SHINE LOOP
+   ========================================================================== */
+
+.pastor-signature {
+  background: linear-gradient(115deg,
+      #000000 0%,
+      #1f1f1e 36%,
+      #666665 43%,
+      #ffffff 50%,
+      #616160 57%,
+      #020202 64%,
+      #000000 100%);
+  background-size: 250% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: titleShine 5s ease-in-out infinite, titleGlow 5s ease-in-out infinite;
+
+}
+
+@keyframes titleShine {
+  0% {
+    background-position: 100% 0;
+  }
+
+  60% {
+    background-position: 0% 0;
+  }
+
+  100% {
+    background-position: 0% 0;
+  }
+}
+
+@keyframes titleGlow {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.6));
+  }
+
+  30% {
+    filter: drop-shadow(0 0 18px rgba(250, 225, 136, 0.75)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+  }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+  .pastor-signature {
+    animation: titleGlow 6s ease-in-out infinite;
+  }
+}
