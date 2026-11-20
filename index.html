@@ -124,6 +124,10 @@
               <i class="fa-solid fa-rotate"></i>
               <span>Inspire Me</span>
             </button>
+            <button type="button" class="splash-tool-btn" id="splashImageBtn" title="Download Verse as Image">
+              <i class="fa-regular fa-image text-gold"></i>
+              <span>Save Image</span>
+            </button>
           </div>
         </div>
       </div>
@@ -139,6 +143,36 @@
         <label class="splash-remember-box">
           <input type="checkbox" id="splashRememberCheck">
           <span>Don't show this splash page again today</span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <!-- ANNOUNCEMENTS FLASH PAGE -->
+  <div class="announce-screen hidden" id="announceScreen" role="dialog" aria-modal="true"
+    aria-labelledby="announceHeading">
+    <div class="announce-card">
+      <button type="button" class="announce-close" id="announceClose" aria-label="Close announcements">&times;</button>
+
+      <div class="announce-head">
+        <span class="announce-eyebrow"><i class="fa-solid fa-bullhorn"></i> Church Announcements</span>
+        <h3 id="announceHeading">What's Happening</h3>
+      </div>
+
+      <div class="announce-stage" id="announceStage"></div>
+
+      <div class="announce-controls" id="announceControls">
+        <button type="button" class="announce-nav" id="announcePrev" aria-label="Previous announcement"><i
+            class="fa-solid fa-chevron-left"></i></button>
+        <div class="announce-dots" id="announceDots"></div>
+        <button type="button" class="announce-nav" id="announceNext" aria-label="Next announcement"><i
+            class="fa-solid fa-chevron-right"></i></button>
+      </div>
+      <div class="announce-progress"><span id="announceProgress"></span></div>
+
+      <div class="announce-footer">
+        <label class="splash-remember-box">
+          <input type="checkbox" id="announceRememberCheck">
+          <span>Don't show announcements again today</span>
         </label>
       </div>
     </div>
@@ -162,10 +196,10 @@
           <i class="fa-solid fa-phone"></i>
           <a href="tel:0322605544" style="color: inherit;">(032) 260 5544</a>
         </span>
-        <span class="top-bar-item open-splash-trigger top-bar-verse-link" style="cursor: pointer;"
-          title="View Today's Daily Bible Verse">
-          <i class="fa-solid fa-book-bible text-gold"></i>
-          <span style="color: var(--gold-300); font-weight: 600;">Daily Verse</span>
+
+        <span class="top-bar-item open-announce-btn" style="cursor:pointer;">
+          <i class="fa-solid fa-bullhorn text-gold"></i>
+          <span style="color: var(--gold-300); font-weight: 600;">Announcements</span>
         </span>
       </div>
       <div class="top-bar-socials">
@@ -1285,6 +1319,7 @@
         </div>
         <!-- End of Sundays Schoolers Carousel  -->
       </div>
+    </div>
   </section>
 
   <!-- ==========================================================================
@@ -1533,7 +1568,7 @@
             </button>
           </form>
           <div style="font-size: 0.78rem; color: var(--slate-400);">No spam. Unsubscribe at any time.</div>
-          <div class="text-golden version-number">Version 1.19.6</div>
+          <div class="text-golden version-number">Version 1.20.1</div>
         </div>
       </div>
 
@@ -2221,9 +2256,10 @@
 
   <!-- Main JavaScript File -->
   <script src="js/songs.js"></script>
+  <script src="js/announcements.js"></script>
   <script src="js/script.js"></script>
 
-  <!-- Version 1.19.6 series November 2026 -->
+  <!-- Version 1.20.1 series November 2026 -->
 </body>
 
 </html>

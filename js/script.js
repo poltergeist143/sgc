@@ -1253,6 +1253,178 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Download the verse as a shareable image
+  const splashImageBtn = document.getElementById('splashImageBtn');
+
+  const makeVerseImage = async () => {
+    try {
+      await Promise.all([
+        document.fonts.load('700 40px Cinzel'),
+        document.fonts.load('italic 400 60px "Playfair Display"'),
+        document.fonts.load('600 24px "Plus Jakarta Sans"')
+      ]);
+    } catch (e) { }
+
+    const logo = await new Promise(res => {
+      const i = new Image();
+      i.onload = () => res(i);
+      i.onerror = () => res(null);
+      i.src = (typeof LOGO_DATA !== 'undefined') ? LOGO_DATA : 'images/sgc logo.png';
+    });
+
+    const W = 1080, H = 1350, GOLD = '#d4af37', GOLD_L = '#ecd068';
+    const c = document.createElement('canvas');
+    c.width = W; c.height = H;
+    const x = c.getContext('2d');
+    x.textAlign = 'center';
+    x.textBaseline = 'alphabetic';
+
+    // Background
+    const bg = x.createLinearGradient(0, 0, 0, H);
+    bg.addColorStop(0, '#0f203c');
+    bg.addColorStop(1, '#070e19');
+    x.fillStyle = bg; x.fillRect(0, 0, W, H);
+
+    const glow = x.createRadialGradient(W / 2, 520, 50, W / 2, 520, 750);
+    glow.addColorStop(0, 'rgba(212,175,55,0.20)');
+    glow.addColorStop(1, 'rgba(212,175,55,0)');
+    x.fillStyle = glow; x.fillRect(0, 0, W, H);
+
+    // Gold frame
+    x.strokeStyle = 'rgba(212,175,55,0.55)';
+    x.lineWidth = 3;
+    x.strokeRect(40, 40, W - 80, H - 80);
+
+    // Logo
+    const logoSize = 150, logoY = 110;
+    x.save();
+    x.beginPath();
+    x.arc(W / 2, logoY + logoSize / 2, logoSize / 2, 0, Math.PI * 2);
+    x.closePath();
+    x.fillStyle = '#0a192f'; x.fill();
+    x.clip();
+    if (logo) x.drawImage(logo, W / 2 - logoSize / 2 + 8, logoY + 8, logoSize - 16, logoSize - 16);
+    x.restore();
+    x.beginPath();
+    x.arc(W / 2, logoY + logoSize / 2, logoSize / 2, 0, Math.PI * 2);
+    x.strokeStyle = GOLD_L; x.lineWidth = 4; x.stroke();
+
+    // Church title (white + gold)
+    x.font = '700 44px Cinzel, Georgia, serif';
+    if ('letterSpacing' in x) x.letterSpacing = '5px';
+    const t1 = 'SAVED BY GRACE ', t2 = 'CHURCH';
+    const w1 = x.measureText(t1).width, w2 = x.measureText(t2).width;
+    const startX = (W - (w1 + w2)) / 2;
+    x.textAlign = 'left';
+    x.fillStyle = '#ffffff'; x.fillText(t1, startX, 340);
+    x.fillStyle = GOLD_L; x.fillText(t2, startX + w1, 340);
+    if ('letterSpacing' in x) x.letterSpacing = '0px';
+    x.textAlign = 'center';
+
+    // Motto
+    x.font = '700 26px "Times New Roman", Times, serif';
+    x.fillStyle = '#ffffff';
+    x.fillText('“ Where People are Saved, Live and Grow by God\'s Grace ”', W / 2, 395);
+
+    // Date badge
+    const dateText = ('Daily Scripture • ' + (splashDate ? splashDate.textContent : '')).toUpperCase();
+    x.font = '700 24px "Plus Jakarta Sans", sans-serif';
+    if ('letterSpacing' in x) x.letterSpacing = '2px';
+    const bw = x.measureText(dateText).width + 80, bh = 62, bx = (W - bw) / 2, by = 440, r = bh / 2;
+    x.beginPath();
+    x.moveTo(bx + r, by);
+    x.arcTo(bx + bw, by, bx + bw, by + bh, r);
+    x.arcTo(bx + bw, by + bh, bx, by + bh, r);
+    x.arcTo(bx, by + bh, bx, by, r);
+    x.arcTo(bx, by, bx + bw, by, r);
+    x.closePath();
+    x.fillStyle = 'rgba(212,175,55,0.12)'; x.fill();
+    x.strokeStyle = 'rgba(212,175,55,0.45)'; x.lineWidth = 2; x.stroke();
+    x.fillStyle = GOLD_L;
+    x.fillText(dateText, W / 2, by + 40);
+    if ('letterSpacing' in x) x.letterSpacing = '0px';
+
+    // Divider line
+    x.fillStyle = 'rgba(255,255,255,0.10)';
+    x.fillRect(100, 560, W - 200, 2);
+
+    // Quote mark
+    x.font = '400 150px "Playfair Display", Georgia, serif';
+    x.fillStyle = 'rgba(212,175,55,0.75)';
+    x.fillText('“', W / 2, 700);
+
+    // Verse text: shrinks automatically so long verses still fit
+    const verse = `“${currentVerse.text}”`;
+    const maxW = W - 220, top = 770, bottom = 1130;
+    const wrap = (text) => {
+      const lines = []; let line = '';
+      text.split(' ').forEach(word => {
+        const t = line ? line + ' ' + word : word;
+        if (x.measureText(t).width > maxW && line) { lines.push(line); line = word; } else line = t;
+      });
+      lines.push(line);
+      return lines;
+    };
+    let size = 64, lines, lh;
+    for (; size >= 30; size -= 2) {
+      x.font = `italic 400 ${size}px "Playfair Display", Georgia, serif`;
+      lines = wrap(verse);
+      lh = size * 1.45;
+      if (lines.length * lh <= bottom - top) break;
+    }
+    x.fillStyle = '#fffdfa';
+    const blockH = lines.length * lh;
+    let y = top + ((bottom - top) - blockH) / 2 + size;
+    lines.forEach(l => { x.fillText(l, W / 2, y); y += lh; });
+
+    // Reference with small cross
+    const refText = `${currentVerse.reference} (KJV)`.toUpperCase();
+    x.font = '700 38px Cinzel, Georgia, serif';
+    if ('letterSpacing' in x) x.letterSpacing = '2px';
+    const rw = x.measureText(refText).width;
+    const refX = W / 2 + 22, refY = 1200;
+    x.fillStyle = GOLD_L;
+    x.fillText(refText, refX, refY);
+    if ('letterSpacing' in x) x.letterSpacing = '0px';
+    const cx = refX - rw / 2 - 28, cy = refY - 16;
+    x.fillRect(cx - 3, cy - 18, 6, 36);
+    x.fillRect(cx - 12, cy - 8, 24, 6);
+
+    // Footer
+    x.font = '600 22px "Plus Jakarta Sans", sans-serif';
+    x.fillStyle = '#94a3b8';
+    x.fillText('Saved by Grace Church  •  L. Abellar St., Pasil, Cebu City', W / 2, 1275);
+
+    return new Promise(res => c.toBlob(res, 'image/png'));
+  };
+
+  if (splashImageBtn) {
+    splashImageBtn.addEventListener('click', async () => {
+      if (!currentVerse.text) return;
+      const original = splashImageBtn.innerHTML;
+      splashImageBtn.disabled = true;
+      splashImageBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>Preparing...</span>';
+
+      try {
+        const blob = await makeVerseImage();
+        const name = 'bible-verse-' + currentVerse.reference.replace(/[^a-z0-9]+/gi, '-').toLowerCase() + '.png';
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = name;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(a.href), 1500);
+        showToast('Verse image saved! Share it on social media.', 'success');
+      } catch (err) {
+        showToast('Could not create the image. Please try again.', 'error');
+      }
+
+      splashImageBtn.disabled = false;
+      splashImageBtn.innerHTML = original;
+    });
+  }
+
   // Inspire Me / Random KJV Verse button
   if (splashNewVerseBtn) {
     splashNewVerseBtn.addEventListener('click', () => {
@@ -1283,6 +1455,9 @@ document.addEventListener('DOMContentLoaded', () => {
     splashScreen.classList.add('hidden');
     splashScreen.classList.remove('show-forced');
     document.body.classList.remove('splash-active');
+
+    // NEW: show announcements after the daily verse
+    if (window.sgcShowAnnouncements) setTimeout(window.sgcShowAnnouncements, 450);
   };
 
   // Open Splash Page
@@ -1337,12 +1512,143 @@ document.addEventListener('DOMContentLoaded', () => {
   if (isDismissedToday) {
     if (splashScreen) splashScreen.classList.add('hidden');
     document.body.classList.remove('splash-active');
+    // NEW:
+    setTimeout(() => window.sgcShowAnnouncements && window.sgcShowAnnouncements(), 700);
   } else {
     if (splashScreen) {
       splashScreen.classList.remove('hidden');
       document.body.classList.add('splash-active');
       fetchBibleVerse('daily');
     }
+  }
+
+  /* ==========================================================================
+    17b. ANNOUNCEMENTS FLASH PAGE (shows after the daily verse splash)
+    ========================================================================== */
+  const announceScreen = document.getElementById('announceScreen');
+
+  if (announceScreen && typeof ANNOUNCEMENTS !== 'undefined') {
+    const stage = document.getElementById('announceStage');
+    const dotsEl = document.getElementById('announceDots');
+    const prevBtn = document.getElementById('announcePrev');
+    const nextBtn = document.getElementById('announceNext');
+    const progress = document.getElementById('announceProgress');
+    const remember = document.getElementById('announceRememberCheck');
+    const card = announceScreen.querySelector('.announce-card');
+    const KEY = 'sgc_announce_dismissed';
+
+    // Local date (not UTC), so it flips at midnight in the Philippines
+    const localDateKey = () => {
+      const d = new Date();
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    };
+    const today = localDateKey();
+    const active = ANNOUNCEMENTS.filter(a => (!a.start || a.start <= today) && (!a.end || a.end >= today));
+    const signature = today + '|' + active.map(a => a.id).join(',');
+    const icons = { Event: 'fa-calendar-days', Service: 'fa-church', Prayer: 'fa-hands-praying', Youth: 'fa-users', Notice: 'fa-bullhorn' };
+    const escA = (s) => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+    let index = 0;
+    let shownThisVisit = false;
+
+    // Build slides + dots
+    stage.innerHTML = active.map((a, i) => `
+      <article class="announce-slide${i === 0 ? ' active' : ''}">
+        <div class="announce-media${a.image ? '' : ' no-image'}">
+          ${a.image
+        ? `<img src="${escA(a.image)}" alt="${escA(a.title)}" onerror="this.parentNode.classList.add('no-image');this.outerHTML='<i class=&quot;fa-solid fa-bullhorn&quot;></i>'">`
+        : `<i class="fa-solid ${icons[a.category] || icons.Notice}"></i>`}
+        </div>
+        <span class="announce-cat">${escA(a.category || 'Notice')}</span>
+        <h4 class="announce-title">${escA(a.title)}</h4>
+        <div class="announce-meta">
+          ${a.date ? `<span><i class="fa-regular fa-calendar"></i> ${escA(a.date)}</span>` : ''}
+          ${a.place ? `<span><i class="fa-solid fa-location-dot"></i> ${escA(a.place)}</span>` : ''}
+        </div>
+        <p class="announce-text">${escA(a.text || '')}</p>
+        ${a.link ? `<a href="${escA(a.link)}" class="btn btn-outline-gold btn-sm announce-link">${escA(a.linkText || 'Learn More')}</a>` : ''}
+      </article>`).join('');
+
+    dotsEl.innerHTML = active.map((a, i) =>
+      `<button type="button" class="announce-dot${i === 0 ? ' active' : ''}" data-i="${i}" aria-label="Announcement ${i + 1}"></button>`).join('');
+
+    const slides = Array.from(stage.children);
+    const dots = Array.from(dotsEl.children);
+    card.classList.toggle('is-single', active.length <= 1);
+
+    // Keep the stage tall enough for the biggest slide
+    const fitStage = () => {
+      stage.style.minHeight = '';
+      const tallest = Math.max(0, ...slides.map(s => { const was = s.className; s.style.position = 'relative'; const h = s.offsetHeight; s.style.position = ''; return h; }));
+      if (tallest) stage.style.minHeight = tallest + 'px';
+    };
+
+    const restartProgress = () => {
+      progress.classList.remove('run');
+      void progress.offsetWidth;                 // restart the animation
+      if (active.length > 1) progress.classList.add('run');
+    };
+
+    const go = (i) => {
+      if (!slides.length) return;
+      const next = (i + slides.length) % slides.length;
+      slides[index].classList.remove('active');
+      slides[index].classList.add('leaving');
+      const old = slides[index];
+      setTimeout(() => old.classList.remove('leaving'), 500);
+      index = next;
+      slides[index].classList.add('active');
+      dots.forEach((d, n) => d.classList.toggle('active', n === index));
+      restartProgress();
+    };
+
+    progress.addEventListener('animationend', () => go(index + 1));  // auto-advance
+    prevBtn.addEventListener('click', () => go(index - 1));
+    nextBtn.addEventListener('click', () => go(index + 1));
+    dotsEl.addEventListener('click', (e) => {
+      const d = e.target.closest('.announce-dot');
+      if (d) go(Number(d.dataset.i));
+    });
+
+    const openAnnounce = () => {
+      announceScreen.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      fitStage();
+      go(0);
+    };
+
+    const closeAnnounce = () => {
+      if (remember && remember.checked) {
+        try { localStorage.setItem(KEY, signature); } catch (e) { }
+      }
+      announceScreen.classList.add('hidden');
+      progress.classList.remove('run');
+      document.body.style.overflow = '';
+    };
+
+    // Called automatically after the daily verse splash closes (once per visit)
+    window.sgcShowAnnouncements = () => {
+      if (shownThisVisit || !active.length) return;
+      shownThisVisit = true;
+      try { if (localStorage.getItem(KEY) === signature) return; } catch (e) { }
+      openAnnounce();
+    };
+
+    // Manual buttons (optional): any element with class "open-announce-btn"
+    document.querySelectorAll('.open-announce-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => { e.preventDefault(); closeMobileNav(); shownThisVisit = true; openAnnounce(); });
+    });
+
+    document.getElementById('announceClose').addEventListener('click', closeAnnounce);
+    announceScreen.addEventListener('click', (e) => { if (e.target === announceScreen) closeAnnounce(); });
+    announceScreen.querySelectorAll('.announce-link').forEach(l => l.addEventListener('click', closeAnnounce));
+    window.addEventListener('keydown', (e) => {
+      if (announceScreen.classList.contains('hidden')) return;
+      if (e.key === 'Escape') closeAnnounce();
+      if (e.key === 'ArrowRight') go(index + 1);
+      if (e.key === 'ArrowLeft') go(index - 1);
+    });
+    window.addEventListener('resize', () => { if (!announceScreen.classList.contains('hidden')) fitStage(); });
   }
 
   /* ==========================================================================
@@ -1558,6 +1864,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Only animate while the carousel is on screen
     let onScreen = true;
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([entry]) => {
+        onScreen = entry.isIntersecting;
+      }).observe(marquee);
+    }
     // remember each element's stagger delay so it can replay
     revealElements.forEach(el => {
       el.dataset.delay = el.style.getPropertyValue('--reveal-delay') || '0ms';
