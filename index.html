@@ -114,7 +114,7 @@
             </button>
             <button type="button" class="splash-tool-btn" id="splashCopyBtn" title="Copy Verse to Clipboard">
               <i class="fa-regular fa-copy"></i>
-              <span id="splashCopyText">Copy Verse</span>
+              <span id="splashCopyText">Copy</span>
             </button>
             <button type="button" class="splash-tool-btn" id="splashShareBtn" title="Share Verse with Friends & Family">
               <i class="fa-solid fa-share-nodes text-gold"></i>
@@ -2220,6 +2220,11 @@
         <p id="lyricsWriter">Writer</p>
       </div>
       <div class="modal-body">
+        <div class="lyrics-size-bar" role="group" aria-label="Lyrics text size">
+          <button type="button" class="lyrics-size-btn" id="lyricsSmaller" aria-label="Smaller text">A&minus;</button>
+          <span class="lyrics-size-val" id="lyricsSizeVal">100%</span>
+          <button type="button" class="lyrics-size-btn" id="lyricsLarger" aria-label="Larger text">A+</button>
+        </div>
         <div class="song-lyrics" id="lyricsBody"></div>
         <div class="song-actions" id="lyricsActions">
           <button type="button" class="btn btn-primary btn-sm" id="songImageBtn">

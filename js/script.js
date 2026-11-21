@@ -1152,7 +1152,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!splashListenBtn) return;
     if (isSpeaking) {
       splashListenBtn.classList.add('active');
-      splashListenBtn.innerHTML = '<i class="fa-solid fa-circle-stop text-gold"></i> <span>Stop Audio</span>';
+      splashListenBtn.innerHTML = '<i class="fa-solid fa-circle-stop text-gold"></i> <span>Stop</span>';
     } else {
       splashListenBtn.classList.remove('active');
       splashListenBtn.innerHTML = '<i class="fa-solid fa-volume-high text-gold"></i> <span>Listen</span>';
@@ -2132,7 +2132,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const langLabel = (l) => (l === 'bisaya' ? 'Bisaya' : 'English');
     const lyricsText = (s) => s.lyrics.map(l => l.text).join('\n\n');
     const fileName = (s) => s.title.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').toLowerCase() || 'song';
+    /* ---------- lyrics text size (A- / A+) ---------- */
+    const SIZE_KEY = 'sgc_lyrics_scale';
+    const SIZE_STEPS = [0.8, 0.9, 1, 1.15, 1.3, 1.5, 1.75, 2];
+    const smallerBtn = document.getElementById('lyricsSmaller');
+    const largerBtn = document.getElementById('lyricsLarger');
+    const sizeVal = document.getElementById('lyricsSizeVal');
+    const lyricsBodyEl = document.getElementById('lyricsBody');
 
+    let sizeIndex = 2;   // 100%
+    try {
+      const saved = parseFloat(localStorage.getItem(SIZE_KEY));
+      const found = SIZE_STEPS.indexOf(saved);
+      if (found !== -1) sizeIndex = found;
+    } catch (e) { }
+
+    const applySize = () => {
+      const scale = SIZE_STEPS[sizeIndex];
+      lyricsBodyEl.style.setProperty('--lyrics-scale', scale);
+      sizeVal.textContent = Math.round(scale * 100) + '%';
+      smallerBtn.disabled = sizeIndex === 0;
+      largerBtn.disabled = sizeIndex === SIZE_STEPS.length - 1;
+      try { localStorage.setItem(SIZE_KEY, String(scale)); } catch (e) { }
+    };
+
+    smallerBtn.addEventListener('click', () => { if (sizeIndex > 0) { sizeIndex--; applySize(); } });
+    largerBtn.addEventListener('click', () => { if (sizeIndex < SIZE_STEPS.length - 1) { sizeIndex++; applySize(); } });
+    applySize();
     /* ---------- list ---------- */
     const renderList = () => {
       const q = searchEl.value.trim().toLowerCase();

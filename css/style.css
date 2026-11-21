@@ -4776,3 +4776,84 @@ body:not(.splash-active) .hero-content.hero-play> :nth-child(6) {
     animation: none;
   }
 }
+
+/* Daily verse toolbar: all 5 buttons in one row */
+.splash-verse-tools {
+  flex-wrap: nowrap;
+  gap: 0.4rem;
+}
+
+.splash-tool-btn {
+  flex: 1 1 0;
+  min-width: 0;
+  justify-content: center;
+  white-space: nowrap;
+  gap: 0.35rem;
+  padding: 0.5rem 0.4rem;
+  font-size: 0.78rem;
+}
+
+/* Small screens: icon on top, label under it, so 5 buttons still fit */
+@media (max-width: 640px) {
+  .splash-verse-tools {
+    gap: 0.3rem;
+  }
+
+  .splash-tool-btn {
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.5rem 0.2rem;
+    font-size: 0.62rem;
+    border-radius: var(--radius-md);
+  }
+
+  .splash-tool-btn i {
+    font-size: 1rem;
+  }
+}
+
+/* Lyrics text size controls */
+.song-lyrics {
+  font-size: calc(1.12rem * var(--lyrics-scale, 1));
+}
+
+.lyrics-size-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.lyrics-size-btn {
+  min-width: 42px;
+  height: 36px;
+  padding: 0 0.7rem;
+  border-radius: var(--radius-full);
+  background: var(--navy-900);
+  color: var(--gold-300);
+  border: 1px solid var(--navy-700);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all var(--transition-fast);
+}
+
+.lyrics-size-btn:hover:not(:disabled) {
+  background: var(--gold-500);
+  color: var(--navy-950);
+  border-color: var(--gold-500);
+}
+
+.lyrics-size-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.lyrics-size-val {
+  min-width: 46px;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--slate-500);
+}
