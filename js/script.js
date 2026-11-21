@@ -2102,7 +2102,158 @@ document.addEventListener('DOMContentLoaded', () => {
     layoutStack();
     faithGrid.classList.add('is-stacked');
   }
+  /* ==========================================================================
+     QUIZ: TEST YOUR KNOWLEDGE ABOUT SAVED BY GRACE CHURCH
+     ========================================================================== */
+  const quizModal = document.getElementById('quizModal');
 
+  if (quizModal && typeof QUIZ_QUESTIONS !== 'undefined' && QUIZ_QUESTIONS.length) {
+    const quizBody = document.getElementById('quizBody');
+    const ROUND_SIZE = Math.min(10, QUIZ_QUESTIONS.length);
+    const quizEsc = (s) => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const quizShuffle = (arr) => {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    };
+
+    let seen = new Set();      // questions already asked (no repeats until all are used)
+    let round = [];
+    let qIndex = 0;
+    let score = 0;
+
+    const pickRound = () => {
+      let pool = QUIZ_QUESTIONS.map((_, i) => i).filter(i => !seen.has(i));
+      if (pool.length < ROUND_SIZE) { seen = new Set(); pool = QUIZ_QUESTIONS.map((_, i) => i); }
+      const chosen = quizShuffle(pool).slice(0, ROUND_SIZE);
+      chosen.forEach(i => seen.add(i));
+      return chosen.map(i => {
+        const item = QUIZ_QUESTIONS[i];
+        return {
+          q: item.q,
+          why: item.why || '',
+          options: quizShuffle([{ t: item.a, ok: true }, ...item.w.map(t => ({ t, ok: false }))])
+        };
+      });
+    };
+
+    const renderIntro = () => {
+      quizBody.innerHTML = `
+        <div class="quiz-intro">
+          <div class="quiz-intro-icon"><i class="fa-solid fa-lightbulb"></i></div>
+          <p>Answer ${ROUND_SIZE} random multiple-choice questions about the history, beliefs, and ministries of Saved by Grace Church. Every round is different!</p>
+          <button type="button" class="btn btn-primary btn-lg" id="quizStart"><i class="fa-solid fa-play"></i> Start Quiz</button>
+        </div>`;
+      document.getElementById('quizStart').addEventListener('click', startRound);
+    };
+
+    const startRound = () => {
+      round = pickRound();
+      qIndex = 0;
+      score = 0;
+      renderQuestion();
+    };
+
+    const renderQuestion = () => {
+      const item = round[qIndex];
+      const letters = ['A', 'B', 'C', 'D', 'E'];
+      quizBody.innerHTML = `
+        <div class="quiz-progress">
+          <span>Question ${qIndex + 1} of ${round.length}</span>
+          <span class="quiz-score-live">Score: ${score}</span>
+        </div>
+        <div class="quiz-bar"><span style="width:${(qIndex / round.length) * 100}%"></span></div>
+        <h4 class="quiz-question">${quizEsc(item.q)}</h4>
+        <div class="quiz-options">
+          ${item.options.map((o, i) => `
+            <button type="button" class="quiz-option" data-i="${i}">
+              <span class="quiz-letter">${letters[i]}</span><span>${quizEsc(o.t)}</span>
+            </button>`).join('')}
+        </div>
+        <div id="quizAfter"></div>`;
+
+      quizBody.querySelectorAll('.quiz-option').forEach(btn => {
+        btn.addEventListener('click', () => answer(Number(btn.dataset.i)));
+      });
+    };
+
+    const answer = (picked) => {
+      const item = round[qIndex];
+      const isRight = item.options[picked].ok;
+      if (isRight) score++;
+
+      quizBody.querySelectorAll('.quiz-option').forEach((btn, i) => {
+        btn.disabled = true;
+        if (item.options[i].ok) btn.classList.add('correct');
+        else if (i === picked) btn.classList.add('wrong');
+        else btn.classList.add('dim');
+      });
+
+      const last = qIndex === round.length - 1;
+      document.getElementById('quizAfter').innerHTML = `
+        <div class="quiz-feedback">
+          <strong>${isRight ? '✓ Correct!' : '✗ Not quite.'}</strong>
+          ${quizEsc(item.why)}
+        </div>
+        <div class="quiz-actions">
+          <button type="button" class="btn btn-primary btn-sm" id="quizNext">
+            ${last ? 'See My Score' : 'Next Question'} <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>`;
+      quizBody.querySelector('.quiz-score-live').textContent = `Score: ${score}`;
+      document.getElementById('quizNext').addEventListener('click', () => {
+        if (last) renderResult();
+        else { qIndex++; renderQuestion(); }
+      });
+      document.getElementById('quizNext').focus();
+    };
+
+    const renderResult = () => {
+      const pct = Math.round((score / round.length) * 100);
+      let title = 'Keep Learning!';
+      let msg = 'Visit our About section and history to learn more about our church family.';
+      let icon = 'fa-book-open';
+      if (pct >= 90) { title = 'Excellent!'; msg = 'You know Saved by Grace Church very well. Praise God!'; icon = 'fa-trophy'; }
+      else if (pct >= 70) { title = 'Great Job!'; msg = 'You know our church well. Try another round to get them all.'; icon = 'fa-medal'; }
+      else if (pct >= 50) { title = 'Good Effort!'; msg = 'You are on your way. Another round will help you learn more.'; icon = 'fa-star'; }
+
+      quizBody.innerHTML = `
+        <div class="quiz-result">
+          <div class="quiz-intro-icon"><i class="fa-solid ${icon}"></i></div>
+          <h4>${title}</h4>
+          <div class="quiz-result-score">${score} / ${round.length}</div>
+          <p>${msg}</p>
+          <div class="quiz-actions">
+            <button type="button" class="btn btn-primary" id="quizAgain"><i class="fa-solid fa-rotate"></i> Play Again</button>
+            <button type="button" class="btn btn-secondary" id="quizDone">Close</button>
+          </div>
+        </div>`;
+      document.getElementById('quizAgain').addEventListener('click', startRound);
+      document.getElementById('quizDone').addEventListener('click', closeQuiz);
+    };
+
+    const openQuiz = () => {
+      renderIntro();
+      quizModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeQuiz = () => {
+      quizModal.classList.remove('active');
+      document.body.style.overflow = '';
+    };
+
+    document.querySelectorAll('.open-quiz-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => { e.preventDefault(); openQuiz(); });
+    });
+    document.getElementById('quizModalClose').addEventListener('click', closeQuiz);
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && quizModal.classList.contains('active')) closeQuiz();
+    });
+  }
   /* ==========================================================================
      DISABLE RIGHT-CLICK, IMAGE DRAGGING AND COMMON SAVE SHORTCUTS
      ========================================================================== */
