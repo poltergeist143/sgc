@@ -957,4 +957,74 @@ const SONGS = [
             { text: "Amen." }
         ]
     },
+
+    {
+        id: 71, language: 'bisaya', title: 'Dad-ong Bandila Ni Cristo', writer: '(True Hearted, Whole Hearted)', link: '',
+        lyrics: [
+            { text: "Dad-ong bandila ni Cristo nga hari,\nMagminatud-on gayod ang tanan;\nMagmaisugon kita sa kaaway,\nAsdangon sa Iyang Diosnong kusog." },
+            { text: "Atong isinggit, dili maghilom,\nAng alawiton ta sa pagdaug; \nAtong isinggit, magminatud-on,\nHari si Cristo kanatong tanan.", chorus: true },
+            { text: "Atong tahuron karon ang Ginoo,\nUg magahalad sa atong kalag;\nMagpanlimbasug kita sa kanunay,\nSa pagmantala sa ngalan Niya." },
+            { text: "Atong isinggit, dili maghilom,\nAng alawiton ta sa pagdaug; \nAtong isinggit, magminatud-on,\nHari si Cristo kanatong tanan.", chorus: true },
+            { text: "O, manluluwas nga mahimayaon,\nNganhi kanamo Ginoo, karon;\nSa kasing-kasing ug sa kabubut-on,\nBugtong nga hari, harii kami." },
+            { text: "Atong isinggit, dili maghilom,\nAng alawiton ta sa pagdaug; \nAtong isinggit, magminatud-on,\nHari si Cristo kanatong tanan.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 72, language: 'bisaya', title: 'Saliging Dugo Ni Jesus', writer: '(There is Power in the Blood)', link: '',
+        lyrics: [
+            { text: "Buot ka bang maluwas sa sala?\nGamhanang dugo, N’ya ni Jesus\nBuot bang magmadaugon ikaw?\nSaliging dugo ni Jesus." },
+            { text: "May kahibulongan nga gahum\nSa dugo ni Jesus\nMay kahibulongan nga gahum\nSa bililhon Niya nga dugo.", chorus: true },
+            { text: "Sa pagpangandak na pun-an ka ba?\nGamhanang dugo N’ya ni Jesus\nDuol ikaw sa kalbaryo karon\nSaliging dugo ni Jesus." },
+            { text: "May kahibulongan nga gahum\nSa dugo ni Jesus\nMay kahibulongan nga gahum\nSa bililhon Niya nga dugo.", chorus: true },
+            { text: "Buot ka bang mahinloan karon?\nGamhanang dugo N’ya ni Jesus\nTanang lama sa sala hugasan\nSaliging dugo ni Jesus." },
+            { text: "May kahibulongan nga gahum\nSa dugo ni Jesus\nMay kahibulongan nga gahum\nSa bililhon Niya nga dugo.", chorus: true },
+            { text: "Buot ka bang mag alagad sa Dios?\nGamhanang dugo N’ya ni Jesus\nDaygon mo ba sa kanunay Siya?\nSaliging dugo ni Jesus." },
+            { text: "May kahibulongan nga gahum\nSa dugo ni Jesus\nMay kahibulongan nga gahum\nSa bililhon Niya nga dugo.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 73, language: 'bisaya', title: 'Iya Ako Ni Jesus', writer: '(Now I belong to Jesus)', link: '',
+        lyrics: [
+            { text: "Si Jesus nahigugma kanako,\nGikan Kaniya way makaagaw;\nAng kinabuhi gihatag N’ya,\nIya na ko karon." },
+            { text: "Iya ako ni Jesus,\nUg ako si Jesus;\nDi kay sa katuigan lang,\nSa kahangturan man.", chorus: true },
+            { text: "Ako naglunang man sa kasalanan,\nSi Jesus nagdalag kaluwasan;\nSa kaulawan gibangon ko,\nIya na ko karon." },
+            { text: "Iya ako ni Jesus,\nUg ako si Jesus;\nDi kay sa katuigan lang,\nSa kahangturan man.", chorus: true },
+            { text: "Kalipay mibaha sa kalag ko,\nGiluwas ko N’ya sa kaulipnan;\nIyang dugo maoy nagtubos,\nIya na ko karon." },
+            { text: "Iya ako ni Jesus,\nUg ako si Jesus;\nDi kay sa katuigan lang,\nSa kahangturan man.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 74, language: 'english', title: 'Whosoever Will', writer: 'Philip P. Bliss, 1870', link: '',
+        lyrics: [
+            { text: "\“Whosoever heareth,” shout, shout the sound!\nSpread the blessed tidings all the world around.\nTell the joyful news wherever man is found:\n“Whosoever will may come.\”" },
+            { text: "\"Whosoever will, \“whosoever will!\”\nSend the proclamation over vale and hill;\n’Tis a loving Father calls the wand\'rer home;\n“Whosoever will may come.\”", chorus: true },
+            { text: "Whosoever cometh need not delay.\nNow the door is open; enter while you may;\nJesus is the true, the only Living Way.\n\“Whosoever will may come.\” " },
+            { text: "\"Whosoever will, \“whosoever will!\”\nSend the proclamation over vale and hill;\n’Tis a loving Father calls the wand\'rer home;\n“Whosoever will may come.\”", chorus: true },
+            { text: "\“Whosoever will” the promise is secure;\n\“Whosoever will\” forever shall endure.\n\“Whosoever will\” \’tis life forevermore.\n\“Whosoever will may come.\”" },
+            { text: "\"Whosoever will, \“whosoever will!\”\nSend the proclamation over vale and hill;\n’Tis a loving Father calls the wand\'rer home;\n“Whosoever will may come.\”", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 75, language: 'english', title: 'How Can I Fear', writer: 'Ron Hamilton, 1984', link: '',
+        lyrics: [
+            { text: "When shadows fall\nAnd the night covers all\nThere are things\nThat my eyes cannot see" },
+            { text: "I'll never fear\nFor the Savior is near\nMy Lord abides with me!" },
+            { text: "How can I fear?\nJesus is near!\nHe ever watches over me!\nWorries all cease;\nHе gives me peacе\nHow can I fear with Jesus?", chorus: true },
+            { text: "When I'm alone\nAnd I face the unknown\nAnd I fear\nWhat the future may be" },
+            { text: "I can depend\nOn the strength of my Friend!\nHe walks along with me" },
+            { text: "How can I fear?\nJesus is near!\nHe ever watches over me!\nWorries all cease;\nHе gives me peacе\nHow can I fear with Jesus?", chorus: true },
+            { text: "Jesus is King!\nHe controls ev'rything!\nHe is with me\nEach night and each day" },
+            { text: "I trust my soul (I trust my soul)\nTo the Savior's control; (To the Savior)\nHe drives all fear away!" },
+            { text: "How can I fear?\nJesus is near!\nHe ever watches over me!\nWorries all cease;\nHе gives me peacе\nHow can I fear with Jesus?", chorus: true },
+            { text: "Amen." }
+        ]
+    },
 ];

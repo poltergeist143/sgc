@@ -5129,3 +5129,54 @@ body {
     transition: transform var(--transition-normal), visibility 0s linear 0s;
   }
 }
+
+/* ---- Lighter rendering on phones / touch devices ---- */
+@media (max-width: 820px),
+(pointer: coarse) {
+
+  *,
+  *::before,
+  *::after {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .navbar,
+  .navbar.scrolled {
+    background-color: rgba(7, 14, 25, 0.98);
+  }
+
+  .reveal-on-scroll.reveal-blur {
+    filter: none !important;
+  }
+
+  .hero-bg-image {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* ---- Lite mode for Messenger / Facebook / Instagram in-app browsers ---- */
+.lite-mode *,
+.lite-mode *::before,
+.lite-mode *::after {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.lite-mode *:not(.member-marquee-track) {
+  animation: none !important;
+}
+
+.lite-mode .reveal-on-scroll.reveal-blur {
+  filter: none !important;
+}
+
+.lite-mode .hero-bg-image {
+  transform: none;
+}
+
+.lite-mode .navbar,
+.lite-mode .navbar.scrolled {
+  background-color: rgba(7, 14, 25, 0.98);
+}

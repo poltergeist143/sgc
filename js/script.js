@@ -8,7 +8,14 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
-
+  const isMobile = window.matchMedia('(max-width: 820px), (pointer: coarse)').matches
+    || document.documentElement.classList.contains('lite-mode');
+  // Lazy-load everything except images visible on first paint
+  document.querySelectorAll('img').forEach(img => {
+    if (img.matches('.hero-bg-image, .nav-logo-img, .hero-logo-img, .splash-logo-img')) return;
+    img.loading = 'lazy';
+    img.decoding = 'async';
+  });
   /* ==========================================================================
      1. DYNAMIC YEAR IN FOOTER
      ========================================================================== */
@@ -220,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const max = document.documentElement.scrollHeight - window.innerHeight;
     progressBar.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
 
-    if (heroBg && !reduceMotion && window.scrollY < window.innerHeight) {
+    if (heroBg && !reduceMotion && !isMobile && window.scrollY < window.innerHeight) {
       heroBg.style.transform = `translateY(${window.scrollY * 0.25}px)`;
     }
   }, { passive: true });
@@ -1866,6 +1873,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const track = marquee.querySelector('.member-marquee-track');
     if (!track) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (isMobile) return;
 
     // Only animate while the carousel is on screen
     let onScreen = true;
