@@ -347,7 +347,25 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, duration);
   };
+  /* ==========================================================================
+    FORM SENDER (emails every form to the church inbox via Web3Forms)
+    ========================================================================== */
+  const FORM_KEY = 'fe322541-6bdf-48da-97e5-5e91d9f93432';
 
+  const sendForm = async (subject, fields) => {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: FORM_KEY,
+        subject: subject,
+        from_name: 'Saved by Grace Church Website',
+        ...fields
+      })
+    });
+    const data = await res.json();
+    if (!res.ok || !data.success) throw new Error(data.message || 'Send failed');
+  };
   /* ==========================================================================
      9. EVENT COUNTDOWN TIMER
      ========================================================================== */
@@ -657,6 +675,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const eventModalLocation = document.getElementById('eventModalLocation');
   const eventModalDesc = document.getElementById('eventModalDesc');
 
+  let currentEvent = null;
   document.querySelectorAll('.open-event-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -664,6 +683,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const date = btn.getAttribute('data-date') || 'Upcoming Date';
       const loc = btn.getAttribute('data-location') || 'Main Sanctuary, Saved by Grace Church';
       const desc = btn.getAttribute('data-desc') || 'Join us for worship, fellowship, and encouragement.';
+      currentEvent = { title, date, loc, desc, start: btn.dataset.start, end: btn.dataset.end };
 
       if (eventModalTitle) eventModalTitle.textContent = title;
       if (eventModalDate) eventModalDate.textContent = date;
@@ -683,7 +703,57 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.style.overflow = '';
     });
   }
+  // RSVP: email it to the church
+  const eventRsvpForm = document.getElementById('eventRsvpForm');
+  if (eventRsvpForm) {
+    eventRsvpForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = eventRsvpForm.querySelector('button[type="submit"]');
+      const original = btn.innerHTML;
+      const name = document.getElementById('eventRsvpName').value.trim();
+      const email = document.getElementById('eventRsvpEmail').value.trim();
 
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+      try {
+        await sendForm(`Event RSVP: ${currentEvent ? currentEvent.title : 'Church Event'}`, {
+          name: name,
+          email: email,
+          event: currentEvent ? currentEvent.title : '',
+          date: currentEvent ? currentEvent.date : '',
+          location: currentEvent ? currentEvent.loc : ''
+        });
+        eventModal.classList.remove('active');
+        document.body.style.overflow = '';
+        eventRsvpForm.reset();
+        showToast(`Thank you, ${name}! Your RSVP has been received.`, 'success', 6000);
+      } catch (err) {
+        showToast('Sorry, your RSVP could not be sent. Please try again or call (032) 260 5544.', 'error', 6000);
+      }
+      btn.disabled = false;
+      btn.innerHTML = original;
+    });
+  }
+
+  // Add to Calendar (opens Google Calendar with the event filled in)
+  const eventCalBtn = document.getElementById('eventCalBtn');
+  if (eventCalBtn) {
+    eventCalBtn.addEventListener('click', () => {
+      if (!currentEvent || !currentEvent.start) {
+        showToast('Calendar details are not available for this event.', 'error');
+        return;
+      }
+      const fmt = (d) => d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+      const start = new Date(currentEvent.start);
+      const end = new Date(currentEvent.end || start.getTime() + 3 * 60 * 60 * 1000);
+      const url = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+        + '&text=' + encodeURIComponent(currentEvent.title)
+        + '&dates=' + fmt(start) + '/' + fmt(end)
+        + '&details=' + encodeURIComponent(currentEvent.desc)
+        + '&location=' + encodeURIComponent(currentEvent.loc);
+      window.open(url, '_blank', 'noopener');
+    });
+  }
   /* ==========================================================================
      14. PLAN YOUR VISIT MODAL
      ========================================================================== */
@@ -709,16 +779,37 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (visitForm) {
-    visitForm.addEventListener('submit', (e) => {
+    visitForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const name = document.getElementById('visitName')?.value || 'Guest';
-      const serviceTime = document.getElementById('visitService')?.value || 'Sunday Service';
+      const btn = visitForm.querySelector('button[type="submit"]');
+      const original = btn.innerHTML;
+      const val = (id) => document.getElementById(id)?.value || '';
+      const name = val('visitName') || 'Guest';
+      const serviceTime = val('visitService') || 'Sunday Service';
 
-      visitModal.classList.remove('active');
-      document.body.style.overflow = '';
-      visitForm.reset();
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
 
-      showToast(`Praise God, ${name}! We can't wait to welcome you for ${serviceTime}. A welcome packet has been emailed to you.`, 'success', 6000);
+      try {
+        await sendForm(`Plan Your Visit: ${name}`, {
+          name: name,
+          email: val('visitEmail'),
+          service: serviceTime,
+          planned_date: val('visitDate'),
+          guests: val('visitGuestsCount'),
+          children: val('visitKids'),
+          notes: val('visitNotes')
+        });
+        visitModal.classList.remove('active');
+        document.body.style.overflow = '';
+        visitForm.reset();
+        showToast(`Praise God, ${name}! We can't wait to welcome you for ${serviceTime}.`, 'success', 6000);
+      } catch (err) {
+        showToast('Sorry, we could not send your reservation. Please try again or call (032) 260 5544.', 'error', 6000);
+      }
+
+      btn.disabled = false;
+      btn.innerHTML = original;
     });
   }
 
@@ -817,13 +908,26 @@ document.addEventListener('DOMContentLoaded', () => {
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending message...';
 
-      setTimeout(() => {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalText;
-        contactForm.reset();
-
-        showToast('Grace and peace! Your message has been received. Our ministry pastoral team will get back to you shortly.', 'success', 6000);
-      }, 1200);
+      const categorySelect = document.getElementById('contactCategory');
+      sendForm(`${categorySelect.options[categorySelect.selectedIndex].text}: ${subjectInput.value.trim()}`, {
+        name: nameInput.value.trim(),
+        email: emailInput.value.trim(),
+        phone: phoneInput.value.trim(),
+        category: categorySelect.options[categorySelect.selectedIndex].text,
+        message: messageInput.value.trim(),
+        newsletter: document.getElementById('contactNewsletter').checked ? 'Yes' : 'No'
+      })
+        .then(() => {
+          contactForm.reset();
+          showToast('Grace and peace! Your message has been received. Our pastoral team will get back to you shortly.', 'success', 6000);
+        })
+        .catch(() => {
+          showToast('Sorry, your message could not be sent. Please try again or call (032) 260 5544.', 'error', 6000);
+        })
+        .finally(() => {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalText;
+        });
     });
   }
 
@@ -838,8 +942,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const email = input ? input.value.trim() : '';
 
       if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        showToast('Thank you! You are now subscribed to Saved by Grace Church weekly devotionals.', 'success');
-        newsletterForm.reset();
+        sendForm('New Grace Devotional subscriber', { email: email, message: 'Please add this email to the weekly devotional list.' })
+          .then(() => {
+            showToast('Thank you! You are now subscribed to Saved by Grace Church weekly devotionals.', 'success');
+            newsletterForm.reset();
+          })
+          .catch(() => showToast('Could not subscribe right now. Please try again later.', 'error'));
       } else {
         showToast('Please enter a valid email address to subscribe.', 'error');
       }

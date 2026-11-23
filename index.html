@@ -947,6 +947,7 @@
 
           <button class="btn btn-primary open-event-btn" data-title="Annual Thanksgiving Conference 2027"
             data-date="April 18, 2027 • 2:00 PM" data-location="Main Worship Sanctuary, Saved by Grace Church"
+            data-start="2027-04-18T14:00:00+08:00" data-end="2027-04-18T17:00:00+08:00"
             data-desc="Experience powerful  worship with guest speaker Dr. Arthur Sterling and musical artists. Free admission. Childcare provided for ages 0-5.">
             <i class="fa-solid fa-ticket"></i> Register &amp; View Details
           </button>
@@ -1404,8 +1405,12 @@
                 <div class="contact-detail-icon"><i class="fa-solid fa-envelope"></i></div>
                 <div class="contact-detail-content">
                   <h5>Email Inquiries</h5>
-                  <p>General: <a href="mailto:info@savedbygrace@gmail.com">info@savedbygrace@gmail.com</a><br>Prayer: <a
-                      href="mailto:prayer@savedbygrace@gmail.com">prayer@savedbygrace@gmail.com</a></p>
+                  <p>General: <a href="mailto:savedbygracepasil@gmail.com">savedbygracepasil@gmail.com</a>
+                    (<a href="https://mail.google.com/mail/?view=cm&to=YOUR_EMAIL&su=Church%20Inquiry" target="_blank"
+                      rel="noopener noreferrer">Open in Gmail</a>)<br>
+                    Prayer: <a href="mailto:savedbygracepasil@gmail.com">savedbygracepasil@gmail.com</a>
+                    (<a href="https://mail.google.com/mail/?view=cm&to=YOUR_PRAYER_EMAIL&su=Prayer%20Request"
+                      target="_blank" rel="noopener noreferrer">Open in Gmail</a>)</p>
                 </div>
               </div>
 
@@ -1605,7 +1610,7 @@
             </button>
           </form>
           <div style="font-size: 0.78rem; color: var(--slate-400);">No spam. Unsubscribe at any time.</div>
-          <div class="text-golden version-number">Version 1.23.6</div>
+          <div class="text-golden version-number">Version 1.23.7</div>
         </div>
       </div>
 
@@ -1789,23 +1794,21 @@
 
         <div style="border-top: 1px solid var(--slate-200); padding-top: 1.5rem;">
           <h4 style="font-size: 1.15rem; margin-bottom: 0.75rem; color: var(--navy-900);">Quick Event RSVP</h4>
-          <form
-            onsubmit="event.preventDefault(); alert('Your RSVP has been confirmed! An event reminder will be sent to your email.'); document.getElementById('eventModal').classList.remove('active'); document.body.style.overflow='';">
+          <form id="eventRsvpForm">
             <div class="form-grid">
               <div class="form-group">
-                <input type="text" class="form-input" placeholder="Your Name" required>
+                <input type="text" id="eventRsvpName" class="form-input" placeholder="Your Name" required>
               </div>
               <div class="form-group">
-                <input type="email" class="form-input" placeholder="Your Email" required>
+                <input type="email" id="eventRsvpEmail" class="form-input" placeholder="Your Email" required>
               </div>
             </div>
             <div style="display: flex; gap: 1rem; margin-top: 0.5rem; flex-wrap: wrap;">
               <button type="submit" class="btn btn-primary btn-sm">
                 <i class="fa-solid fa-circle-check"></i> Complete Free RSVP
               </button>
-              <button type="button" class="btn btn-outline-white btn-sm"
-                style="color: var(--navy-900); border-color: var(--slate-300);"
-                onclick="alert('Event added to your digital calendar!');">
+              <button type="button" class="btn btn-outline-white btn-sm" id="eventCalBtn"
+                style="color: var(--navy-900); border-color: var(--slate-300);">
                 <i class="fa-regular fa-calendar-plus text-gold"></i> Add to Calendar
               </button>
             </div>
@@ -2350,7 +2353,7 @@
   <script src="js/quiz.js"></script>
   <script src="js/script.js"></script>
 
-  <!-- Version 1.23.6 series November 2026 -->
+  <!-- Version 1.23.7 series November 2026 -->
 </body>
 
 </html>
