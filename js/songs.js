@@ -881,4 +881,80 @@ const SONGS = [
             { text: "Amen." }
         ]
     },
+
+    {
+        id: 65, language: 'english', title: 'Shall We Gather at the River?', writer: 'Robert Lowry, 1864', link: '',
+        lyrics: [
+            { text: "Shall we gather at the river,\nWhere bright angel feet have trod;\nWith its crystal tide forever\nFlowing by the throne of God?" },
+            { text: "Yes, we'll gather at the river,\nThe beautiful, the beautiful river;\nGather with the saints at the river\nThat flows by the throne of God.", chorus: true },
+            { text: "On the margin of the river,\nWashing up its silver spray,\nWe will walk and worship ever,\nAll the happy golden day." },
+            { text: "Yes, we'll gather at the river,\nThe beautiful, the beautiful river;\nGather with the saints at the river\nThat flows by the throne of God.", chorus: true },
+            { text: "Ere we reach the shining river,\nLay we ev'ry burden down;\nGrace our spirits will deliver,\nAnd provide a robe and crown." },
+            { text: "Yes, we'll gather at the river,\nThe beautiful, the beautiful river;\nGather with the saints at the river\nThat flows by the throne of God.", chorus: true },
+            { text: "Soon we'll reach the shining river,\nSoon our pilgrimage will cease;\nSoon our happy hearts will quiver\nWith the melody of peace." },
+            { text: "Yes, we'll gather at the river,\nThe beautiful, the beautiful river;\nGather with the saints at the river\nThat flows by the throne of God.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 66, language: 'bisaya', title: 'Si Jesus Ang Bahandi Ko', writer: '(Jesus Is All The World To Me)', link: '',
+        lyrics: [
+            { text: "Si Jesus ang bahandi ko,\nKalipay ug tanan,\nMapukan ko kon wa S’ya,\nKay ako S’yang kusog;\nKon magmasulob-on ako,\nKaniya modangop ako,\nSa kasubo ‘naa Siya;\nAbyan ko." },
+            { text: "Si Jesus ang bahandi ko,\nHigala ko Siya,\nAng mga panalangin N’ya,\nGihatag kanako,\nGipadala N’ya ang ulan,\nBisan man ang alanihon,\nAdlaw’g ulan, alanihon;\nAbyan ko." },
+            { text: "Si Jesus ang bahandi ko,\nGinoo ko Siya,\nSiya ang nagmatinud-anon man,\nDi ko S’ya ilimod;\nKaniya mosunod ako,\nUg Iya kong pagbantayan,\nAdlaw’ng tanan sundon ko S’ya;\nAbyan ko." },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 67, language: 'bisaya', title: 'Ang Pulong sa Dios Matinumanon', writer: '(God\'s Word and Promise)', link: '',
+        lyrics: [
+            { text: "Ang Pulong sa Dios Matinumanon,\nNagapadayon, way kapakyasan;\nBisan Magun-ob ang kalibutan,\nMatuman ang saad N'ya. " },
+            { text: "Ang pulong sa Dios, ang Iyang saad,\n May katumanan kining tanan;\nBisan Mahulog kabituonan,\nAng pulong sa Dios saligan.", chorus: true },
+            { text: "Sa takna nga pagasulayan ta,\nug ang paglaum daw nagkahanaw;\nug kaugmaon gikahadlokan,\nsa Dios lig-onon kita." },
+            { text: "Ang pulong sa Dios, ang Iyang saad,\n May katumanan kining tanan;\nBisan Mahulog kabituonan,\nAng pulong sa Dios saligan.", chorus: true },
+            { text: "Nagapabilin ang saad sa Dios,\nBisan sa takna sa kalisdanan;\nBisan sa takna sa kamatayon,\nsa Dios lipayon kita." },
+            { text: "Ang pulong sa Dios, ang Iyang saad,\n May katumanan kining tanan;\nBisan Mahulog kabituonan,\nAng pulong sa Dios saligan.", chorus: true },
+            { text: "Ang saad sa Dios may katumanan,\nnagapabilin man sa gihapon;\nang purong-purong unya maangkon,\nkay Iya ning gisaad." },
+            { text: "Ang pulong sa Dios, ang Iyang saad,\n May katumanan kining tanan;\nBisan Mahulog kabituonan,\nAng pulong sa Dios saligan.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 68, language: 'bisaya', title: 'Si Jesus Ang Atong Abyan', writer: '(What A Friend)', link: '',
+        lyrics: [
+            { text: "Si Jesus ang atong abyan,\nSa sala ta nagpas-an;\nAng tanan mahimo NATO,\nSa pag-ampo Kang Jesus.\nAng kalinaw ta mahanaw,\nAng kasakit modaku,\nKay dili kita kanunay,\nMagaampo Kang Jesus." },
+            { text: "Kon adunay kalisdanan,\nPagsulay ug kaguol;\nDi kita magmaluya,\nKang Jesus iampo ta.\nAbyan S’yang matinumanon,\nSa kasakit nagdala;\nSa kaluya ta nasayod,\nKang Jesus itugyan lang." },
+            { text: "Kon maluya ang kalag ta,\nUg tugob sa kaguol;\nS’ya ang atong dalangpanan,\nMaga-ampo Kang Jesus.\nKon sa atong mga abyan,\nGinatamay man kita,\nModangop Kang Jesus lamang,\nMagaampo Kaniya." },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 69, language: 'english', title: 'Servant\'s Heart', writer: 'Ron Hamilton, 1987', link: '',
+        lyrics: [
+            { text: "Make me a servant like you, dear Lord,\nLiving for others each day\nHumble and meek,\nHelping the weak,\nLoving in all that I say." },
+            { text: "Give me, Lord, a servant's heart\nHere's my life, take every part.\nGive me, Lord, a servant's heart.\nHelp me draw so close to You\nThat Your love comes shining through\nGive me, Lord, a servant's heart,\nGive me, Lord, a servant's heart.", chorus: true },
+            { text: "Make me a witness like You, dear Lord,\nShowing the love of the cross,\nSharing Your Word till all have heard,\nServing whatever the cost." },
+            { text: "Give me, Lord, a servant's heart\nHere's my life, take every part.\nGive me, Lord, a servant's heart.\nHelp me draw so close to You\nThat Your love comes shining through\nGive me, Lord, a servant's heart,\nGive me, Lord, a servant's heart.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 70, language: 'bisaya', title: 'Mabalaka Ba Si Jesus', writer: '(Does Jesus Care)', link: '',
+        lyrics: [
+            { text: "Kon kasingkasing ko mabug-at,\nUg matingban sa kaguol;\nKon ang panaw ko daw malaay man,\nMabalaka Ba si Jesus?" },
+            { text: "Oo may kabalaka S’ya\nUg maluloy-on usab;\nSa kakapoy nako ug kagul-anan,\nMay kabalaka Siya.", chorus: true },
+            { text: "Kon mangitngit ang agian ko,\nBisan sa mga kakuyaw;\nKon maginusara na lang ako,\nMabalaka Ba si Jesus?" },
+            { text: "Oo may kabalaka S’ya\nUg maluloy-on usab;\nSa kakapoy nako ug kagul-anan,\nMay kabalaka Siya.", chorus: true },
+            { text: "May kabalaka Ba si Jesus,\nSa mga kapakyasan ko?\nKon ako way laing kapaingnan,\nMabalaka Ba si Jesus?" },
+            { text: "Oo may kabalaka S’ya\nUg maluloy-on usab;\nSa kakapoy nako ug kagul-anan,\nMay kabalaka Siya.", chorus: true },
+            { text: "Kon kamatayon modangat na,\nSa mga pinalangga ko;\nUg mabug-at ang kasingkasing ko,\nMabalaka Ba si Jesus?" },
+            { text: "Oo may kabalaka S’ya\nUg maluloy-on usab;\nSa kakapoy nako ug kagul-anan,\nMay kabalaka Siya.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
 ];
