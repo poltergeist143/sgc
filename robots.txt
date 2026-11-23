@@ -1,0 +1,7 @@
+User-agent: Googlebot-Image
+Disallow: /images/
+
+User-agent: *
+Allow: /
+
+Sitemap: https://savedbygracepasil.com/sitemap.xml
