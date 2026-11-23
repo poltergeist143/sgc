@@ -1393,7 +1393,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Footer
     x.font = '600 22px "Plus Jakarta Sans", sans-serif';
     x.fillStyle = '#94a3b8';
-    x.fillText('Saved by Grace Church  •  L. Abellar St., Pasil, Cebu City', W / 2, 1275);
+    x.fillText('Saved by Grace Church  •  L. Abellar St., Pasil, Cebu City', W / 2, 1258);
+
+    // Website
+    x.font = '700 26px "Plus Jakarta Sans", sans-serif';
+    x.fillStyle = GOLD_L;
+    x.fillText('savedbygracepasil.com', W / 2, 1294);
 
     return new Promise(res => c.toBlob(res, 'image/png'));
   };
@@ -2523,6 +2528,11 @@ document.addEventListener('DOMContentLoaded', () => {
           if (draw) {
             x.textAlign = 'center'; x.font = '600 22px "Plus Jakarta Sans", sans-serif'; x.fillStyle = SLATE;
             x.fillText('Saved by Grace Church  •  L. Abellar St., Pasil, Cebu City', W / 2, y);
+          }
+          y += 42;
+          if (draw) {
+            x.textAlign = 'center'; x.font = '700 26px "Plus Jakarta Sans", sans-serif'; x.fillStyle = GOLD;
+            x.fillText('savedbygracepasil.com', W / 2, y);
           }
           return y + 70;
         };
