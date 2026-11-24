@@ -35,5 +35,6 @@ const QUIZ_QUESTIONS = [
     { q: "What is Pastor Joel M. Tatoy's role at the church?", a: "Senior Lead Pastor", w: ["Missionary-founder", "Youth Pastor", "Church Treasurer"], why: "He has led the congregation since 2002." },
     { q: "Which Latin phrase appears in the footer beside the church name?", a: "Soli Deo Gloria", w: ["Sola Scriptura", "Ad Majorem Dei Gloriam", "Pax Vobiscum"], why: "It means 'Glory to God alone.'" },
     { q: "Which passage is the Great Commission?", a: "Matthew 28:19–20", w: ["Genesis 1:1", "Psalm 119:105", "Romans 12:2"], why: "Believers are to preach the Gospel, make disciples, baptize, and teach." },
-    { q: "Where did the ministry first reach out to underserved communities?", a: "Pasil, Cebu City", w: ["Lapu-Lapu City", "Talisay City", "Danao City"], why: "The 1986 outreach began among underserved communities in Pasil." }
+    { q: "Where did the ministry first reach out to underserved communities?", a: "Pasil, Cebu City", w: ["Lapu-Lapu City", "Talisay City", "Danao City"], why: "The 1986 outreach began among underserved communities in Pasil." },
+    { q: "When is the tentative date for our thanksgiving anniversary in 2027?", a: "18th of April", w: ["4th of April", "25th of April", "11th of April"], why: "April 18, 2027 is the Tentative Date for our anniversary." },
 ];

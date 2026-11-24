@@ -812,7 +812,7 @@ const SONGS = [
     },
 
     {
-        id: 60, language: 'bisaya', title: 'Pagkabulahang Pagsalig Ko', writer: '(Blessed Assurance)', link: '',
+        id: 60, language: 'bisaya', title: 'Pagkabulahang Pagsalig', writer: '(Blessed Assurance)', link: '',
         lyrics: [
             { text: "Pagkabulahang pagsalig ko,\nAng mananabang ko si Jesus;\nMahimayaon akong kalag,\nIyang dugo ang nagatubos." },
             { text: "  Kini ang asoy ug awit ko,\nAng manluluwas dayegon ta,\nKini ang asoy ug awit ko,\nAng manluluwas dayegon ta.", chorus: true },
@@ -1024,6 +1024,16 @@ const SONGS = [
             { text: "Jesus is King!\nHe controls ev'rything!\nHe is with me\nEach night and each day" },
             { text: "I trust my soul (I trust my soul)\nTo the Savior's control; (To the Savior)\nHe drives all fear away!" },
             { text: "How can I fear?\nJesus is near!\nHe ever watches over me!\nWorries all cease;\nHе gives me peacе\nHow can I fear with Jesus?", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 76, language: 'english', title: 'When God Is Near', writer: 'Mac Lynch, 1998', link: '',
+        lyrics: [
+            { text: "Make me know your presence Lord, the King of Glory here.\nYou know each thought and action, hope, anxiety and fear.\nHow can I hide from Thee? Can darkness hide iniquity?\nOh how can I unfaithful be, when You are very near to me?" },
+            { text: "When God is near, all the world seems far away.\nWhen God is near, every fear is set aside.\nWhen God is near, how can I stray? How can I falter?\nI’ll stay upon the altar, I know my God is near.", chorus: true },
+            { text: "Make me know Your presence Lord, when I feel so alone.\nYou know each trial and testing pain, the hurt that is unknown.\nOh, why can I not see Your hand so firmly guiding me?\nOh how can I untrusting be, when You are very near to me?" }, { text: "When God is near, all the world seems far away.\nWhen God is near, every fear is set aside.\nWhen God is near, how can I stray? How can I falter?\nI’ll stay upon the altar, I know my God is near.", chorus: true },
             { text: "Amen." }
         ]
     },
