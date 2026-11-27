@@ -352,19 +352,48 @@ document.addEventListener('DOMContentLoaded', () => {
     ========================================================================== */
   const FORM_KEY = 'fe322541-6bdf-48da-97e5-5e91d9f93432';
 
-  const sendForm = async (subject, fields) => {
-    const res = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        access_key: FORM_KEY,
-        subject: subject,
-        from_name: 'Saved by Grace Church Website',
-        ...fields
-      })
-    });
-    const data = await res.json();
-    if (!res.ok || !data.success) throw new Error(data.message || 'Send failed');
+  // Spam protection:
+  //  - Honeypot: every form has a hidden "botcheck" checkbox. People never see it;
+  //    if a bot ticks it, Web3Forms rejects the submission.
+  //  - hCaptcha: forms with a .h-captcha widget send its answer, which Web3Forms verifies.
+  const getCaptchaToken = (form) => {
+    const field = form && form.querySelector('[name="h-captcha-response"]');
+    return field ? field.value : '';
+  };
+
+  const resetCaptcha = (form) => {
+    if (form && form.querySelector('.h-captcha') && window.hcaptcha) {
+      try { window.hcaptcha.reset(); } catch (e) { }
+    }
+  };
+
+  const sendForm = async (subject, fields, form) => {
+    const extra = {};
+    const honeypot = form && form.querySelector('[name="botcheck"]');
+    if (honeypot && honeypot.checked) extra.botcheck = true;
+
+    if (form && form.querySelector('.h-captcha')) {
+      extra['h-captcha-response'] = getCaptchaToken(form);
+    }
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: FORM_KEY,
+          subject: subject,
+          from_name: 'Saved by Grace Church Website',
+          ...fields,
+          ...extra
+        })
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data.message || 'Send failed');
+    } finally {
+      // A captcha answer can only be used once, so clear it after every attempt
+      resetCaptcha(form);
+    }
   };
   /* ==========================================================================
      9. EVENT COUNTDOWN TIMER
@@ -732,7 +761,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       btn.disabled = false;
       btn.innerHTML = original;
-    });
+    }, eventRsvpForm);
   }
 
   // Add to Calendar (opens Google Calendar with the event filled in)
@@ -799,7 +828,7 @@ document.addEventListener('DOMContentLoaded', () => {
           guests: val('visitGuestsCount'),
           children: val('visitKids'),
           notes: val('visitNotes')
-        });
+        }, visitForm);
         visitModal.classList.remove('active');
         document.body.style.overflow = '';
         visitForm.reset();
@@ -897,7 +926,20 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         clearError(messageInput);
       }
-
+      // hCaptcha must be completed
+      const captchaBox = contactForm.querySelector('.h-captcha');
+      if (captchaBox) {
+        const captchaGroup = captchaBox.closest('.form-group');
+        if (!getCaptchaToken(contactForm)) {
+          if (captchaGroup) {
+            captchaGroup.classList.add('has-error');
+            captchaGroup.querySelector('.form-error-msg').textContent = 'Please complete the captcha ("I am human") check.';
+          }
+          isValid = false;
+        } else if (captchaGroup) {
+          captchaGroup.classList.remove('has-error');
+        }
+      }
       if (!isValid) {
         showToast('Please fix the highlighted fields in the form.', 'error');
         return;
@@ -916,7 +958,7 @@ document.addEventListener('DOMContentLoaded', () => {
         category: categorySelect.options[categorySelect.selectedIndex].text,
         message: messageInput.value.trim(),
         newsletter: document.getElementById('contactNewsletter').checked ? 'Yes' : 'No'
-      })
+      }, contactForm)
         .then(() => {
           contactForm.reset();
           showToast('Grace and peace! Your message has been received. Our pastoral team will get back to you shortly.', 'success', 6000);
@@ -942,7 +984,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const email = input ? input.value.trim() : '';
 
       if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        sendForm('New Grace Devotional subscriber', { email: email, message: 'Please add this email to the weekly devotional list.' })
+        sendForm('New Grace Devotional subscriber', { email: email, message: 'Please add this email to the weekly devotional list.' }, newsletterForm)
           .then(() => {
             showToast('Thank you! You are now subscribed to Saved by Grace Church weekly devotionals.', 'success');
             newsletterForm.reset();

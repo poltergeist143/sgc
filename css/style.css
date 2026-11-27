@@ -5180,3 +5180,21 @@ body {
 .lite-mode .navbar.scrolled {
   background-color: rgba(7, 14, 25, 0.98);
 }
+
+/* hCaptcha: keep it centered and stop it from stretching the form */
+.contact-grid>*,
+.form-grid>* {
+  min-width: 0;
+}
+
+.h-captcha {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 400px) {
+  .h-captcha {
+    transform: scale(0.88);
+    transform-origin: center;
+  }
+}

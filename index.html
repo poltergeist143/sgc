@@ -1530,7 +1530,19 @@
                   <span>Yes, send me weekly Sunday devotionals &amp; church family news.</span>
                 </label>
               </div>
+              <!-- hCaptcha (free via Web3Forms) -->
+              <div class="form-group full-width">
+                <div class="h-captcha" data-captcha="true"></div>
+                <span class="form-error-msg"></span>
+              </div>
             </div>
+
+            <!-- Honeypot: hidden from people, bots tick it and get rejected -->
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1"
+              autocomplete="off">
+
+
+
 
             <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 1rem;">
               <i class="fa-solid fa-paper-plane"></i> Send Message
@@ -1538,6 +1550,7 @@
           </form>
         </div>
       </div>
+    </div>
     </div>
   </section>
 
@@ -1623,12 +1636,14 @@
           <form class="footer-newsletter-form" id="newsletterForm">
             <input type="email" class="footer-newsletter-input" placeholder="Your email address" required
               aria-label="Email address for church newsletter">
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1"
+              autocomplete="off">
             <button type="submit" class="btn btn-primary btn-sm" aria-label="Subscribe to weekly devotional">
               <i class="fa-solid fa-arrow-right"></i>
             </button>
           </form>
           <div style="font-size: 0.78rem; color: var(--slate-400);">No spam. Unsubscribe at any time.</div>
-          <div class="text-golden version-number">Version 1.24.2</div>
+          <div class="text-golden version-number">Version 1.27.1</div>
         </div>
       </div>
 
@@ -1732,6 +1747,7 @@
             <input type="text" id="visitNotes" class="form-input"
               placeholder="e.g. Wheelchair accessibility, dietary needs...">
           </div>
+          <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1" autocomplete="off">
           <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 1rem;">
             <i class="fa-solid fa-check"></i> Confirm My Visit Reservation
           </button>
@@ -1821,6 +1837,8 @@
                 <input type="email" id="eventRsvpEmail" class="form-input" placeholder="Your Email" required>
               </div>
             </div>
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1"
+              autocomplete="off">
             <div style="display: flex; gap: 1rem; margin-top: 0.5rem; flex-wrap: wrap;">
               <button type="submit" class="btn btn-primary btn-sm">
                 <i class="fa-solid fa-circle-check"></i> Complete Free RSVP
@@ -2370,8 +2388,10 @@
   <script src="js/announcements.js"></script>
   <script src="js/quiz.js"></script>
   <script src="js/script.js"></script>
+  <!-- hCaptcha for the Contact form (Web3Forms free plan, no keys needed) -->
+  <script src="https://web3forms.com/client/script.js" async defer></script>
 
-  <!-- Version 1.24.2 series November 2026 -->
+  <!-- Version 1.27.1 series November 2026 -->
 </body>
 
 </html>
