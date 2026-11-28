@@ -1037,4 +1037,47 @@ const SONGS = [
             { text: "Amen." }
         ]
     },
+
+    {
+        id: 77, language: 'bisaya', title: 'Nagasalig', writer: '(Standing on the Promises)', link: '',
+        lyrics: [
+            { text: "Nagasalig ko sa saad ni Jesus,\nDaygon ko S\'ya hangtud sa kahangturan;\nAkong kinabuhi giharian N’ya\nUg sa saad N’ya nagsalig ko." },
+            { text: "Nagasalig,\nAng saad sa ginoo gisaligan ko;\nNagasalig,\nAng saad n’ya akong gisaligan", chorus: true },
+            { text: "Nagasalig ko sa saad ni Jesus,\nBisag hulgaon ako sa kalisud;\nAng kahadluk ug kakulba mahanaw,\nUg sa saad n’ya nagsalig ko." },
+            { text: "Nagasalig,\nAng saad sa ginoo gisaligan ko;\nNagasalig,\nAng saad n’ya akong gisaligan", chorus: true },
+            { text: "Nagasalig ko sa saad ni Cristo,\nKay sa gugma N’ya nahidugtong ako;\nUg may kadaugan ko matag adlaw,\nUg sa saad n’ya nagsalig ko." },
+            { text: "Nagasalig,\nAng saad sa ginoo gisaligan ko;\nNagasalig,\nAng saad n’ya akong gisaligan", chorus: true },
+            { text: "Nagsalig ko sa saad ni Cristo,\nKay kini wala gayuy pagkapukan;\nSundon ko ang mando sa espiritu,\nUg sa saad n’ya nagsalig ko." },
+            { text: "Nagasalig,\nAng saad sa ginoo gisaligan ko;\nNagasalig,\nAng saad n’ya akong gisaligan", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 78, language: 'bisaya', title: 'May Awit Ang Kasingkasing ko', writer: '(He Keeps Me Singing)', link: '',
+        lyrics: [
+            { text: "Mag-awit ang kasing-kasing ko,\nGisaaran ko ni Jesus;\nDili ka mahadlok, ‘nia Ko,\nAkong ubanan ikaw." },
+            { text: "Jesus, Jesus, Jesus,\nNgalan nga Mahal,\nNagtagbaw Kanako,\nsa tanang pangandoy ko.", chorus: true },
+            { text: "Kanhi napuno ko sa sala,\nWay kalinaw ko ning dughan;\nAng Ginoo akong gitawag,\nUg gilipay N’ya ako." },
+            { text: "Jesus, Jesus, Jesus,\nNgalan nga Mahal,\nNagtagbaw Kanako,\nsa tanang pangandoy ko.", chorus: true },
+            { text: "Sa kadato sa Iyang grasya,\nDuna koy kapahulayan;\nAkong daygon ug awitan S’ya,\nHangtud S’ya Makita ko." },
+            { text: "Jesus, Jesus, Jesus,\nNgalan nga Mahal,\nNagtagbaw Kanako,\nsa tanang pangandoy ko.", chorus: true },
+            { text: "Unya S’ya moanhi pag-usab,\nAron pagdala Kanako\nSa himaya Niya dad-on ko.\nKuyog sa paghari N’ya." },
+            { text: "Jesus, Jesus, Jesus,\nNgalan nga Mahal,\nNagtagbaw Kanako,\nsa tanang pangandoy ko.", chorus: true },
+            { text: "Amen." }
+        ]
+    },
+
+    {
+        id: 79, language: 'bisaya', title: 'Grasyang Kahibulongan', writer: '(Wonderful Grace of Jesus)', link: '',
+        lyrics: [
+            { text: "Grasyang kahibulongan sa akong Ginoo,\nMas labaw pang gamhanan sa kasal-anan ko;\nAng silot ko gikuha, may kagawasan na,\nKay nadawat ko na ang grasya ni Jesus!" },
+            { text: "Kahibulongang grasya ni Jesus,\nLalum pa kay sa kadagatan;\nKatingalahan ang grasya N’ya alang sa tanan,\nLabaw pa sa akong kalapasan,\nBisan pa sa kasal-anan ko;\nDayga ang bililhong ngalan ni Jesus,\nDayga Sya!", chorus: true },
+            { text: "Grasyang kahibulongan sa akong Ginoo,\nAng nagbugto kanako sa talikala ko;\nWalay pagka-ulipon kay luwas na ako,\nKay nadawat ko na ang grasya ni Jesus!" },
+            { text: "Kahibulongang grasya ni Jesus,\nLalum pa kay sa kadagatan;\nKatingalahan ang grasya N’ya alang sa tanan,\nLabaw pa sa akong kalapasan,\nBisan pa sa kasal-anan ko;\nDayga ang bililhong ngalan ni Jesus,\nDayga Sya!", chorus: true },
+            { text: "Grasyang kahibulongan sa akong Ginoo,\nNaghatag ug kalinaw nga dili mahanaw;\nAng kinabuhing dayon ako nga naangkon,\nKay nadawat ko na ang grasya ni Jesus!" },
+            { text: "Kahibulongang grasya ni Jesus,\nLalum pa kay sa kadagatan;\nKatingalahan ang grasya N’ya alang sa tanan,\nLabaw pa sa akong kalapasan,\nBisan pa sa kasal-anan ko;\nDayga ang bililhong ngalan ni Jesus,\nDayga Sya!", chorus: true },
+            { text: "Amen." }
+        ]
+    },
 ];
